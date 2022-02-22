@@ -3,3 +3,5 @@
 *.o
 *.pch
 *.gch
+*.user
+*.pro
