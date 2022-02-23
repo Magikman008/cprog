@@ -1,7 +1,6 @@
 #include <stdio.h>
-
-int main()
+int main(void)
 {
-    printf("Hello World!\n");
-    return 0;
+int s = 56;
+printf("Year has %d weeks\n", s);
 }
