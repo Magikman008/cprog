@@ -4,6 +4,7 @@
 
 #define EXPECTED_SCANF_VALUE 1
 #define ERROR_SCANF 1
+#define NULL_SEQ 1
 
 int main()
 {
@@ -13,6 +14,11 @@ int main()
     {
         printf("Wrong input\n");
         return ERROR_SCANF;
+    }
+    if (x < 0)
+    {
+        printf("Wrong input\n");
+        return NULL_SEQ;
     }
     int index = 1;
     while (x >= 0)
