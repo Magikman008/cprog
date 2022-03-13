@@ -24,6 +24,7 @@ int main()
         printf("Error: %d", ERROR_SCANF);
         return EXIT_FAILURE;
     }
+    printf("Result: ");
     printing(x1);
     printing(x2);
     printing(x3);
