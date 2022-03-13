@@ -10,7 +10,9 @@ void printing(int x)
     if (x == 0)
     {
         printf("0\n");
-    } else {
+    }
+    else
+    {
         int tmp = 1;
         while (tmp <= x)
         {
@@ -19,19 +21,19 @@ void printing(int x)
         tmp /= 10;
         while (tmp > 0)
         {
-            printf("%i", x / tmp);
+            printf("%d", x / tmp);
             x %= tmp;
             tmp /= 10;
         }
         printf("\n");
     }
-
 }
 
 int main()
 {
     int n;
-    int rc = scanf("%i", &n);
+
+    int rc = scanf("%d", &n);
     if (rc != EXPECTED_SCANF_VALUE)
     {
         printf("Wrong input\n");
@@ -42,6 +44,8 @@ int main()
         printf("Wrong input\n");
         return ERROR_NUM;
     }
+
     printing(n);
+
     return EXIT_SUCCESS;
 }
