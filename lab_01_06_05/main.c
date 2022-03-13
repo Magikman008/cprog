@@ -4,29 +4,27 @@
 
 #define EXPECTED_SCANF_VALUE 8
 #define ERROR_SCANF 1
-#define EPS 1E-7
+
+double vector(double vx1, double vy1, double vx2, double vy2)
+{
+    return vx1 * vy2 - vx2 * vy1;
+}
 
 int checking(double x1, double y1, double x2, double y2, double x3, double y3,
-             double x4, double y4)
+double x4, double y4)
 {
-    double k1 = (x2 - x1) / (y2 - y1);
-    double k2 = (x4 - x3) / (y4 - y3);
-    if (fabs(k1 - k2) < EPS) return 0;
-    double x = ((x1 * y2 - x2 * y1) * (x4 - x3) - (x3 * y4 - x4 * y3) *
-                (x2 - x1)) / ((y1 - y2) * (x4 - x3) - (y3 - y4) * (x2 - x1));
-    double y = ((y3 - y4) * x - (x3 * y4 - x4 * y3)) / (x4 - x3);
-    int x_ok = 0;
-    if (x <= x1 && x >= x2 && x <= x3 && x >= x4) x_ok = 1;
-    if (x <= x1 && x >= x2 && x >= x3 && x <= x4) x_ok = 1;
-    if (x >= x1 && x <= x2 && x <= x3 && x >= x4) x_ok = 1;
-    if (x >= x1 && x <= x2 && x >= x3 && x <= x4) x_ok = 1;
-    int y_ok = 0;
-    if (y <= y1 && y >= y2 && y <= y3 && y >= y4) y_ok = 1;
-    if (y <= y1 && y >= y2 && y >= y3 && y <= y4) y_ok = 1;
-    if (y >= y1 && y <= y2 && y <= y3 && y >= y4) y_ok = 1;
-    if (y >= y1 && y <= y2 && y >= y3 && y <= y4) y_ok = 1;
-    if (x_ok == 1 && y_ok == 1) return 1;
-    return 0;
+    double v1 = vector(x4-x3,y4-y3,x1-x3,y1-y3);
+    double v2 = vector(x4-x3,y4-y3,x2-x3,y2-y3);
+    double v3 = vector(x2-x1,y2-y1,x3-x1,y3-y1);
+    double v4 = vector(x2-x1,y2-y1,x4-x1,y4-y1);
+    if ((v1 * v2 < 0) && (v3 * v4 < 0))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 int main()
@@ -38,6 +36,7 @@ int main()
         printf("Wrong input\n");
         return ERROR_SCANF;
     }
+
     printf("%d", checking(x1, y1, x2, y2, x3, y3, x4, y4));
     return 0;
 }
