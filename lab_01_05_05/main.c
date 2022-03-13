@@ -8,11 +8,10 @@
 void printing(int x)
 {
     int tmp = 1;
-    while (tmp <= x)
+    while (tmp <= x / 10)
     {
         tmp *= 10;
     }
-    tmp /= 10;
     while (tmp > 0)
     {
         printf("%d", x / tmp);
@@ -37,7 +36,6 @@ int main()
         printf("Wrong input\n");
         return ERROR_NUM;
     }
-
     printing(n);
 
     return EXIT_SUCCESS;
