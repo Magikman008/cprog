@@ -5,6 +5,7 @@
 #define EXPECTED_SCANF_VALUE 8
 #define ERROR_SCANF 1
 #define WRONG_CORDS 1
+#define EPS 1e-7
 
 double vector(double vx1, double vy1, double vx2, double vy2)
 {
@@ -37,7 +38,7 @@ int main()
         printf("Wrong input\n");
         return ERROR_SCANF;
     }
-    if ((x1 == x2 && y1 == y2) || (x3 == x4 && y3 == y4))
+    if ((fabs(x1 - x2) < EPS && fabs(y1 - y2) < EPS) || (fabs(x3 - x4) < EPS && fabs(y3 - y4) < EPS))
     {
         printf("Wrong input\n");
         return WRONG_CORDS;
