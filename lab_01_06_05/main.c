@@ -5,7 +5,10 @@
 #define EXPECTED_SCANF_VALUE 8
 #define ERROR_SCANF 1
 #define WRONG_CORDS 1
-#define EPS 1e-7
+#define EPS 0.00001
+
+#define NOT_CROSSES 0
+#define CROSSES 1
 
 double vector(double vx1, double vy1, double vx2, double vy2)
 {
@@ -19,13 +22,14 @@ double x4, double y4)
     double v2 = vector(x4 - x3, y4 - y3, x2 - x3, y2 - y3);
     double v3 = vector(x2 - x1, y2 - y1, x3 - x1, y3 - y1);
     double v4 = vector(x2 - x1, y2 - y1, x4 - x1, y4 - y1);
+
     if ((v1 * v2 < 0) && (v3 * v4 < 0))
     {
-        return 1;
+        return CROSSES;
     }
     else
     {
-        return 0;
+        return NOT_CROSSES;
     }
 }
 
@@ -45,5 +49,5 @@ int main()
     }
 
     printf("%d", checking(x1, y1, x2, y2, x3, y3, x4, y4));
-    return 0;
+    return EXIT_SUCCESS;
 }

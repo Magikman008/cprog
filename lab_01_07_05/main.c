@@ -4,7 +4,8 @@
 
 #define EXPECTED_SCANF_VALUE 2
 #define ERROR_SCANF 1
-#define WRONG_E 1
+#define WRONG_E 2
+#define WRONG_X 3
 
 
 double sum(double x, double e)
@@ -12,6 +13,7 @@ double sum(double x, double e)
     double cur = 1;
     int degree = 2;
     double sum = 0;
+
     while (cur > e)
     {
         sum += cur;
@@ -33,6 +35,11 @@ int main()
     {
         printf("Wrong input\n");
         return WRONG_E;
+    }
+    if (fabs(x) >= 1)
+    {
+        printf("Wrong input\n");
+        return WRONG_X;
     }
 
     double f = 1 / sqrt(1 - x * x);

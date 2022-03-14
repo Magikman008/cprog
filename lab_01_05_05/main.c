@@ -24,18 +24,19 @@ void printing(int x)
 int main()
 {
     int n;
-
     int rc = scanf("%d", &n);
     if (rc != EXPECTED_SCANF_VALUE)
     {
         printf("Wrong input\n");
         return ERROR_SCANF;
     }
+
     if (n <= 0)
     {
         printf("Wrong input\n");
         return ERROR_NUM;
     }
+
     printing(n);
 
     return EXIT_SUCCESS;

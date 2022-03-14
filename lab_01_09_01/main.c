@@ -4,7 +4,7 @@
 
 #define EXPECTED_SCANF_VALUE 1
 #define ERROR_SCANF 1
-#define NULL_SEQ 1
+#define NULL_SEQ 2
 
 int main()
 {
