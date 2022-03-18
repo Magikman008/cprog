@@ -31,7 +31,7 @@ int main()
         printf("Wrong input\n");
         return ERROR_SCANF;
     }
-    if (e <= 0 || e > 1 || fabs(x) >= 1)
+    if (e <= 0 || e > 1)
     {
         printf("Wrong input\n");
         return WRONG_E;
