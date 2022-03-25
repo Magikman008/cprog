@@ -3,7 +3,7 @@
 #include <math.h>
 
 #define EXPECTED_SCANF_VALUE 1
-#define ERROR_SCANF 1
+#define ERROR_SCANF -1
 #define NULL_SEQ 2
 
 double summary(double x)
@@ -22,7 +22,6 @@ double summary(double x)
         index += 1;
     }
     sum = sin(sum);
-
     return sum;
 }
 
@@ -41,6 +40,9 @@ int main(void)
         return NULL_SEQ;
     }
     sum = summary(x);
-    printf("%lf", sum);
+    if (sum > 0)
+    {
+        printf("%lf", sum);
+    }
     return EXIT_SUCCESS;
 }
