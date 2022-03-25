@@ -3,7 +3,7 @@
 #include <math.h>
 
 #define EXPECTED_SCANF_VALUE 1
-#define ERROR_SCANF -2
+#define ERROR_SCANF 2
 #define NULL_SEQ 2
 #define EPS 0.00001
 
@@ -44,6 +44,10 @@ int main(void)
     if (fabs(sum) <= 1 + EPS)
     {
         printf("%lf", sum);
+    }
+    else
+    {
+        return ERROR_SCANF;
     }
     return EXIT_SUCCESS;
 }
