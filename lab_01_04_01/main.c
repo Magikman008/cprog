@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
-int main()
+int main(void)
 {
     double num;
     scanf("%lf", &num);
 
-    double entrance = (int)((num + 35) / 36);
+    double entrance = floor((num + 35) / 36);
     double floor = (int)((num - ((entrance - 1) * 36) + 3) / 4);
 
     printf("%lf %lf\n", entrance, floor);

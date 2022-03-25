@@ -17,12 +17,12 @@ double sum(double x, double e)
     while (cur > e)
     {
         sum += cur;
-        cur = cur * x * x * (degree - 1) / degree;
+        cur *= x * x * (degree - 1) / degree;
     }
     return sum;
 }
 
-int main()
+int main(void)
 {
     double x, e;
     int rc = scanf("%lf%lf", &x, &e);
@@ -45,7 +45,7 @@ int main()
     double f = 1 / sqrt(1 - x * x);
     double s = sum(x, e);
     double del = fabs(f - s);
-    double tet = fabs(f - s) / fabs(f);
+    double tet = del / fabs(f);
     printf("%lf %lf %lf %lf", f, s, del, tet);
     return EXIT_SUCCESS;
 }

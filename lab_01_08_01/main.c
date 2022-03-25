@@ -4,17 +4,18 @@
 
 #define EXPECTED_SCANF_VALUE 4
 #define ERROR_SCANF 1
+#define BITS 8
 
 void printing(unsigned x)
 {
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < BITS; i++)
     {
         unsigned bit = (x >> (7 - i)) & 1;
         printf("%u", bit);
     }
 }
 
-int main()
+int main(void)
 {
     unsigned x1, x2, x3, x4;
 
