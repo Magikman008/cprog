@@ -3,8 +3,9 @@
 #include <math.h>
 
 #define EXPECTED_SCANF_VALUE 1
-#define ERROR_SCANF -1
+#define ERROR_SCANF -2
 #define NULL_SEQ 2
+#define EPS 0.00001
 
 double summary(double x)
 {
@@ -40,7 +41,7 @@ int main(void)
         return NULL_SEQ;
     }
     sum = summary(x);
-    if (sum > 0)
+    if (fabs(sum) <= 1 + EPS)
     {
         printf("%lf", sum);
     }
