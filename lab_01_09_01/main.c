@@ -5,7 +5,18 @@
 #define EXPECTED_SCANF_VALUE 1
 #define ERROR_SCANF 2
 #define NULL_SEQ 2
-#define EPS 0.00001
+#define EPS 1e-7
+
+int enter(double *x)
+{
+    int rc = scanf("%lf", &x);
+    if (rc != EXPECTED_SCANF_VALUE)
+    {
+        printf("Wrong input\n");
+        return ERROR_SCANF;
+    }
+    return EXIT_SUCCESS;
+}
 
 double summary(double x)
 {
@@ -14,10 +25,8 @@ double summary(double x)
     while (x >= 0)
     {
         sum += sqrt(x / index);
-        int rc = scanf("%lf", &x);
-        if (rc != EXPECTED_SCANF_VALUE)
+        if (enter(&x))
         {
-            printf("Wrong input\n");
             return ERROR_SCANF;
         }
         index += 1;
@@ -29,10 +38,8 @@ double summary(double x)
 int main(void)
 {
     double x, sum = 0;
-    int rc = scanf("%lf", &x);
-    if (rc != EXPECTED_SCANF_VALUE)
+    if (enter(&x))
     {
-        printf("Wrong input\n");
         return ERROR_SCANF;
     }
     if (x < 0)

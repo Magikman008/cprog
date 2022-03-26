@@ -6,7 +6,7 @@
 #define ERROR_SCANF 1
 #define BITS 8
 
-void printing(unsigned x)
+void show(unsigned x)
 {
     for (int i = 0; i < BITS; i++)
     {
@@ -27,10 +27,10 @@ int main(void)
     }
 
     printf("Result: ");
-    printing(x1);
-    printing(x2);
-    printing(x3);
-    printing(x4);
+    show(x1);
+    show(x2);
+    show(x3);
+    show(x4);
     printf(" %u %u %u %u", x1, x2, x3, x4);
     return EXIT_SUCCESS;
 }

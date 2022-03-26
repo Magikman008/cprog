@@ -5,7 +5,7 @@
 #define ERROR_SCANF 1
 #define ERROR_NUM 2
 
-void printing(int x)
+void show(int x)
 {
     int tmp = 1;
     while (tmp <= x / 10)
@@ -37,7 +37,7 @@ int main()
         return ERROR_NUM;
     }
 
-    printing(n);
+    show(n);
 
     return EXIT_SUCCESS;
 }
