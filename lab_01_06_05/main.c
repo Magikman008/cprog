@@ -23,14 +23,7 @@ double x4, double y4)
     double v3 = vector(x2 - x1, y2 - y1, x3 - x1, y3 - y1);
     double v4 = vector(x2 - x1, y2 - y1, x4 - x1, y4 - y1);
 
-    if ((v1 * v2 < 0) && (v3 * v4 < 0))
-    {
-        return CROSSES;
-    }
-    else
-    {
-        return NOT_CROSSES;
-    }
+    return ((v1 * v2 < 0) && (v3 * v4 < 0));
 }
 
 int main(void)
