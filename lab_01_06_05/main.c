@@ -41,6 +41,6 @@ int main(void)
         return WRONG_CORDS;
     }
 
-    printf("%d", checking(x1, y1, x2, y2, x3, y3, x4, y4));
+    printf("%d", check_crosses(x1, y1, x2, y2, x3, y3, x4, y4));
     return EXIT_SUCCESS;
 }

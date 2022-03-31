@@ -9,7 +9,7 @@
 
 int enter(double *x)
 {
-    int rc = scanf("%lf", &x);
+    int rc = scanf("%lf", &*x);
     if (rc != EXPECTED_SCANF_VALUE)
     {
         printf("Wrong input\n");
