@@ -8,7 +8,6 @@
 #define TOO_LITTLE_VALUE -2
 #define WRONG_INPUT -3
 #define CANT_SOLVE -4
-#define NOT_PRIME -5
 
 int enter_array(int *arr, size_t len)
 {
@@ -28,7 +27,7 @@ int enter_array(int *arr, size_t len)
 
 void insert(int *arr, size_t len, size_t cur_i)
 {
-    for (size_t i = len - 1; i > cur_i; i--)
+    for (size_t i = len; i > cur_i; i--)
     {
         arr[i] = arr[i - 1];
     }
@@ -36,35 +35,9 @@ void insert(int *arr, size_t len, size_t cur_i)
 
 void check_arr(int *arr, size_t *len)
 {
-    size_t i = 0;
-    int prev_f = 0;
-    int cur_f = 0;
-    int temp;
-    while (i < *len)
-    {
-        if (arr[i] % 3 == 0)
-        {
-            insert(arr, (*len + 1) - (*len + 1) / 11, i);
-            *len = (*len + 1) - (*len + 1) / 11;
-            arr[i + 1] = cur_f;
-            i += 2;
-
-            if (cur_f == 0 && prev_f == 0)
-            {
-                cur_f = 1;
-            }
-            else
-            {
-                temp = cur_f;
-                cur_f += prev_f;
-                prev_f = temp;
-            }
-        }
-        else
-        {
-            i += 1;
-        }
-    }
+    insert(arr, *len, 1);
+    *len += 1;
+    arr[1] = 23;
 }
 
 int main(void)
