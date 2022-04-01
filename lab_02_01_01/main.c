@@ -79,7 +79,7 @@ int main(void)
 
     double mult = 1; 
     multiply_of_odd(arr, len, &mult);
-    printf("Answer is %d\n", mult);
+    printf("Answer is %lf\n", mult);
 
     return EXIT_SUCCESS;
 }
