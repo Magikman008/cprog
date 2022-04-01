@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #define MAX_LEN_OF_ARR 10
 #define EXPECTED_SCANF_RESULT 1
@@ -34,11 +35,11 @@ int enter_array(int *arr, size_t len)
     return EXIT_SUCCESS;
 }
 
-void multiply_of_odd(int *arr, size_t len, double *mult)
+void multiply_of_odd(int *arr, size_t len, int *mult)
 {
     for (size_t i = 0; i < len; i++)
     {
-        if (arr[i] % 2 == 1)
+        if (abs(arr[i] % 2) == 1)
         {
             *mult *= arr[i];
         }
@@ -72,14 +73,10 @@ int main(void)
     {
         return EXIT_FAILURE;
     }
-    /*for (size_t i = 0; i < len; i++)
-    {
-        printf("%d ", arr[i]);
-    }*/
 
-    double mult = 1; 
+    int mult = 1; 
     multiply_of_odd(arr, len, &mult);
-    printf("Answer is %lf\n", mult);
+    printf("Answer is %d\n", mult);
 
     return EXIT_SUCCESS;
 }
