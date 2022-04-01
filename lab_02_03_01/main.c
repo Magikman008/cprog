@@ -8,7 +8,6 @@
 #define TOO_LITTLE_VALUE -2
 #define WRONG_INPUT -3
 #define CANT_SOLVE -4
-#define NOT_PRIME -5
 
 int enter_array(int *arr, size_t len)
 {
