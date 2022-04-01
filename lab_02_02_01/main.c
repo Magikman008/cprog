@@ -12,7 +12,7 @@
 
 int check_for_prime(int x)
 {
-    for (int i = 2; i < x; i++)
+    for (int i = 2; i <= sqrt(x); i++)
     {
         if (x % i == 0)
         {

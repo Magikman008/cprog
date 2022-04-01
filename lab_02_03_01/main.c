@@ -41,7 +41,7 @@ void check_arr(int *arr, size_t *len)
     int temp;
     while (i < *len)
     {
-        if (arr[i] % 3 == 0)
+        if (arr[i] % 3 == 0 && arr[i] != 0)
         {
             insert(arr, (*len + 1) - (*len + 1) / 11, i);
             *len = (*len + 1) - (*len + 1) / 11;
