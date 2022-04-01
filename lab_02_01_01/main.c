@@ -22,7 +22,7 @@ int enter_array(int *arr, size_t len)
             printf("Wrong input\n");
             return WRONG_INPUT;
         }
-        if (arr[i] % 2 == 1)
+        if (abs(arr[i] % 2) == 1)
         {
             count++;
         }
