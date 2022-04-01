@@ -34,11 +34,6 @@ int enter_array(int *arr, size_t len)
             printf("Wrong input\n");
             return WRONG_INPUT;
         }
-        if (arr[i] < 2)
-        {   
-            printf("Number cant be under two\n");
-            return WRONG_INPUT;
-        }
     }
     return EXIT_SUCCESS;
 }
@@ -47,10 +42,13 @@ int add_to_arr(int *arr, size_t len, int *res, size_t *count)
 {
     for (size_t i = 0; i < len; i++)
     {
-        if (check_for_prime(arr[i]) == EXIT_SUCCESS)
+        if (arr[i] > 1)
         {
-            res[*count] = arr[i];
-            *count += 1;
+            if (check_for_prime(arr[i]) == EXIT_SUCCESS)
+            {
+                res[*count] = arr[i];
+                *count += 1;
+            }
         }
     }
     if (*count == 0)
