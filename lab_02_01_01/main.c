@@ -62,7 +62,7 @@ int main(void)
         printf("Length of array must be over zero\n");
         return TOO_LITTLE_VALUE;
     }
-    if (len >= MAX_LEN_OF_ARR)
+    if (len > MAX_LEN_OF_ARR)
     {
         printf("Length of array must be under or equal ten\n");
         return TOO_BIG_VALUE;
