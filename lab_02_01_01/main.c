@@ -34,7 +34,7 @@ int enter_array(int *arr, size_t len)
     return EXIT_SUCCESS;
 }
 
-void multiply_of_odd(int *arr, size_t len, int *mult)
+void multiply_of_odd(int *arr, size_t len, double *mult)
 {
     for (size_t i = 0; i < len; i++)
     {
@@ -77,7 +77,7 @@ int main(void)
         printf("%d ", arr[i]);
     }*/
 
-    int mult = 1; 
+    double mult = 1; 
     multiply_of_odd(arr, len, &mult);
     printf("Answer is %d\n", mult);
 
