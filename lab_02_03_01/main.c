@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define MAX_LEN_OF_ARR 10
+#define MAX_LEN_OF_ARR 20
 #define EXPECTED_SCANF_RESULT 1
 #define TOO_BIG_VALUE -1
 #define TOO_LITTLE_VALUE -2
@@ -41,10 +41,10 @@ void check_arr(int *arr, size_t *len)
     int temp;
     while (i < *len)
     {
-        if (arr[i] % 3 == 0 && arr[i] != 0)
+        if (arr[i] % 3 == 0)
         {
-            insert(arr, (*len + 1) - (*len + 1) / 11, i);
-            *len = (*len + 1) - (*len + 1) / 11;
+            insert(arr, *len + 1, i);
+            *len = *len + 1;
             arr[i + 1] = cur_f;
             i += 2;
 
