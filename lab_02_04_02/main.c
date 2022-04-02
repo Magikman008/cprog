@@ -28,6 +28,11 @@ int enter_array(int *arr, size_t *len)
         {
             return EXIT_SUCCESS;
         }
+        else if(i == 9)
+        {
+            *len += 1;
+            return EXIT_SUCCESS;
+        }
         *len += 1;
     }
 
