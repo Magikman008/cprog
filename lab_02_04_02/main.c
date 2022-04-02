@@ -20,19 +20,20 @@ void show(int *arr, size_t len)
 int enter_array(int *arr, size_t *len)
 {
     int rc;
+    int elem;
     printf("Input your items: ");
-    for (size_t i = 0; i < MAX_LEN_OF_ARR; i++)
+    for (size_t i = 0; i < MAX_LEN_OF_ARR + 1; i++)
     {
-        rc = scanf("%d", &arr[i]);
+        rc = scanf("%d", &elem);
         if (rc != EXPECTED_SCANF_RESULT)
         {
             return EXIT_SUCCESS;
         }
-        else if(i == 9)
+        if (i == 10)
         {
-            *len += 1;
-            return EXIT_SUCCESS;
+            return SPECIAL_CODE;
         }
+        arr[i] = elem;
         *len += 1;
     }
 
