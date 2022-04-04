@@ -1,1 +1,1 @@
-Input length of array: Input your items: Answer is 3
+Input length of array: Input your items: You must enter more then zero odd numbers
