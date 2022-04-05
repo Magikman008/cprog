@@ -1,1 +1,1 @@
-Input length of array: Input your items: Number of unique numbers 2
+Input length of array: Input your items: Wrong input
