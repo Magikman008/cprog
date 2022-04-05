@@ -7,31 +7,32 @@
 #define TOO_LITTLE_VALUE -2
 #define WRONG_INPUT -3
 
-int enter_array(int *arr, size_t len)
+int enter_array(int *s, int *e)
 {
     int rc;
     printf("Input your items: ");
-    for (size_t i = 0; i < len; i++)
+    while (s < e)
     {
-        rc = scanf("%d", &arr[i]);
+        rc = scanf("%d", s);
         if (rc != EXPECTED_SCANF_RESULT)
         {
             printf("Wrong input\n");
             return WRONG_INPUT;
         }
+        s++;
     }
     return EXIT_SUCCESS;
 }
 
-int check_arr(int *arr, size_t len)
+int check_arr(int *s, int *e)
 {
     int count = 0;
-    for (size_t i = 0; i < len; i++)
+    for (int *i = s; i < e; i++)
     {
         int cur_count = 0;
-        for (size_t j = i + 1; j < len; j++)
+        for (int *j = i + 1; j < e; j++)
         {
-            if (*(arr + i) == *(arr + j)) 
+            if (*i == *j) 
             {
                 cur_count++;
             }
@@ -42,15 +43,38 @@ int check_arr(int *arr, size_t len)
     return count;
 }
 
+int enter_len(size_t *len)
+{
+    printf("Input length of array: ");
+    int rc = scanf("%zu", len);
+    if (rc != EXPECTED_SCANF_RESULT)
+    {
+        printf("Wrong input\n");
+        return WRONG_INPUT;
+    }
+    if (*len < 1)
+    {
+        printf("Length of array must be over zero\n");
+        return TOO_LITTLE_VALUE;
+    }
+    if (*len > MAX_LEN_OF_ARR)
+    {
+        printf("Length of array must be under or equal ten\n");
+        return TOO_BIG_VALUE;
+    }
+    return EXIT_SUCCESS;
+}
 
 int main(void)
 {
     setbuf(stdout, NULL);
     int arr[MAX_LEN_OF_ARR];
-    if (enter_array(arr, len) != EXIT_SUCCESS)
-    {
-        return EXIT_FAILURE;
-    }
-    printf("Number of unique numbers %d\n", check_arr(arr, len));
+    size_t len;
+    int rc;
+    if ((rc = enter_len(&len)) != EXIT_SUCCESS)
+        return rc;
+    if ((rc = enter_array(arr, arr + len)) != EXIT_SUCCESS)
+        return rc;
+    printf("Number of unique numbers %d\n", check_arr(arr, arr + len));
     return EXIT_SUCCESS;
 }
