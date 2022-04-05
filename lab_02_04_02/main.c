@@ -29,12 +29,11 @@ int enter_array(int *arr, size_t *len)
         {
             return EXIT_SUCCESS;
         }
-        if (i == 10)
+        if (i < 10)
         {
-            return SPECIAL_CODE;
+            arr[i] = elem;
+            *len += 1;
         }
-        arr[i] = elem;
-        *len += 1;
     }
 
     return SPECIAL_CODE;

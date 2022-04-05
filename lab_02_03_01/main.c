@@ -61,7 +61,7 @@ void check_arr(int *arr, size_t *len)
         }
         else
         {
-            i += 1;
+            i++;
         }
     }
 }
