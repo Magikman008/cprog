@@ -47,7 +47,7 @@ int add_to_arr(int *arr, size_t len, int *res, size_t *count)
             if (check_for_prime(arr[i]) == EXIT_SUCCESS)
             {
                 res[*count] = arr[i];
-                *count += 1;
+                *count++;
             }
         }
     }
