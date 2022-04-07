@@ -32,7 +32,7 @@ int enter_array(int *arr, size_t *len)
         if (i < 10)
         {
             arr[i] = elem;
-            *len++;
+            (*len)++;
         }
     }
 
