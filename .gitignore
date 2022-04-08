@@ -3,3 +3,9 @@
 *.o
 *.pch
 *.gch
+*.user
+*.pro
+*Desktop-Debug
+test
+make_tests_out.sh
+
