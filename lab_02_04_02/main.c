@@ -4,17 +4,14 @@
 
 #define MAX_LEN_OF_ARR 10
 #define EXPECTED_SCANF_RESULT 1
-#define TOO_LITTLE_VALUE -1
-#define WRONG_INPUT -2
+#define ERROR_TOO_LITTLE_VALUE -1
 #define SPECIAL_CODE 100
 
-void show(int *arr, size_t len)
+void show_arr(int *arr, size_t len)
 {
     for (size_t j = 0; j < len; j++)
-    {
         printf("%d ", arr[j]);
-    }
-    printf("\n");
+    puts("");
 }
 
 int enter_array(int *arr, size_t *len)
@@ -26,9 +23,7 @@ int enter_array(int *arr, size_t *len)
     {
         rc = scanf("%d", &elem);
         if (rc != EXPECTED_SCANF_RESULT)
-        {
             return EXIT_SUCCESS;
-        }
         if (i < 10)
         {
             arr[i] = elem;
@@ -39,7 +34,7 @@ int enter_array(int *arr, size_t *len)
     return SPECIAL_CODE;
 }
 
-void sort(int *arr, size_t len)
+void sort_arr(int *arr, size_t len)
 {
     for (size_t i = len - 1; i > 0; i--)
     {
@@ -65,22 +60,17 @@ int main(void)
     size_t len = 0;
 
     int arr[MAX_LEN_OF_ARR];
-    if (enter_array(arr, &len) != EXIT_SUCCESS)
-    {   
-        sort(arr, len);
-        show(arr, len);
+    int rc = enter_array(arr, &len);
+    if (len == 0)
+    {
+        printf("Length of array must be over zero\n");
+        return ERROR_TOO_LITTLE_VALUE;
+    }
+    
+    sort_arr(arr, len);
+    show_arr(arr, len);
+    if (rc != EXIT_SUCCESS)
         return SPECIAL_CODE;
-    }
-    else
-    {   
-        if (len == 0)
-        {
-            printf("Length of array must be over zero\n");
-            return TOO_LITTLE_VALUE;
-        }
-        sort(arr, len);
-    }
 
-    show(arr, len);
     return EXIT_SUCCESS;
 }
