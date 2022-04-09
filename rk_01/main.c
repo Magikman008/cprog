@@ -11,6 +11,15 @@ void input_arr(int *arr, size_t len)
 	}	
 }
 
+void show(int *degrees, size_t ldeg)
+{
+	for (size_t i = 0; i < ldeg; i++)
+	{
+		printf("%d ", *(degrees + i));
+	}
+	puts("");
+}
+
 void twenty_fourty_eight(int *degrees, int *doings, size_t *ldeg, size_t ldo)
 {
 	for (size_t i = 0; i < ldo; i++)
@@ -32,6 +41,7 @@ void twenty_fourty_eight(int *degrees, int *doings, size_t *ldeg, size_t ldo)
 				j++;
 			}
 		}
+		
 		if (*(doings + i) == 1)
 		{
 			size_t j = *ldeg - 1;
@@ -39,10 +49,10 @@ void twenty_fourty_eight(int *degrees, int *doings, size_t *ldeg, size_t ldo)
 			{
 				if (*(degrees + j) == *(degrees + j - 1))
 				{	
-					*(degrees + j) = *(degrees + j) + *(degrees + j - 1);			
-					for (size_t c = j + 1; c > 0; c--)
+					*(degrees + j) = *(degrees + j) + *(degrees + j - 1);	
+					for (size_t c = j - 1; c < *ldeg - 1; c++)
 					{
-						*(degrees + c) = *(degrees + c - 1);
+						*(degrees + c) = *(degrees + c + 1);
 					}
 					*ldeg -= 1;
 				}
@@ -52,30 +62,23 @@ void twenty_fourty_eight(int *degrees, int *doings, size_t *ldeg, size_t ldo)
 	}
 }
 
-void show(int *degrees, size_t ldeg)
-{
-	for (size_t i = 0; i < ldeg; i++)
-	{
-		printf("%d ", *(degrees + i));
-	}
-	puts("");
-}
-
 int main(void)
 {
     size_t len_degrees_arr;
     puts("Input number of numbers: ");
     scanf("%zu",&len_degrees_arr);
+    
     int degrees[MAX_LEN_ARR];
-    int doings[MAX_LEN_ARR];
     puts("Input your items: ");
     input_arr(degrees, len_degrees_arr);
+    
     size_t len_doings_arr;
     puts("Input number of doings: ");
     scanf("%zu",&len_doings_arr);
+    int doings[MAX_LEN_ARR];
     puts("Input your doings: ");
     input_arr(doings, len_doings_arr);
-    puts("done");
+    
     twenty_fourty_eight(degrees, doings, &len_degrees_arr, len_doings_arr);
     show(degrees, len_degrees_arr);
     return EXIT_SUCCESS;
