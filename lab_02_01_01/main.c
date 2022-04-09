@@ -25,7 +25,7 @@ int enter_array(int *arr, size_t len)
         if (abs(arr[i] % 2) == 1)
             count++;
     }
-    
+
     if (count == 0)
     {
         printf("You must enter more then zero odd numbers\n");
@@ -47,19 +47,19 @@ void multiply_of_odd(int *arr, size_t len, int *mult)
 int input_length(size_t *len)
 {
     printf("Input length of array: ");
-    int rc = scanf("%zu", &len);
+    int rc = scanf("%zu", len);
     if (rc != EXPECTED_SCANF_RESULT)
     {
         printf("Wrong input\n");
         return ERROR_WRONG_INPUT;
     }
 
-    if (len < 1)
+    if (*len < 1)
     {
         printf("Length of array must be over zero\n");
         return ERROR_TOO_LITTLE_VALUE;
     }
-    if (len > MAX_LEN_OF_ARR)
+    if (*len > MAX_LEN_OF_ARR)
     {
         printf("Length of array must be under or equal ten\n");
         return ERROR_TOO_BIG_VALUE;
@@ -74,10 +74,10 @@ int main(void)
 
     size_t len;
     int rc;
-    if (rc = input_length(&len) != EXIT_SUCCESS)
+    if ((rc = input_length(&len)) != EXIT_SUCCESS)
         return rc;
     int arr[MAX_LEN_OF_ARR];
-    if (rc = enter_array(arr, len) != EXIT_SUCCESS)
+    if ((rc = enter_array(arr, len)) != EXIT_SUCCESS)
         return rc;
 
     int mult = 1; 

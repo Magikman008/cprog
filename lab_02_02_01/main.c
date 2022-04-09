@@ -17,7 +17,7 @@ int check_for_prime(int x)
         if (x % i == 0)
             return ERROR_NOT_PRIME;
     }
-    
+
     return EXIT_SUCCESS;
 }
 
@@ -61,19 +61,19 @@ int add_primes_to_arr(int *arr, size_t len, int *res, size_t *count)
 int input_len(size_t *len)
 {
     printf("Input length of array: ");
-    int rc = scanf("%zu", &len);
+    int rc = scanf("%zu", len);
     if (rc != EXPECTED_SCANF_RESULT)
     {
         printf("Wrong input\n");
         return ERROR_WRONG_INPUT;
     }
 
-    if (len < 1)
+    if (*len < 1)
     {
         printf("Length of array must be over zero\n");
         return ERROR_TOO_LITTLE_VALUE;
     }
-    if (len > MAX_LEN_OF_ARR)
+    if (*len > MAX_LEN_OF_ARR)
     {
         printf("Length of array must be under or equal ten\n");
         return ERROR_TOO_BIG_VALUE;
@@ -96,10 +96,10 @@ int main(void)
 
     size_t len;
     int rc;
-    if (rc = input_len(&len) != EXIT_SUCCESS)
+    if ((rc = input_len(&len)) != EXIT_SUCCESS)
         return rc;
     int arr[MAX_LEN_OF_ARR];
-    if (rc = enter_array(arr, len) != EXIT_SUCCESS)
+    if ((rc = enter_array(arr, len)) != EXIT_SUCCESS)
         return rc;
     
     int res[MAX_LEN_OF_ARR];

@@ -22,7 +22,7 @@ int enter_array(int *arr, size_t len)
             return ERROR_WRONG_INPUT;
         }
     }
-    
+
     return EXIT_SUCCESS;
 }
 
@@ -63,19 +63,19 @@ void find_numbers_divisible(int *arr, size_t *len)
 int input_len(size_t *len)
 {
     printf("Input length of array: ");
-    int rc = scanf("%zu", &len);
+    int rc = scanf("%zu", len);
     if (rc != EXPECTED_SCANF_RESULT)
     {
         printf("Wrong input\n");
         return ERROR_WRONG_INPUT;
     }
 
-    if (len < 1)
+    if (*len < 1)
     {
         printf("Length of array must be over zero\n");
         return ERROR_TOO_LITTLE_VALUE;
     }
-    if (len > MAX_LEN_OF_ARR)
+    if (*len > MAX_LEN_OF_ARR)
     {
         printf("Length of array must be under or equal ten\n");
         return ERROR_TOO_BIG_VALUE;
@@ -89,11 +89,11 @@ int main(void)
     setbuf(stdout, NULL);
     size_t len;
     int rc;
-    if (rc = input_len(&len) != EXIT_SUCCESS)
+    if ((rc = input_len(&len)) != EXIT_SUCCESS)
         return rc;
     int arr[MAX_LEN_OF_ARR];
-    if (enter_array(arr, len) != EXIT_SUCCESS)
-        return EXIT_FAILURE;
+    if ((rc = enter_array(arr, len)) != EXIT_SUCCESS)
+        return rc;
 
     find_numbers_divisible(arr, &len);
     for (size_t i = 0; i < len; i++)
