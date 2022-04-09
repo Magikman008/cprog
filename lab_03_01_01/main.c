@@ -3,9 +3,9 @@
 
 #define MAX_LEN_OF_ARR 10
 #define EXPECTED_SCANF_RESULT 1
-#define TOO_BIG_VALUE -1
-#define TOO_LITTLE_VALUE -2
-#define WRONG_INPUT -3
+#define ERROR_TOO_BIG_VALUE -1
+#define ERROR_TOO_LITTLE_VALUE -2
+#define ERROR_WRONG_INPUT -3
 
 int length_input(size_t *rows, size_t *columns)
 {
@@ -14,43 +14,46 @@ int length_input(size_t *rows, size_t *columns)
     if (rc != EXPECTED_SCANF_RESULT)
     {
         printf("Wrong input\n");
-        return WRONG_INPUT;
+
+        return ERROR_WRONG_INPUT;
     }
     printf("Input number of columns: ");
     rc = scanf("%zu", columns);
     if (rc != EXPECTED_SCANF_RESULT)
     {
         printf("Wrong input\n");
-        return WRONG_INPUT;
+        return ERROR_WRONG_INPUT;
     }
     if (*rows < 1 || *columns < 1)
     {
         printf("Length of array must be over zero\n");
-        return TOO_LITTLE_VALUE;
+        return ERROR_TOO_LITTLE_VALUE;
     }
     if (*rows > MAX_LEN_OF_ARR || *columns > MAX_LEN_OF_ARR)
     {
         printf("Length of array must be under or equal ten\n");
-        return TOO_BIG_VALUE;
+        return ERROR_TOO_BIG_VALUE;
     }
     return EXIT_SUCCESS;
 }
 
-void make_new_arr(int matrix[MAX_LEN_OF_ARR][MAX_LEN_OF_ARR], int *arr, size_t *rows, size_t *columns)
+void make_new_arr(int (*matrix)[MAX_LEN_OF_ARR], int *arr, size_t rows, size_t columns)
 {
-    for (size_t i = 0; i < *rows; i++)
+    for (size_t i = 0; i < rows; i++)
     {   
-        int count;
-        if (*columns == 1)
+        size_t count;
+        if (columns == 1)
             count = 1;
         else
-            count = 0;
-        for (size_t j = 0; j < *columns / 2; j++)
         {
-            if (matrix[i][j] == matrix[i][*columns - j - 1])
-                count++;
+            count = 0;
+            for (size_t j = 0; j < columns / 2; j++)
+            {
+                if (matrix[i][j] == matrix[i][columns - j - 1])
+                    count++;
+            }
         }
-        if (count > 0)
+        if (count == columns / 2)
         {
             arr[i] = 1;
         }
@@ -73,7 +76,7 @@ int input_arr(int matrix[MAX_LEN_OF_ARR][MAX_LEN_OF_ARR], size_t *rows, size_t *
             if (rc != EXPECTED_SCANF_RESULT)
             {
                 printf("Wrong input\n");
-                return WRONG_INPUT;
+                return ERROR_WRONG_INPUT;
             }
         }
     }
@@ -86,6 +89,7 @@ void show_arr(int *arr, size_t *rows)
     {
         printf("%d ", arr[i]);
     }
+    puts("");
 }
 
 int main(void)
@@ -100,7 +104,7 @@ int main(void)
     if (rc != EXIT_SUCCESS)
         return rc;
     int arr[MAX_LEN_OF_ARR];
-    make_new_arr(matrix, arr, &rows, &columns);
+    make_new_arr(matrix, arr, rows, columns);
     show_arr(arr, &rows);
     return EXIT_SUCCESS;
 }
