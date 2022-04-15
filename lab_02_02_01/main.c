@@ -85,9 +85,9 @@ int input_len(size_t *len)
 void show_arr(int *arr, size_t len)
 {
     printf("Your prime numbers is ");
-        for (size_t i = 0; i < len; i++)
-            printf("%d ", arr[i]);
-        puts("");
+    for (size_t i = 0; i < len; i++)
+        printf("%d ", arr[i]);
+    puts("");
 }
 
 int main(void)
