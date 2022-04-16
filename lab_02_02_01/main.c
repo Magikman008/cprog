@@ -13,10 +13,8 @@
 int check_for_prime(int x)
 {
     for (int i = 2; i <= sqrt(x); i++)
-    {
         if (x % i == 0)
             return ERROR_NOT_PRIME;
-    }
 
     return EXIT_SUCCESS;
 }
@@ -105,9 +103,7 @@ int main(void)
     int res[MAX_LEN_OF_ARR];
     size_t count = 0;
     if (add_primes_to_arr(arr, len, res, &count) == EXIT_SUCCESS)
-    {
         show_arr(res, count);
-    }
     else
         return ERROR_CANT_SOLVE;
 
