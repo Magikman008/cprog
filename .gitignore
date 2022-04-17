@@ -6,3 +6,6 @@
 *.user
 *.pro
 *Desktop-Debug
+*.gcda
+*.gcov
+*.gcno
