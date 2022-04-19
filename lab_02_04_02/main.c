@@ -19,9 +19,11 @@ int enter_array(int *arr, size_t *len)
     int rc;
     int elem;
     printf("Input your items: ");
+
     for (size_t i = 0; i < MAX_LEN_OF_ARR + 1; i++)
     {
         rc = scanf("%d", &elem);
+
         if (rc != EXPECTED_SCANF_RESULT)
             return EXIT_SUCCESS;
         if (i < 10)
@@ -61,12 +63,13 @@ int main(void)
 
     int arr[MAX_LEN_OF_ARR];
     int rc = enter_array(arr, &len);
+
     if (len == 0)
     {
         printf("Length of array must be over zero\n");
         return ERROR_TOO_LITTLE_VALUE;
     }
-    
+
     sort_arr(arr, len);
     show_arr(arr, len);
     if (rc != EXIT_SUCCESS)

@@ -13,6 +13,7 @@ int enter_array(int *arr, size_t len)
 {
     int rc;
     printf("Input your items: ");
+
     for (size_t i = 0; i < len; i++)
     {
         rc = scanf("%d", &arr[i]);
@@ -46,6 +47,7 @@ void find_numbers_divisible(int *arr, size_t *len)
             *len = *len + 1;
             arr[i + 1] = cur_f;
             i += 2;
+
             if (cur_f == 0 && prev_f == 0)
                 cur_f = 1;
             else
@@ -91,6 +93,7 @@ int main(void)
     int rc;
     if ((rc = input_len(&len)) != EXIT_SUCCESS)
         return rc;
+
     int arr[MAX_LEN_OF_ARR];
     if ((rc = enter_array(arr, len)) != EXIT_SUCCESS)
         return rc;

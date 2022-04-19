@@ -23,6 +23,7 @@ int enter_array(int *arr, size_t len)
 {
     int rc;
     printf("Input your items: ");
+
     for (size_t i = 0; i < len; i++)
     {
         rc = scanf("%d", &arr[i]);
@@ -59,6 +60,7 @@ int add_primes_to_arr(int *arr, size_t len, int *res, size_t *count)
 int input_len(size_t *len)
 {
     printf("Input length of array: ");
+
     int rc = scanf("%zu", len);
     if (rc != EXPECTED_SCANF_RESULT)
     {
@@ -94,14 +96,17 @@ int main(void)
 
     size_t len;
     int rc;
+
     if ((rc = input_len(&len)) != EXIT_SUCCESS)
         return rc;
+
     int arr[MAX_LEN_OF_ARR];
     if ((rc = enter_array(arr, len)) != EXIT_SUCCESS)
         return rc;
-    
+
     int res[MAX_LEN_OF_ARR];
     size_t count = 0;
+
     if (add_primes_to_arr(arr, len, res, &count) == EXIT_SUCCESS)
         show_arr(res, count);
     else

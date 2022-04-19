@@ -14,6 +14,7 @@ int enter_array(int *arr, size_t len)
     int rc;
     int count = 0;
     printf("Input your items: ");
+
     for (size_t i = 0; i < len; i++)
     {
         rc = scanf("%d", &arr[i]);
@@ -22,6 +23,7 @@ int enter_array(int *arr, size_t len)
             printf("Wrong input\n");
             return ERROR_WRONG_INPUT;
         }
+
         if (abs(arr[i] % 2) == 1)
             count++;
     }
@@ -80,7 +82,7 @@ int main(void)
     if ((rc = enter_array(arr, len)) != EXIT_SUCCESS)
         return rc;
 
-    int mult = 1; 
+    int mult = 1;
     multiply_of_odd(arr, len, &mult);
     printf("Answer is %d\n", mult);
 
