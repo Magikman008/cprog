@@ -14,7 +14,6 @@ int length_input(size_t *rows, size_t *columns)
     if (rc != EXPECTED_SCANF_RESULT)
     {
         printf("Wrong input\n");
-
         return ERROR_WRONG_INPUT;
     }
     printf("Input number of columns: ");
@@ -40,49 +39,39 @@ int length_input(size_t *rows, size_t *columns)
 void make_new_arr(int (*matrix)[MAX_LEN_OF_ARR], int *arr, size_t rows, size_t columns)
 {
     for (size_t i = 0; i < rows; i++)
-    {   
+    {
         size_t count = 0;
         for (size_t j = 0; j < columns / 2; j++)
-        {
             if (matrix[i][j] == matrix[i][columns - j - 1])
                 count++;
-        }
         if (count == columns / 2)
-        {
             arr[i] = 1;
-        }
         else
-        {
             arr[i] = 0;
-        }
     }
 }
 
-int input_arr(int matrix[MAX_LEN_OF_ARR][MAX_LEN_OF_ARR], size_t *rows, size_t *columns)
+int input_arr(int (*matrix)[MAX_LEN_OF_ARR], size_t *rows, size_t *columns)
 {
     int rc;
     puts("Input your items: ");
     for (size_t i = 0; i < *rows; i++)
-    {
         for (size_t j = 0; j < *columns; j++)
         {
-            rc = scanf("%d", &matrix[i][j]);
+            rc = scanf("%d", (*(matrix + i) + j));
             if (rc != EXPECTED_SCANF_RESULT)
             {
                 printf("Wrong input\n");
                 return ERROR_WRONG_INPUT;
             }
         }
-    }
     return EXIT_SUCCESS;
 }
 
 void show_arr(int *arr, size_t *rows)
 {
     for (size_t i = 0; i < *rows; i++)
-    {
         printf("%d ", arr[i]);
-    }
     puts("");
 }
 

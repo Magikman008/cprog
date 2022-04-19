@@ -14,7 +14,6 @@ int length_input(size_t *rows, size_t *columns)
     if (rc != EXPECTED_SCANF_RESULT)
     {
         printf("Wrong input\n");
-
         return ERROR_WRONG_INPUT;
     }
     printf("Input number of columns: ");
@@ -37,53 +36,70 @@ int length_input(size_t *rows, size_t *columns)
     return EXIT_SUCCESS;
 }
 
-void make_new_arr(int (*matrix)[MAX_LEN_OF_ARR], int *arr, size_t rows, size_t columns)
+int sum_digits(int x)
 {
-    for (size_t i = 0; i < rows; i++)
-    {   
-        size_t count = 0;
-        for (size_t j = 0; j < columns; j++)
-        {
-            if (matrix[i][j] == matrix[i][columns - j - 1])
-                count++;
-        }
-        if (count == columns / 2)
-        {
-            arr[i] = 1;
-        }
-        else
-        {
-            arr[i] = 0;
-        }
+    int sum = 0;
+    while (x > 0)
+    {
+        sum += x % 10;
+        x /= 10;
     }
+    return sum;
 }
 
-int input_arr(int matrix[MAX_LEN_OF_ARR][MAX_LEN_OF_ARR], size_t *rows, size_t *columns)
+void find_i_j(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns, size_t *return_i, size_t *return_j)
+{
+    int global_min = sum_digits(*(*(matrix)));
+    for (size_t i = 0; i < rows; i++)
+        for (size_t j = 0; j < columns; j++)
+        {
+            int cur_sum = sum_digits(*(*(matrix + i) + j));
+            if (cur_sum < global_min)
+            {
+                *return_i = i;
+                *return_j = j;
+                global_min = cur_sum;
+            }
+        }
+}
+
+int input_arr(int (*matrix)[MAX_LEN_OF_ARR], size_t *rows, size_t *columns)
 {
     int rc;
     puts("Input your items: ");
     for (size_t i = 0; i < *rows; i++)
-    {
         for (size_t j = 0; j < *columns; j++)
         {
-            rc = scanf("%d", &matrix[i][j]);
+            rc = scanf("%d", (*(matrix + i) + j));
             if (rc != EXPECTED_SCANF_RESULT)
             {
                 printf("Wrong input\n");
                 return ERROR_WRONG_INPUT;
             }
         }
-    }
     return EXIT_SUCCESS;
 }
 
-void show_arr(int *arr, size_t *rows)
+void show_matrix(int (*matrix)[MAX_LEN_OF_ARR], size_t *rows, size_t *columns)
 {
     for (size_t i = 0; i < *rows; i++)
     {
-        printf("%d ", arr[i]);
+        for (size_t j = 0; j < *columns; j++)
+            printf("%d ", *(*(matrix + i) + j));
+        puts("");
     }
-    puts("");
+}
+
+void remove_row_and_col(int (*matrix)[MAX_LEN_OF_ARR], size_t *rows, size_t *columns, size_t *return_i, size_t *return_j)
+{
+    for (size_t i = *return_i; i < *rows; i++)
+        for (size_t j = 0; j < *columns; j++)
+            *(*(matrix + i) + j) = *(*(matrix + i + 1) + j);
+    *rows -= 1;
+    for (size_t i = 0; i < *rows; i++)
+        for (size_t j = *return_j; j < *columns; j++)
+            *(*(matrix + i) + j) = *(*(matrix + i) + j + 1);
+    *columns -= 1;
 }
 
 int main(void)
@@ -97,8 +113,10 @@ int main(void)
     rc = input_arr(matrix, &rows, &columns);
     if (rc != EXIT_SUCCESS)
         return rc;
-    int arr[MAX_LEN_OF_ARR];
-    make_new_arr(matrix, arr, rows, columns);
-    show_arr(arr, &rows);
+
+    size_t i, j;
+    find_i_j(matrix, rows, columns, &i, &j);
+    remove_row_and_col(matrix, &rows, &columns, &i, &j);
+    show_matrix(matrix, &rows, &rows);
     return EXIT_SUCCESS;
 }
