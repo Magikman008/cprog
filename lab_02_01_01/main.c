@@ -76,8 +76,10 @@ int main(void)
 
     size_t len;
     int rc;
+
     if ((rc = input_length(&len)) != EXIT_SUCCESS)
         return rc;
+
     int arr[MAX_LEN_OF_ARR];
     if ((rc = enter_array(arr, len)) != EXIT_SUCCESS)
         return rc;
