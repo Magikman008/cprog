@@ -75,7 +75,7 @@ int add_items_to_arr(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns,
 {
     for (size_t i = 0; i < rows; i++)
         for (size_t j = 0; j < columns; j++)
-            if (sum_digits(*(*(matrix + i) + j)) > 10)
+            if (sum_digits(abs(*(*(matrix + i) + j))) > 10)
             {
                 *(arr + *count) = *(*(matrix + i) + j);
                 (*count)++;
@@ -101,7 +101,7 @@ void add_items_to_matrix(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t colu
     size_t count = 0;
     for (size_t i = 0; i < rows; i++)
         for (size_t j = 0; j < columns; j++)
-            if (sum_digits(*(*(matrix + i) + j)) > 10)
+            if (sum_digits(abs(*(*(matrix + i) + j))) > 10)
             {
                 *(*(matrix + i) + j) = *(arr + count);
                 count++;
