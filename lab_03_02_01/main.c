@@ -72,7 +72,7 @@ int sum_digits(int x)
 
 void find_i_j(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns, size_t *return_i, size_t *return_j)
 {
-    int global_min = abs(sum_digits(*(*(matrix))));
+    int global_min = sum_digits(abs(*(*(matrix))));
     for (size_t i = 0; i < rows; i++)
         for (size_t j = 0; j < columns; j++)
         {

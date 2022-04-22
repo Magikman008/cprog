@@ -91,8 +91,6 @@ void input_matrix(int (*matrix)[MAX_LEN_OF_ARR], size_t *side)
     (*side)++;
 }
 
-
-
 int main(void)
 {
     size_t side;

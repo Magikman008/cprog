@@ -71,6 +71,45 @@ int sum_digits(int x)
     return sum;
 }
 
+int add_items_to_arr(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns, int *arr, size_t *count)
+{
+    for (size_t i = 0; i < rows; i++)
+        for (size_t j = 0; j < columns; j++)
+            if (sum_digits(*(*(matrix + i) + j)) > 10)
+            {
+                *(arr + *count) = *(*(matrix + i) + j);
+                (*count)++;
+            }
+    if (*count == 0)
+        return ERROR_NO_SUITABLE_NUMBERS;
+    return EXIT_SUCCESS;
+}
+
+void arr_shift(int *arr, size_t count)
+{
+    int temp0 = *(arr);
+    int temp1 = *(arr + 1);
+    int temp2 = *(arr + 2);
+    for (size_t i = 0; i < count - 3; i++)
+        *(arr + i) = *(arr + i + 3);
+    *(arr + count - 3) = temp0;
+    *(arr + count - 2) = temp1;
+    *(arr + count - 1) = temp2;
+
+}
+
+void add_items_to_matrix(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns, int *arr)
+{
+    size_t count = 0;
+    for (size_t i = 0; i < rows; i++)
+        for (size_t j = 0; j < columns; j++)
+            if (sum_digits(*(*(matrix + i) + j)) > 10)
+            {
+                *(*(matrix + i) + j) = *(arr + count);
+                count++;
+            }
+}
+
 void show_matrix(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns)
 {
     for (size_t i = 0; i < rows; i++)
