@@ -123,7 +123,7 @@ int main(void)
     if (rc != EXIT_SUCCESS)
         return rc;
 
-    size_t i, j;
+    size_t i = 0, j = 0;
     find_i_j(matrix, rows, columns, &i, &j);
     remove_row_and_col(matrix, &rows, &columns, &i, &j);
     show_matrix(matrix, rows, columns);
