@@ -11,28 +11,51 @@ int length_input(size_t *rows, size_t *columns)
 {
     printf("Input number of rows: ");
     int rc = scanf("%zu", rows);
+
     if (rc != EXPECTED_SCANF_RESULT)
     {
-        printf("Wrong input\n");
+        puts("Wrong input");
         return ERROR_WRONG_INPUT;
     }
+
     printf("Input number of columns: ");
     rc = scanf("%zu", columns);
+
     if (rc != EXPECTED_SCANF_RESULT)
     {
-        printf("Wrong input\n");
+        puts("Wrong input");
         return ERROR_WRONG_INPUT;
     }
+
     if (*rows < 1 || *columns < 1)
     {
-        printf("Length of array must be over zero\n");
+        puts("Length of array must be over zero");
         return ERROR_TOO_LITTLE_VALUE;
     }
     if (*rows > MAX_LEN_OF_ARR || *columns > MAX_LEN_OF_ARR)
     {
-        printf("Length of array must be under or equal ten\n");
+        puts("Length of array must be under or equal ten");
         return ERROR_TOO_BIG_VALUE;
     }
+
+    return EXIT_SUCCESS;
+}
+
+int input_arr(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns)
+{
+    int rc;
+    puts("Input your items: ");
+    for (size_t i = 0; i < rows; i++)
+        for (size_t j = 0; j < columns; j++)
+        {
+            rc = scanf("%d", (*(matrix + i) + j));
+            if (rc != EXPECTED_SCANF_RESULT)
+            {
+                printf("Wrong input\n");
+                return ERROR_WRONG_INPUT;
+            }
+        }
+
     return EXIT_SUCCESS;
 }
 
@@ -49,11 +72,11 @@ int sum_digits(int x)
 
 void find_i_j(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns, size_t *return_i, size_t *return_j)
 {
-    int global_min = sum_digits(*(*(matrix)));
+    int global_min = abs(sum_digits(*(*(matrix))));
     for (size_t i = 0; i < rows; i++)
         for (size_t j = 0; j < columns; j++)
         {
-            int cur_sum = sum_digits(*(*(matrix + i) + j));
+            int cur_sum = sum_digits(abs(*(*(matrix + i) + j)));
             if (cur_sum < global_min)
             {
                 *return_i = i;
@@ -63,28 +86,11 @@ void find_i_j(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns, size_t
         }
 }
 
-int input_arr(int (*matrix)[MAX_LEN_OF_ARR], size_t *rows, size_t *columns)
+void show_matrix(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns)
 {
-    int rc;
-    puts("Input your items: ");
-    for (size_t i = 0; i < *rows; i++)
-        for (size_t j = 0; j < *columns; j++)
-        {
-            rc = scanf("%d", (*(matrix + i) + j));
-            if (rc != EXPECTED_SCANF_RESULT)
-            {
-                printf("Wrong input\n");
-                return ERROR_WRONG_INPUT;
-            }
-        }
-    return EXIT_SUCCESS;
-}
-
-void show_matrix(int (*matrix)[MAX_LEN_OF_ARR], size_t *rows, size_t *columns)
-{
-    for (size_t i = 0; i < *rows; i++)
+    for (size_t i = 0; i < rows; i++)
     {
-        for (size_t j = 0; j < *columns; j++)
+        for (size_t j = 0; j < columns; j++)
             printf("%d ", *(*(matrix + i) + j));
         puts("");
     }
@@ -96,10 +102,11 @@ void remove_row_and_col(int (*matrix)[MAX_LEN_OF_ARR], size_t *rows, size_t *col
         for (size_t j = 0; j < *columns; j++)
             *(*(matrix + i) + j) = *(*(matrix + i + 1) + j);
     *rows -= 1;
+
     for (size_t i = 0; i < *rows; i++)
         for (size_t j = *return_j; j < *columns; j++)
             *(*(matrix + i) + j) = *(*(matrix + i) + j + 1);
-    *columns -= 1;
+    (*columns)--;
 }
 
 int main(void)
@@ -107,16 +114,19 @@ int main(void)
     size_t rows;
     size_t columns;
     int rc = length_input(&rows, &columns);
+
     if (rc != EXIT_SUCCESS)
         return rc;
+
     int matrix[MAX_LEN_OF_ARR][MAX_LEN_OF_ARR];
-    rc = input_arr(matrix, &rows, &columns);
+    rc = input_arr(matrix, rows, columns);
     if (rc != EXIT_SUCCESS)
         return rc;
 
     size_t i, j;
     find_i_j(matrix, rows, columns, &i, &j);
     remove_row_and_col(matrix, &rows, &columns, &i, &j);
-    show_matrix(matrix, &rows, &rows);
+    show_matrix(matrix, rows, columns);
+
     return EXIT_SUCCESS;
 }

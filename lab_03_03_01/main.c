@@ -41,22 +41,6 @@ int length_input(size_t *rows, size_t *columns)
     return EXIT_SUCCESS;
 }
 
-void make_new_arr(int (*matrix)[MAX_LEN_OF_ARR], int *arr, size_t rows, size_t columns)
-{
-    for (size_t i = 0; i < rows; i++)
-    {
-        size_t count = 0;
-        for (size_t j = 0; j < columns / 2; j++)
-            if (matrix[i][j] == matrix[i][columns - j - 1])
-                count++;
-
-        if (count == columns / 2)
-            *(arr + i) = 1;
-        else
-            *(arr + i) = 0;
-    }
-}
-
 int input_arr(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns)
 {
     int rc;
@@ -74,11 +58,40 @@ int input_arr(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns)
     return EXIT_SUCCESS;
 }
 
-void show_arr(int *arr, size_t rows)
+int find_max_in_arr(int *arr, size_t len)
+{
+    int max = *(arr);
+    for (size_t i = 1; i < len; i++)
+        if (*(arr + i) > max)
+            max = *(arr + i);
+    return max;
+}
+
+void sort_matrix(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns)
 {
     for (size_t i = 0; i < rows; i++)
-        printf("%d ", *(arr + i));
-    puts("");
+        for (size_t j = 0; j < rows - i - 1; j++)
+        {
+            if (find_max_in_arr(*(matrix + j), columns) < find_max_in_arr(*(matrix + j + 1), columns))
+            {
+                for (size_t c = 0; c < columns; c++)
+                {
+                    int temp = *(*(matrix + j) + c);
+                    *(*(matrix + j) + c) = *(*(matrix + j + 1) + c);
+                    *(*(matrix + j + 1) + c) = temp;
+                }
+            }
+        }
+}
+
+void show_matrix(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns)
+{
+    for (size_t i = 0; i < rows; i++)
+    {
+        for (size_t j = 0; j < columns; j++)
+            printf("%d ", *(*(matrix + i) + j));
+        puts("");
+    }
 }
 
 int main(void)
@@ -95,9 +108,7 @@ int main(void)
     if (rc != EXIT_SUCCESS)
         return rc;
 
-    int arr[MAX_LEN_OF_ARR];
-    make_new_arr(matrix, arr, rows, columns);
-    show_arr(arr, rows);
-
+    sort_matrix(matrix, rows, columns);
+    show_matrix(matrix, rows, columns);
     return EXIT_SUCCESS;
 }
