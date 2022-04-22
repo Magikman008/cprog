@@ -87,14 +87,13 @@ int add_items_to_arr(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns,
 
 void arr_shift(int *arr, size_t count)
 {
-    int temp0 = *(arr);
-    int temp1 = *(arr + 1);
-    int temp2 = *(arr + 2);
-    for (size_t i = 0; i < count - 3; i++)
-        *(arr + i) = *(arr + i + 3);
-    *(arr + count - 3) = temp0;
-    *(arr + count - 2) = temp1;
-    *(arr + count - 1) = temp2;
+    for (int j = 0; j < 3; j++)
+    {
+        int temp0 = *(arr);
+        for (size_t i = 0; i < count - 1; i++)
+            *(arr + i) = *(arr + i + 1);
+        *(arr + count - 1) = temp0;
+    }
 }
 
 void add_items_to_matrix(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns, int *arr)

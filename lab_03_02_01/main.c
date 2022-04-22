@@ -101,7 +101,7 @@ void remove_row_and_col(int (*matrix)[MAX_LEN_OF_ARR], size_t *rows, size_t *col
     for (size_t i = *return_i; i < *rows - 1; i++)
         for (size_t j = 0; j < *columns; j++)
             *(*(matrix + i) + j) = *(*(matrix + i + 1) + j);
-    *rows -= 1;
+    (*rows)--;
 
     for (size_t i = 0; i < *rows; i++)
         for (size_t j = *return_j; j < *columns - 1; j++)
