@@ -95,7 +95,6 @@ void arr_shift(int *arr, size_t count)
     *(arr + count - 3) = temp0;
     *(arr + count - 2) = temp1;
     *(arr + count - 1) = temp2;
-
 }
 
 void add_items_to_matrix(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns, int *arr)
@@ -140,7 +139,6 @@ int main(void)
     rc = add_items_to_arr(matrix, rows, columns, arr, &count);
     if (rc != EXIT_SUCCESS)
         return rc;
-
     arr_shift(arr, count);
     add_items_to_matrix(matrix, rows, columns, arr);
     show_matrix(matrix, rows, columns);
