@@ -27,9 +27,9 @@ int length_input(size_t *rows, size_t *columns)
         return ERROR_WRONG_INPUT;
     }
 
-    if (*rows < 1 || *columns < 1)
+    if (*rows < 2 || *columns < 2)
     {
-        puts("Length of array must be over zero");
+        puts("Length of array must be over one");
         return ERROR_TOO_LITTLE_VALUE;
     }
     if (*rows > MAX_LEN_OF_ARR || *columns > MAX_LEN_OF_ARR)
