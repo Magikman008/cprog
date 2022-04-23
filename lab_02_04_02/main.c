@@ -7,10 +7,10 @@
 #define ERROR_TOO_LITTLE_VALUE -1
 #define SPECIAL_CODE 100
 
-void show_array(int *arr, const size_t len)
+void show_array(const int *arr, const size_t len)
 {
     for (size_t j = 0; j < len; j++)
-        printf("%d ", arr[j]);
+        printf("%d ", *(arr + j));
     puts("");
 }
 
@@ -29,7 +29,7 @@ int enter_array(int *arr, size_t *len)
 
         if (i < 10)
         {
-            arr[i] = elem;
+            *(arr + i) = elem;
             (*len)++;
         }
     }
@@ -42,18 +42,18 @@ void sort_array(int *arr, const size_t len)
     for (size_t i = len - 1; i > 0; i--)
     {
         size_t max_index = 0;
-        int cur_max = arr[0];
+        int cur_max = *(arr);
 
         for (size_t j = 0; j <= i; j++)
-            if (arr[j] > cur_max)
+            if (*(arr + j) > cur_max)
             {
-                cur_max = arr[j];
+                cur_max = *(arr + j);
                 max_index = j;
             }
 
-        int temp = arr[i];
-        arr[i] = cur_max;
-        arr[max_index] = temp;
+        int temp = *(arr + i);
+        *(arr + i) = cur_max;
+        *(arr + max_index) = temp;
     }
 }
 

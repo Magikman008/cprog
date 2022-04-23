@@ -26,7 +26,7 @@ int enter_array(int *arr, const size_t len)
 
     for (size_t i = 0; i < len; i++)
     {
-        rc = scanf("%d", &arr[i]);
+        rc = scanf("%d", (arr + i));
 
         if (rc != EXPECTED_SCANF_RESULT)
         {
@@ -42,9 +42,9 @@ int add_primes_to_arr(int *arr, const size_t len, int *res, size_t *count)
 {
     for (size_t i = 0; i < len; i++)
     {
-        if (arr[i] > 1 && check_for_prime(arr[i]) == EXIT_SUCCESS)
+        if (*(arr + i) > 1 && check_for_prime(*(arr + i)) == EXIT_SUCCESS)
         {
-            res[*count] = arr[i];
+            *(res + *count) = *(arr + i);
             (*count)++;
         }
     }
@@ -89,7 +89,7 @@ void show_array(int *arr, const size_t len)
     printf("Your prime numbers is ");
 
     for (size_t i = 0; i < len; i++)
-        printf("%d ", arr[i]);
+        printf("%d ", *(arr + i));
     puts("");
 }
 

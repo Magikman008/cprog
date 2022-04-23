@@ -31,7 +31,7 @@ int enter_array(int *arr, const size_t len)
 void insert_fib_to_arr(int *arr, const size_t len, const size_t cur_i)
 {
     for (size_t i = len - 1; i > cur_i; i--)
-        arr[i] = arr[i - 1];
+        *(arr + i) = *(arr + i - 1);
 }
 
 void find_numbers_divisible(int *arr, size_t *len)
@@ -43,11 +43,11 @@ void find_numbers_divisible(int *arr, size_t *len)
 
     while (i < *len)
     {
-        if (arr[i] % 3 == 0)
+        if (*(arr + i) % 3 == 0)
         {
             insert_fib_to_arr(arr, *len + 1, i);
             *len = *len + 1;
-            arr[i + 1] = cur_f;
+            *(arr + i + 1) = cur_f;
             i += 2;
 
             if (cur_f == 0 && prev_f == 0)
@@ -107,7 +107,7 @@ int main(void)
     find_numbers_divisible(arr, &len);
 
     for (size_t i = 0; i < len; i++)
-        printf("%d ", arr[i]);
+        printf("%d ", *(arr + i));
     puts("");
 
     return EXIT_SUCCESS;

@@ -17,7 +17,7 @@ int enter_array(int *arr, const size_t len)
 
     for (size_t i = 0; i < len; i++)
     {
-        rc = scanf("%d", &arr[i]);
+        rc = scanf("%d", (arr + i));
 
         if (rc != EXPECTED_SCANF_RESULT)
         {
@@ -25,7 +25,7 @@ int enter_array(int *arr, const size_t len)
             return ERROR_WRONG_INPUT;
         }
 
-        if (abs(arr[i] % 2) == 1)
+        if (abs(*(arr + i) % 2) == 1)
             count++;
     }
 
@@ -42,8 +42,8 @@ void multiply_of_odd(int *arr, const size_t len, int *mult)
 {
     for (size_t i = 0; i < len; i++)
     {
-        if (abs(arr[i] % 2) == 1)
-            *mult *= arr[i];
+        if (abs(*(arr + i) % 2) == 1)
+            *mult *= *(arr + i);
     }
 }
 

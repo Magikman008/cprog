@@ -26,7 +26,7 @@ int enter_array(int *arr, const size_t len)
     return EXIT_SUCCESS;
 }
 
-int find_unique_numbers(int *arr, const size_t len)
+int find_unique_numbers(const int *arr, const size_t len)
 {
     int count = 0;
 
