@@ -7,7 +7,7 @@
 #define ERROR_TOO_LITTLE_VALUE -1
 #define SPECIAL_CODE 100
 
-void show_arr(int *arr, size_t len)
+void show_array(int *arr, const size_t len)
 {
     for (size_t j = 0; j < len; j++)
         printf("%d ", arr[j]);
@@ -26,6 +26,7 @@ int enter_array(int *arr, size_t *len)
 
         if (rc != EXPECTED_SCANF_RESULT)
             return EXIT_SUCCESS;
+
         if (i < 10)
         {
             arr[i] = elem;
@@ -36,20 +37,20 @@ int enter_array(int *arr, size_t *len)
     return SPECIAL_CODE;
 }
 
-void sort_arr(int *arr, size_t len)
+void sort_array(int *arr, const size_t len)
 {
     for (size_t i = len - 1; i > 0; i--)
     {
         size_t max_index = 0;
         int cur_max = arr[0];
+
         for (size_t j = 0; j <= i; j++)
-        {
             if (arr[j] > cur_max)
             {
                 cur_max = arr[j];
                 max_index = j;
             }
-        }
+
         int temp = arr[i];
         arr[i] = cur_max;
         arr[max_index] = temp;
@@ -70,8 +71,9 @@ int main(void)
         return ERROR_TOO_LITTLE_VALUE;
     }
 
-    sort_arr(arr, len);
-    show_arr(arr, len);
+    sort_array(arr, len);
+    show_array(arr, len);
+
     if (rc != EXIT_SUCCESS)
         return SPECIAL_CODE;
 

@@ -7,34 +7,36 @@
 #define ERROR_TOO_LITTLE_VALUE -2
 #define ERROR_WRONG_INPUT -3
 
-int enter_array(int *s, int *e)
+int enter_array(int *arr, const size_t len)
 {
     int rc;
     printf("Input your items: ");
 
-    while (s < e)
+    for (size_t i = 0; i < len; i++)
     {
-        rc = scanf("%d", s);
+        rc = scanf("%d", (arr + i));
+
         if (rc != EXPECTED_SCANF_RESULT)
         {
             printf("Wrong input\n");
             return ERROR_WRONG_INPUT;
         }
-        s++;
     }
 
     return EXIT_SUCCESS;
 }
 
-int find_unique_numbers(int *start, int *end)
+int find_unique_numbers(int *arr, const size_t len)
 {
     int count = 0;
-    for (int *i = start; i < end; i++)
+
+    for (size_t i = 0; i < len; i++)
     {
         int cur_count = 0;
-        for (int *j = i + 1; j < end; j++)
-            if (*i == *j)
+        for (size_t j = i + 1; j < len; j++)
+            if (*(arr + i) == *(arr + j))
                 cur_count++;
+
         if (cur_count == 0)
             count++;
     }
@@ -58,6 +60,7 @@ int input_len(size_t *len)
         printf("Length of array must be over zero\n");
         return ERROR_TOO_LITTLE_VALUE;
     }
+
     if (*len > MAX_LEN_OF_ARR)
     {
         printf("Length of array must be under or equal ten\n");
@@ -78,10 +81,10 @@ int main(void)
     if ((rc = input_len(&len)) != EXIT_SUCCESS)
         return rc;
 
-    if ((rc = enter_array(arr, arr + len)) != EXIT_SUCCESS)
+     if ((rc = enter_array(arr, len)) != EXIT_SUCCESS)
         return rc;
 
-    printf("Number of unique numbers %d\n", find_unique_numbers(arr, arr + len));
+    printf("Number of unique numbers %d\n", find_unique_numbers(arr, len));
 
     return EXIT_SUCCESS;
 }

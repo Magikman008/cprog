@@ -9,7 +9,7 @@
 #define ERROR_WRONG_INPUT -3
 #define ERROR_CANT_SOLVE -4
 
-int enter_array(int *arr, size_t len)
+int enter_array(int *arr, const size_t len)
 {
     int rc;
     int count = 0;
@@ -18,6 +18,7 @@ int enter_array(int *arr, size_t len)
     for (size_t i = 0; i < len; i++)
     {
         rc = scanf("%d", &arr[i]);
+
         if (rc != EXPECTED_SCANF_RESULT)
         {
             printf("Wrong input\n");
@@ -37,7 +38,7 @@ int enter_array(int *arr, size_t len)
     return EXIT_SUCCESS;
 }
 
-void multiply_of_odd(int *arr, size_t len, int *mult)
+void multiply_of_odd(int *arr, const size_t len, int *mult)
 {
     for (size_t i = 0; i < len; i++)
     {
@@ -50,6 +51,7 @@ int input_length(size_t *len)
 {
     printf("Input length of array: ");
     int rc = scanf("%zu", len);
+
     if (rc != EXPECTED_SCANF_RESULT)
     {
         printf("Wrong input\n");
@@ -61,6 +63,7 @@ int input_length(size_t *len)
         printf("Length of array must be over zero\n");
         return ERROR_TOO_LITTLE_VALUE;
     }
+
     if (*len > MAX_LEN_OF_ARR)
     {
         printf("Length of array must be under or equal ten\n");
@@ -81,6 +84,7 @@ int main(void)
         return rc;
 
     int arr[MAX_LEN_OF_ARR];
+
     if ((rc = enter_array(arr, len)) != EXIT_SUCCESS)
         return rc;
 
