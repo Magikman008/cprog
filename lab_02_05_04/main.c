@@ -81,7 +81,7 @@ int main(void)
     if ((rc = input_len(&len)) != EXIT_SUCCESS)
         return rc;
 
-     if ((rc = enter_array(arr, len)) != EXIT_SUCCESS)
+    if ((rc = enter_array(arr, len)) != EXIT_SUCCESS)
         return rc;
 
     printf("Number of unique numbers %d\n", find_unique_numbers(arr, len));
