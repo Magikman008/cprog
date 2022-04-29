@@ -47,7 +47,7 @@ void make_new_arr(int (*matrix)[MAX_LEN_OF_ARR], int *arr, size_t rows, size_t c
     {
         size_t count = 0;
         for (size_t j = 0; j < columns / 2; j++)
-            if (matrix[i][j] == matrix[i][columns - j - 1])
+            if (*(*(matrix + i) + j) == *(*(matrix + i) + columns - j - 1))
                 count++;
 
         if (count == columns / 2)
