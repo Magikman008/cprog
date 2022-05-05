@@ -30,9 +30,9 @@ int input_length(size_t *rows, size_t *columns)
 
     if (rc == EXIT_SUCCESS)
     {
-        if (*rows < 1 || *columns < 1)
+        if (*rows < 2 || *columns < 2)
         {
-            puts("Length of array must be over zero");
+            puts("Length of array must be over one");
             rc = ERROR_TOO_LITTLE_VALUE;
         }
 
