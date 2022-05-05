@@ -7,67 +7,74 @@
 #define ERROR_TOO_LITTLE_VALUE -2
 #define ERROR_WRONG_INPUT -3
 
-int length_input(size_t *rows, size_t *columns)
+int input_length(size_t *rows, size_t *columns)
 {
     printf("Input number of rows: ");
-    int rc = scanf("%zu", rows);
+    int rc = EXIT_SUCCESS;
+    int tmp = scanf("%zu", rows);
 
-    if (rc != EXPECTED_SCANF_RESULT)
+    if (tmp != EXPECTED_SCANF_RESULT)
     {
         puts("Wrong input");
-        return ERROR_WRONG_INPUT;
+        rc = ERROR_WRONG_INPUT;
     }
 
     printf("Input number of columns: ");
-    rc = scanf("%zu", columns);
+    tmp = scanf("%zu", columns);
 
-    if (rc != EXPECTED_SCANF_RESULT)
+    if (tmp != EXPECTED_SCANF_RESULT)
     {
         puts("Wrong input");
-        return ERROR_WRONG_INPUT;
+        rc = ERROR_WRONG_INPUT;
     }
 
     if (*rows < 1 || *columns < 1)
     {
         puts("Length of array must be over zero");
-        return ERROR_TOO_LITTLE_VALUE;
+        rc = ERROR_TOO_LITTLE_VALUE;
     }
+
     if (*rows > MAX_LEN_OF_ARR || *columns > MAX_LEN_OF_ARR)
     {
         puts("Length of array must be under or equal ten");
-        return ERROR_TOO_BIG_VALUE;
+        rc = ERROR_TOO_BIG_VALUE;
     }
 
-    return EXIT_SUCCESS;
+    return rc;
 }
 
-int input_arr(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns)
+int input_matrix(int (*matrix)[MAX_LEN_OF_ARR], const size_t rows, const size_t columns)
 {
-    int rc;
+    int rc = EXIT_SUCCESS, tmp;
     puts("Input your items: ");
-    for (size_t i = 0; i < rows; i++)
-        for (size_t j = 0; j < columns; j++)
+
+    for (size_t i = 0; i < rows && rc == EXIT_SUCCESS; i++)
+        for (size_t j = 0; j < columns && rc == EXIT_SUCCESS; j++)
         {
-            rc = scanf("%d", (*(matrix + i) + j));
-            if (rc != EXPECTED_SCANF_RESULT)
+            tmp = scanf("%d", (*(matrix + i) + j));
+
+            if (tmp != EXPECTED_SCANF_RESULT)
             {
                 printf("Wrong input\n");
-                return ERROR_WRONG_INPUT;
+                rc = ERROR_WRONG_INPUT;
             }
         }
-    return EXIT_SUCCESS;
+
+    return rc;
 }
 
-int find_max_in_arr(int *arr, size_t len)
+int find_max_in_arr(int *arr, const size_t len)
 {
     int max = *(arr);
+
     for (size_t i = 1; i < len; i++)
         if (*(arr + i) > max)
             max = *(arr + i);
+
     return max;
 }
 
-void sort_matrix(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns)
+void sort_matrix(int (*matrix)[MAX_LEN_OF_ARR], const size_t rows, const size_t columns)
 {
     for (size_t i = 0; i < rows; i++)
         for (size_t j = 0; j < rows - i - 1; j++)
@@ -84,7 +91,7 @@ void sort_matrix(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns)
         }
 }
 
-void show_matrix(int (*matrix)[MAX_LEN_OF_ARR], size_t rows, size_t columns)
+void show_matrix(int (*matrix)[MAX_LEN_OF_ARR], const size_t rows, const size_t columns)
 {
     for (size_t i = 0; i < rows; i++)
     {
@@ -98,17 +105,18 @@ int main(void)
 {
     size_t rows;
     size_t columns;
-    int rc = length_input(&rows, &columns);
-
-    if (rc != EXIT_SUCCESS)
-        return rc;
-
+    int rc = EXIT_SUCCESS;
+    rc = input_length(&rows, &columns);
     int matrix[MAX_LEN_OF_ARR][MAX_LEN_OF_ARR];
-    rc = input_arr(matrix, rows, columns);
-    if (rc != EXIT_SUCCESS)
-        return rc;
 
-    sort_matrix(matrix, rows, columns);
-    show_matrix(matrix, rows, columns);
-    return EXIT_SUCCESS;
+    if (rc == EXIT_SUCCESS)
+        rc = input_matrix(matrix, rows, columns);
+
+    if (rc == EXIT_SUCCESS)
+    {
+        sort_matrix(matrix, rows, columns);
+        show_matrix(matrix, rows, columns);
+    }
+
+    return rc;
 }
