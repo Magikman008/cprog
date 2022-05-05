@@ -29,16 +29,19 @@ int input_length(size_t *rows, size_t *columns)
         rc = ERROR_WRONG_INPUT;
     }
 
-    if (*rows < 1 || *columns < 1)
+    if (rc == EXIT_SUCCESS)
     {
-        puts("Length of array must be over zero");
-        rc = ERROR_TOO_LITTLE_VALUE;
-    }
+        if (*rows < 1 || *columns < 1)
+        {
+            puts("Length of array must be over zero");
+            rc = ERROR_TOO_LITTLE_VALUE;
+        }
 
-    if (*rows > MAX_LEN_OF_ARR || *columns > MAX_LEN_OF_ARR)
-    {
-        puts("Length of array must be under or equal ten");
-        rc = ERROR_TOO_BIG_VALUE;
+        if (*rows > MAX_LEN_OF_ARR || *columns > MAX_LEN_OF_ARR)
+        {
+            puts("Length of array must be under or equal ten");
+            rc = ERROR_TOO_BIG_VALUE;
+        }
     }
 
     return rc;

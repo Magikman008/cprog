@@ -30,22 +30,25 @@ int input_length(size_t *side)
         rc = ERROR_WRONG_INPUT;
     }
 
-    if (*side < 1 || columns < 1)
+    if (rc == EXIT_SUCCESS)
     {
-        printf("Length of array must be over zero\n");
-        rc = ERROR_TOO_LITTLE_VALUE;
-    }
+        if (*side < 1 || columns < 1)
+        {
+            printf("Length of array must be over zero\n");
+            rc = ERROR_TOO_LITTLE_VALUE;
+        }
 
-    if (*side > MAX_LEN_OF_ARR || columns > MAX_LEN_OF_ARR)
-    {
-        printf("Length of array must be under or equal ten\n");
-        rc = ERROR_TOO_BIG_VALUE;
-    }
+        if (*side > MAX_LEN_OF_ARR || columns > MAX_LEN_OF_ARR)
+        {
+            printf("Length of array must be under or equal ten\n");
+            rc = ERROR_TOO_BIG_VALUE;
+        }
 
-    if (*side != columns)
-    {
-        puts("Numner of rows and columns must be equal");
-        rc = ERROR_NOT_SQUARE;
+        if (*side != columns)
+        {
+            puts("Numner of rows and columns must be equal");
+            rc = ERROR_NOT_SQUARE;
+        }
     }
 
     return rc;

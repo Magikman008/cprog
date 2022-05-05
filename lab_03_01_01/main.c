@@ -27,6 +27,7 @@ int input_length(size_t *rows, size_t *columns)
         puts("Wrong input");
         rc = ERROR_WRONG_INPUT;
     }
+
     if (rc == EXIT_SUCCESS)
     {
         if (*rows < 1 || *columns < 1)
@@ -41,6 +42,7 @@ int input_length(size_t *rows, size_t *columns)
             rc = ERROR_TOO_BIG_VALUE;
         }
     }
+
     return rc;
 }
 
