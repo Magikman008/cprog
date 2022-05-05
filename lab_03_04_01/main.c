@@ -67,7 +67,7 @@ int input_matrix(int (*matrix)[MAX_LEN_OF_ARR], const size_t side)
                 rc = ERROR_WRONG_INPUT;
             }
         }
-    return EXIT_SUCCESS;
+    return rc;
 }
 
 void replace_rows(int (*matrix)[MAX_LEN_OF_ARR], const size_t side)
