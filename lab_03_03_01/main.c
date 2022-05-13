@@ -77,6 +77,16 @@ int find_max_in_arr(int *arr, const size_t len)
     return max;
 }
 
+void replace_rows(int (*matrix)[MAX_LEN_OF_ARR], const size_t j, const size_t columns)
+{
+    for (size_t c = 0; c < columns; c++)
+    {
+        int temp = *(*(matrix + j) + c);
+        *(*(matrix + j) + c) = *(*(matrix + j + 1) + c);
+        *(*(matrix + j + 1) + c) = temp;
+    }
+}
+
 void sort_matrix(int (*matrix)[MAX_LEN_OF_ARR], const size_t rows, const size_t columns)
 {
     for (size_t i = 0; i < rows; i++)
@@ -84,12 +94,7 @@ void sort_matrix(int (*matrix)[MAX_LEN_OF_ARR], const size_t rows, const size_t 
         {
             if (find_max_in_arr(*(matrix + j), columns) < find_max_in_arr(*(matrix + j + 1), columns))
             {
-                for (size_t c = 0; c < columns; c++)
-                {
-                    int temp = *(*(matrix + j) + c);
-                    *(*(matrix + j) + c) = *(*(matrix + j + 1) + c);
-                    *(*(matrix + j + 1) + c) = temp;
-                }
+                replace_rows(matrix, j, columns);
             }
         }
 }

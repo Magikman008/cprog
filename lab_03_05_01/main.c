@@ -80,9 +80,10 @@ int sum_digits(int x)
     return sum;
 }
 
-int add_items_to_arr(int (*matrix)[MAX_LEN_OF_ARR], const size_t rows, const size_t columns, int *arr, size_t *count)
+int add_items_to_array(int (*matrix)[MAX_LEN_OF_ARR], const size_t rows, const size_t columns, int *arr, size_t *count)
 {
     int rc = EXIT_SUCCESS;
+
     for (size_t i = 0; i < rows; i++)
         for (size_t j = 0; j < columns; j++)
             if (sum_digits(abs(*(*(matrix + i) + j))) > 10)
@@ -97,7 +98,7 @@ int add_items_to_arr(int (*matrix)[MAX_LEN_OF_ARR], const size_t rows, const siz
     return rc;
 }
 
-void arr_shift(int *arr, const size_t count)
+void shift_array(int *arr, const size_t count)
 {
     for (int j = 0; j < 3; j++)
     {
@@ -113,6 +114,7 @@ void arr_shift(int *arr, const size_t count)
 void add_items_to_matrix(int (*matrix)[MAX_LEN_OF_ARR], const size_t rows, const size_t columns, int *arr)
 {
     size_t count = 0;
+
     for (size_t i = 0; i < rows; i++)
         for (size_t j = 0; j < columns; j++)
             if (sum_digits(abs(*(*(matrix + i) + j))) > 10)
@@ -147,11 +149,11 @@ int main(void)
     size_t count = 0;
 
     if (rc == EXIT_SUCCESS)
-        rc = add_items_to_arr(matrix, rows, columns, arr, &count);
+        rc = add_items_to_array(matrix, rows, columns, arr, &count);
 
     if (rc == EXIT_SUCCESS)
     {
-        arr_shift(arr, count);
+        shift_array(arr, count);
         add_items_to_matrix(matrix, rows, columns, arr);
         show_matrix(matrix, rows, columns);
     }

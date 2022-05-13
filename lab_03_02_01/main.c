@@ -81,17 +81,18 @@ int sum_digits(int x)
 
 void find_min_sum_element(int (*matrix)[MAX_LEN_OF_ARR], const size_t rows, const size_t columns, size_t *return_i, size_t *return_j)
 {
-    int global_min = sum_digits(abs(*(*(matrix))));
+    int min_sum = sum_digits(abs(*(*(matrix))));
+
     for (size_t i = 0; i < rows; i++)
         for (size_t j = 0; j < columns; j++)
         {
             int cur_sum = sum_digits(abs(*(*(matrix + i) + j)));
 
-            if (cur_sum < global_min)
+            if (cur_sum < min_sum)
             {
                 *return_i = i;
                 *return_j = j;
-                global_min = cur_sum;
+                min_sum = cur_sum;
             }
         }
 }

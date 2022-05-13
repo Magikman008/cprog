@@ -10,11 +10,11 @@ pos_passed_mem=0
 pos_passed=0
 pos_count=0
 echo "START TESTING"
-echo 
+echo
 
 for test in $pos_tests; do
     args=
-    if ! [ -f "${test/in/out}" ]; then 
+    if ! [ -f "${test/in/out}" ]; then
         continue
     fi
     if [ -f "${test/in/args}" ]; then
@@ -47,7 +47,7 @@ done
 pos_count=${#pos_tests[@]}
 echo "Positive tests: correct $pos_passed_ok of $pos_count; memory passed $pos_passed_mem of $pos_count"
 echo "$((pos_passed * 100 / pos_count))% of positive tests PASSED"
-echo 
+echo
 
 neg_tests=$(find "$(dirname "$0")/../data" -mindepth 1 | sort -t '\0' -n | grep -E '+neg_[0-9][0-9]_in.txt$')
 neg_passed_ok=0
@@ -56,32 +56,32 @@ neg_passed=0
 neg_count=0
 for test in $neg_tests; do
     args=
-    if ! [ -f "${test/in/out}" ]; then 
+    if ! [ -f "${test/in/out}" ]; then
         continue
     fi
     if [ -f "${test/in/args}" ]; then
         args=${test/in/args}
     fi
 
-    ech=$(basename "$test")   
+    ech=$(basename "$test")
     ((neg_count++))
     "$(dirname "$0")/neg_case.sh" "$test" "${test/in/out}" "$args"
-
-    if [ $? ]; then
+    err=$?
+    if [ $err -eq 0 ]; then
         echo -e "NEG TEST $ech: ${GREEN}PASS${NC}"
         echo -e "NEG TEST $ech: ${GREEN}MEMORY OK${NC}"
         ((neg_passed++))
         ((neg_passed_ok++))
         ((neg_passed_mem++))
-    elif [ $? -eq 1 ]; then
+    elif [ $err -eq 1 ]; then
         echo -e "NEG TEST $ech: ${RED}FAIL${NC}"
         echo -e "NEG TEST $ech: ${GREEN}MEMORY OK${NC}"
         ((neg_passed_mem++))
-    elif [ $? -eq 2 ]; then
+    elif [ $err -eq 2 ]; then
         echo -e "NEG TEST $ech: ${GREEN}PASS${NC}"
         echo -e "NEG TEST $ech: ${RED}MEMORY FAIL${NC}"
         ((neg_passed_ok++))
-    elif [ $? -eq 3 ]; then
+    elif [ $err -eq 3 ]; then
         echo -e "NEG TEST $ech: ${RED}FAIL${NC}"
         echo -e "NEG TEST $ech: ${RED}MEMORY FAIL${NC}"
     fi
