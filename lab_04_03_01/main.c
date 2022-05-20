@@ -107,12 +107,12 @@ int main(void)
     if (rc != EXIT_SUCCESS)
         return rc;
 
-    strcpy(string, "");
-    make_string(words, number_words, string);
-    string[strlen(string) - 1] = '\0';
-    if (strlen(string) == 0)
+    char new_str[MAX_LEN_OF_STR];
+    make_string(words, number_words, new_str);
+    string[strlen(new_str) - 1] = '\0';
+    if (strlen(new_str) == 0)
         return ERROR_EMPTY_STRING;
-    printf("Result: %s\n", string);
+    printf("Result: %s\n", new_str);
 
     return EXIT_SUCCESS;
 }

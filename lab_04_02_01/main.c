@@ -86,14 +86,12 @@ void sort(char (*words)[MAX_LEN_OF_WORD], const size_t number_words)
     char temp[MAX_LEN_OF_WORD];
     for (size_t i = 0; i < number_words; i++)
         for (size_t j = i + 1; j < number_words; j++)
-        {
             if (strcmp(words[i], words[j]) > 0)
             {
                 strcpy(temp, words[i]);
                 strcpy(words[i], words[j]);
                 strcpy(words[j], temp);
             }
-        }
 }
 
 int main(void)
@@ -109,6 +107,7 @@ int main(void)
     size_t number_words = 0;
 
     rc = strsplt(string, &number_words, words);
+
     if (rc != EXIT_SUCCESS)
         return rc;
 
