@@ -59,6 +59,28 @@ int strsplt(const char *const string, size_t *number_words, char (*words)[MAX_LE
     return EXIT_SUCCESS;
 }
 
+void store_unique(char (*words)[MAX_LEN_OF_WORD], size_t *number_words)
+{
+    size_t i = 0;
+    while (i < *number_words)
+    {
+        int count = 0;
+
+        for (size_t j = i + 1; j < *number_words; j++)
+            if (strcmp(words[j], words[i]) == 0)
+                count++;
+
+        if (count != 0)
+        {
+            for (size_t k = i + 1; k < *number_words; k++)
+                strcpy(words[k], words[k + 1]);
+            (*number_words)--;
+        }
+        else
+            i++;
+    }
+}
+
 void sort(char (*words)[MAX_LEN_OF_WORD], const size_t number_words)
 {
     char temp[MAX_LEN_OF_WORD];
@@ -90,6 +112,7 @@ int main(void)
     if (rc != EXIT_SUCCESS)
         return rc;
 
+    store_unique(words, &number_words);
     sort(words, number_words);
     printf("%s", "Result: ");
 

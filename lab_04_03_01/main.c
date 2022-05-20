@@ -72,8 +72,8 @@ void change_word(char *word)
 
         if (count != 0)
         {
-            for(size_t k = i + 1; k < MAX_LEN_OF_WORD - 1; k++)
-                word[k] = word[k+1];
+            for (size_t k = i + 1; k < MAX_LEN_OF_WORD - 1; k++)
+                word[k] = word[k + 1];
         }
         else
             i++;
@@ -112,7 +112,7 @@ int main(void)
     string[strlen(string) - 1] = '\0';
     if (strlen(string) == 0)
         return ERROR_EMPTY_STRING;
-    printf("%s\n%s\n", "Result: ", string);
+    printf("%s\n%s", "Result: ", string);
 
     return EXIT_SUCCESS;
 }

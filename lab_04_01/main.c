@@ -18,25 +18,21 @@ size_t my_strspn(const char *const string, const char *const keys)
 {
     size_t maximum = 0;
     size_t cur_max = 0;
+    int flag = 0;
 
-    for (size_t i = 0; string[i] != '\0'; i++)
+    for (size_t i = 0; string[i] != '\0' && flag == 0; i++)
     {
-        int flag = 0;
-
+        cur_max = 0;
         for (size_t j = 0; keys[j] != '\0'; j++)
             if (string[i] == keys[j])
             {
                 cur_max++;
-                flag = 1;
             }
 
-        if (flag == 0)
-        {
-            if (maximum < cur_max)
-                maximum = cur_max;
-
-            cur_max = 0;
-        }
+        if (cur_max != 0)
+            maximum++;
+        else
+            return maximum;
     }
 
     return maximum;
@@ -60,9 +56,13 @@ size_t my_strcspn(const char *const string, const char *const keys)
 
 char *my_strchr(const char *const string, const int symbol)
 {
-    for (size_t i = 0; string[i] != '\0'; i++)
+    size_t i;
+    for (i = 0; string[i] != '\0'; i++)
         if (string[i] == symbol)
             return (char *)string + i;
+
+    if (symbol == '\0')
+        return (char *)(string + i);
 
     return NULL;
 }
@@ -70,10 +70,13 @@ char *my_strchr(const char *const string, const int symbol)
 char *my_strrchr(const char *const string, const int symbol)
 {
     char *result = NULL;
-
-    for (size_t i = 0; string[i] != '\0'; i++)
+    size_t i;
+    for (i = 0; string[i] != '\0'; i++)
         if (string[i] == symbol)
             result = (char *)string + i;
+
+    if (symbol == '\0')
+        return (char *)(string + i);
 
     return result;
 }
@@ -81,11 +84,11 @@ char *my_strrchr(const char *const string, const int symbol)
 int main(void)
 {
     char *test1[5][2] = {
-        {"Disrdf", "htio"},
-        {"Disrdf", "hto"},
-        {"", ""},
-        {"0123456789", "012"},
-        {"0123456789", "fhjd4"}};
+        { "Disrdf", "htio" },
+        { "Disrdf", "hto" },
+        { "", "" },
+        { "0123456789", "012" },
+        { "0123456789", "fhjd4" }};
 
     struct person
     {
@@ -95,14 +98,18 @@ int main(void)
 
     struct person test2[3] =
         {
-            {"01234564789", '4'},
-            {"012356789", '4'},
-            {"", '4'}};
+            { "01234564789", '4' },
+            { "012356789", '4' },
+            { "", '4' }};
 
     size_t incorrect = 0;
 
     for (size_t i = 0; i < 5; i++)
         if (my_strpbrk(test1[i][0], test1[i][1]) != strpbrk(test1[i][0], test1[i][1]))
+            incorrect++;
+
+    for (size_t i = 0; i < 5; i++)
+        if (my_strspn(test1[i][0], test1[i][1]) != strspn(test1[i][0], test1[i][1]))
             incorrect++;
 
     for (size_t i = 0; i < 5; i++)
