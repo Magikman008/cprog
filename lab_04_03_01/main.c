@@ -72,7 +72,7 @@ void change_word(char *word)
 
         if (count != 0)
         {
-            for (size_t k = i + 1; k < MAX_LEN_OF_WORD - 1; k++)
+            for (size_t k = i; k < MAX_LEN_OF_WORD - 1; k++)
                 word[k] = word[k + 1];
         }
         else

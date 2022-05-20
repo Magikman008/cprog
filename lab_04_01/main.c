@@ -96,11 +96,10 @@ int main(void)
         int second;
     };
 
-    struct person test2[3] =
-        {
-            { "01234564789", '4' },
-            { "012356789", '4' },
-            { "", '4' }};
+    struct person test2[3] = {
+        { "01234564789", '4' },
+        { "012356789", '4' },
+        { "", '4' }};
 
     size_t incorrect = 0;
 
