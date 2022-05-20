@@ -88,7 +88,7 @@ int main(void)
         { "Disrdf", "hto" },
         { "", "" },
         { "0123456789", "012" },
-        { "0123456789", "fhjd4" }};
+        { "0123456789", "fhjd4" } };
 
     struct person
     {
@@ -99,7 +99,7 @@ int main(void)
     struct person test2[3] = {
         { "01234564789", '4' },
         { "012356789", '4' },
-        { "", '4' }};
+        { "", '4' } };
 
     size_t incorrect = 0;
 

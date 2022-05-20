@@ -119,7 +119,5 @@ int main(void)
     for (size_t i = 0; i < number_words; i++)
         printf("%s ", words[i]);
 
-    puts("");
-
     return EXIT_SUCCESS;
 }
