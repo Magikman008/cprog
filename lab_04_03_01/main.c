@@ -112,7 +112,7 @@ int main(void)
     string[strlen(string) - 1] = '\0';
     if (strlen(string) == 0)
         return ERROR_EMPTY_STRING;
-    printf("%s\n%s", "Result: ", string);
+    printf("Result: %s\n", string);
 
     return EXIT_SUCCESS;
 }
