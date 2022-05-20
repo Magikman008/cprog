@@ -82,7 +82,7 @@ void change_word(char *word)
 
 void make_string(char (*words)[MAX_LEN_OF_WORD], const size_t number_words, char *string)
 {
-    for (size_t i = 0; i < number_words - 1; i++)
+    for (int i = number_words - 2; i >= 0; i--)
         if (strcmp(words[i], words[number_words - 1]))
         {
             change_word(words[i]);
@@ -107,12 +107,12 @@ int main(void)
     if (rc != EXIT_SUCCESS)
         return rc;
 
-    char new_str[MAX_LEN_OF_STR];
-    make_string(words, number_words, new_str);
-    string[strlen(new_str) - 1] = '\0';
-    if (strlen(new_str) == 0)
+    strcpy(string, "");
+    make_string(words, number_words, string);
+    string[strlen(string) - 1] = '\0';
+    if (strlen(string) == 0)
         return ERROR_EMPTY_STRING;
-    printf("Result: %s\n", new_str);
+    printf("Result: %s\n", string);
 
     return EXIT_SUCCESS;
 }
