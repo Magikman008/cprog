@@ -8,13 +8,19 @@
 #define ERROR_EMPTY_STRING -1
 #define ERROR_TOO_BIG_WORD -2
 #define ERROR_TOO_LITTLE_WORDS -3
+#define ERROR_TOO_BIG_STR -4
 
 int input_str(char *string)
 {
-    if (!fgets(string, MAX_LEN_OF_STR, stdin))
+    if (!fgets(string, MAX_LEN_OF_STR + 1, stdin))
         return ERROR_EMPTY_STRING;
 
     size_t len = strlen(string);
+
+    if (string[len - 1] != '\n')
+    {
+        return ERROR_TOO_BIG_STR;
+    }
 
     if (string[len - 1] == '\n')
         string[--len] = '\0';
