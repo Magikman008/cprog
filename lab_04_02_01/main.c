@@ -61,23 +61,29 @@ int strsplt(const char *const string, size_t *number_words, char (*words)[MAX_LE
 
 void store_unique(char (*words)[MAX_LEN_OF_WORD], size_t *number_words)
 {
-    size_t i = 0;
-    while (i < *number_words)
+    int i = *number_words - 1;
+    while (i >= 0)
     {
         int count = 0;
 
-        for (size_t j = i + 1; j < *number_words; j++)
+        for (int j = i - 1; j >= 0; j--)
             if (strcmp(words[j], words[i]) == 0)
                 count++;
 
         if (count != 0)
         {
-            for (size_t k = i; k < *number_words; k++)
+            printf("i = %d\n", i);
+            for (size_t k = i; k < *number_words - 1; k++)
+            {
+                printf("%ld\n", k);
                 strcpy(words[k], words[k + 1]);
+            }
             *number_words = *number_words - 1;
+            for (size_t i = 0; i < *number_words; i++)
+                printf("%s ", words[i]);
+            puts("");
         }
-        else
-            i++;
+        i--;
     }
 }
 
