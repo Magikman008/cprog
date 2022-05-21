@@ -8,13 +8,19 @@
 #define ERROR_EMPTY_STRING -1
 #define ERROR_TOO_BIG_WORD -2
 #define ERROR_NO_WORDS -3
+#define ERROR_TOO_BIG_STR -4
 
 int input_str(char *string)
 {
-    if (!fgets(string, MAX_LEN_OF_STR, stdin))
+    if (!fgets(string, MAX_LEN_OF_STR + 1, stdin))
         return ERROR_EMPTY_STRING;
 
     size_t len = strlen(string);
+
+    if (string[len - 1] != '\n')
+    {
+        return ERROR_TOO_BIG_STR;
+    }
 
     if (string[len - 1] == '\n')
         string[--len] = '\0';
@@ -72,17 +78,12 @@ void store_unique(char (*words)[MAX_LEN_OF_WORD], size_t *number_words)
 
         if (count != 0)
         {
-            printf("i = %d\n", i);
             for (size_t k = i; k < *number_words - 1; k++)
-            {
-                printf("%ld\n", k);
                 strcpy(words[k], words[k + 1]);
-            }
+
             *number_words = *number_words - 1;
-            for (size_t i = 0; i < *number_words; i++)
-                printf("%s ", words[i]);
-            puts("");
         }
+
         i--;
     }
 }
