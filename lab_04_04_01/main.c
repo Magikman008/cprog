@@ -127,9 +127,9 @@ int main(void)
     rc = yes_or_no(string);
 
     if (rc)
-        puts("No");
+        puts("NO");
     else
-        puts("Yes");
+        puts("YES");
 
     return EXIT_SUCCESS;
 }
