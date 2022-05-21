@@ -32,21 +32,21 @@ int input_str(char *string)
 void change_string(char *string)
 {
     size_t i = 0;
-    while (string[i] != '\0')
+    while (isspace(string[i]))
     {
-        if (isspace(string[i]))
-        {
-            for (size_t k = i; k < MAX_LEN_OF_STR - 1; k++)
-                string[k] = string[k + 1];
-        }
-        else
-            i++;
+        for (size_t k = i; k < MAX_LEN_OF_STR - 1; k++)
+            string[k] = string[k + 1];
+    }
+    i = strlen(string) - 1;
+    while (isspace(string[i]))
+    {
+        string[i] = '\0';
+        i--;
     }
 }
 
 int yes_or_no(char *string)
 {
-    // int len = strlen(string);
     int cur = 0;
 
     if (string[cur] == '-' || string[cur] == '+')
