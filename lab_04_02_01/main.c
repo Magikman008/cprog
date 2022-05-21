@@ -74,7 +74,7 @@ void store_unique(char (*words)[MAX_LEN_OF_WORD], size_t *number_words)
         {
             for (size_t k = i; k < *number_words; k++)
                 strcpy(words[k], words[k + 1]);
-            (*number_words)--;
+            *number_words = *number_words - 1;
         }
         else
             i++;
@@ -103,7 +103,7 @@ int main(void)
     if (rc != EXIT_SUCCESS)
         return rc;
 
-    char words[128][MAX_LEN_OF_WORD];
+    char words[MAX_LEN_OF_STR / 2][MAX_LEN_OF_WORD];
     size_t number_words = 0;
 
     rc = strsplt(string, &number_words, words);

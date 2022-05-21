@@ -61,12 +61,12 @@ int strsplt(const char *const string, size_t *number_words, char (*words)[MAX_LE
 
 void change_word(char *word)
 {
-    size_t i = 0;
-    while (word[i] != '\0')
+    int i = strlen(word) - 1;
+    while (i >= 0)
     {
         int count = 0;
 
-        for (size_t j = i + 1; word[j] != '\0'; j++)
+        for (int j = i - 1; j >= 0; j--)
             if (word[j] == word[i])
                 count++;
 
@@ -76,7 +76,7 @@ void change_word(char *word)
                 word[k] = word[k + 1];
         }
         else
-            i++;
+            i--;
     }
 }
 
