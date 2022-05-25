@@ -23,11 +23,10 @@ size_t my_strspn(const char *const string, const char *const keys)
     for (size_t i = 0; string[i] != '\0' && flag == 0; i++)
     {
         cur_max = 0;
+
         for (size_t j = 0; keys[j] != '\0'; j++)
             if (string[i] == keys[j])
-            {
                 cur_max++;
-            }
 
         if (cur_max != 0)
             maximum++;
@@ -57,6 +56,7 @@ size_t my_strcspn(const char *const string, const char *const keys)
 char *my_strchr(const char *const string, const int symbol)
 {
     size_t i;
+
     for (i = 0; string[i] != '\0'; i++)
         if (string[i] == symbol)
             return (char *)string + i;
@@ -71,6 +71,7 @@ char *my_strrchr(const char *const string, const int symbol)
 {
     char *result = NULL;
     size_t i;
+
     for (i = 0; string[i] != '\0'; i++)
         if (string[i] == symbol)
             result = (char *)string + i;
@@ -99,7 +100,8 @@ int main(void)
     struct person test2[3] = {
         { "01234564789", '4' },
         { "012356789", '4' },
-        { "", '4' } };
+        { "", '4' },
+        { "gvejvf", '\0' } };
 
     size_t incorrect = 0;
 

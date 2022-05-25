@@ -90,9 +90,12 @@ int yes_or_no(char *string)
 
     if (string[cur] == 0)
         return EXIT_SUCCESS;
+
     if (string[cur] != 'E' && string[cur] != 'e')
         return EXIT_FAILURE;
+
     cur++;
+
     if (string[cur] == '-' || string[cur] == '+')
         cur++;
 
@@ -106,8 +109,10 @@ int yes_or_no(char *string)
 
     if (count == 0)
         return EXIT_FAILURE;
+
     if (string[cur] != 0)
         return EXIT_FAILURE;
+
     return EXIT_SUCCESS;
 }
 

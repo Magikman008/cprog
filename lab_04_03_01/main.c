@@ -18,9 +18,7 @@ int input_str(char *string)
     size_t len = strlen(string);
 
     if (string[len - 1] != '\n')
-    {
         return ERROR_TOO_BIG_STR;
-    }
 
     if (string[len - 1] == '\n')
         string[--len] = '\0';
@@ -35,7 +33,6 @@ int strsplt(const char *const string, size_t *number_words, char (*words)[MAX_LE
     char seps[] = ",;:-.!? ";
     char word[MAX_LEN_OF_WORD];
     for (size_t i = 0; string[i] != '\0'; i++)
-    {
         if (strchr(seps, string[i]) == NULL)
         {
             if (len_word + 2 > MAX_LEN_OF_WORD)
@@ -52,7 +49,6 @@ int strsplt(const char *const string, size_t *number_words, char (*words)[MAX_LE
 
             len_word = 0;
         }
-    }
 
     word[len_word] = '\0';
 
@@ -77,10 +73,9 @@ void change_word(char *word)
                 count++;
 
         if (count != 0)
-        {
             for (size_t k = i; k < MAX_LEN_OF_WORD - 1; k++)
                 word[k] = word[k + 1];
-        }
+
         i--;
     }
 }
@@ -109,14 +104,17 @@ int main(void)
     size_t number_words = 0;
 
     rc = strsplt(string, &number_words, words);
+
     if (rc != EXIT_SUCCESS)
         return rc;
 
     strcpy(string, "");
     make_string(words, number_words, string);
     string[strlen(string) - 1] = '\0';
+
     if (strlen(string) == 0)
         return ERROR_EMPTY_STRING;
+
     printf("Result: %s\n", string);
 
     return EXIT_SUCCESS;

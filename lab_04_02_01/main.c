@@ -18,9 +18,7 @@ int input_str(char *string)
     size_t len = strlen(string);
 
     if (string[len - 1] != '\n')
-    {
         return ERROR_TOO_BIG_STR;
-    }
 
     if (string[len - 1] == '\n')
         string[--len] = '\0';
@@ -35,7 +33,6 @@ int strsplt(const char *const string, size_t *number_words, char (*words)[MAX_LE
     char seps[] = ",;:-.!? ";
     char word[MAX_LEN_OF_WORD];
     for (size_t i = 0; string[i] != '\0'; i++)
-    {
         if (strchr(seps, string[i]) == NULL)
         {
             if (len_word + 2 > MAX_LEN_OF_WORD)
@@ -52,7 +49,6 @@ int strsplt(const char *const string, size_t *number_words, char (*words)[MAX_LE
 
             len_word = 0;
         }
-    }
 
     word[len_word] = '\0';
 
@@ -112,7 +108,6 @@ int main(void)
 
     char words[MAX_LEN_OF_STR / 2][MAX_LEN_OF_WORD];
     size_t number_words = 0;
-
     rc = strsplt(string, &number_words, words);
 
     if (rc != EXIT_SUCCESS)
