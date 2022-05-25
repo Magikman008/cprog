@@ -97,7 +97,7 @@ int main(void)
         int second;
     };
 
-    struct person test2[3] = {
+    struct person test2[4] = {
         { "01234564789", '4' },
         { "012356789", '4' },
         { "", '4' },
