@@ -19,22 +19,20 @@ if [ -n "$3" ]; then
     fi
     args=$(<"$3")
 fi
-
 if [ -n "${USE_VALGRIND}" ]; then
-    echo "ok"
     valgrind --leak-check=full --leak-resolution=med --log-file="$(dirname "$0")/report.txt" --quiet "$(dirname "$0")/../../app.exe" "$args" <"$1" >"$(dirname "$0")/result.txt"
     if [ -z "$(cat "$(dirname "$0")/report.txt")" ]; then
-        if ! "$(dirname "$0")/comparator.sh" "$(dirname "$0")/result.txt" "$2"; then
+        if ! [ "$?" ]; then
             exit $ERROR_ONLY_MEM_OK
         fi
-    elif "$(dirname "$0")/comparator.sh" "$(dirname "$0")/result.txt" "$2"; then
+    elif [ $? ]; then
         exit $ERROR_ONLY_TEST_OK
     else
         exit $ERROR_NOTHING_OK
     fi
 else
     "$(dirname "$0")/../../app.exe" "$args" <"$1" >"$(dirname "$0")/result.txt"
-    if ! "$(dirname "$0")/comparator.sh" "$(dirname "$0")/result.txt" "$2"; then
+    if ! [ "$?" ]; then
         exit $ERROR_ONLY_MEM_OK
     fi
 fi

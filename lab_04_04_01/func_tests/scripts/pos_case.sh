@@ -9,11 +9,11 @@ ERROR_FILES_DONT_EXIST=5
 if [ "$#" -lt 2 ]; then
     exit $ERROR_TOO_LITTLE_PARAMS
 fi
-if ! [ -f "$1" ] || ! [ -f "$2" ]; then
+if ! [ -f "$1" ] || ! [ -f "$2" ]; then 
     exit $ERROR_FILES_DONT_EXIST
 fi
 args=
-if [ -n "$3" ]; then
+if [ -n "$3" ]; then 
     if ! [ -f "$3" ]; then
         exit $ERROR_FILES_DONT_EXIST
     fi
@@ -22,8 +22,8 @@ fi
 
 if [ -n "${USE_VALGRIND}" ]; then
     echo "ok"
-    valgrind --leak-check=full --leak-resolution=med --log-file="$(dirname "$0")/report.txt" --quiet "$(dirname "$0")/../../app.exe" "$args" <"$1" >"$(dirname "$0")/result.txt"
-    if [ -z "$(cat "$(dirname "$0")/report.txt")" ]; then
+    valgrind --leak-check=full --leak-resolution=med --log-file="$(dirname "$0")/report.txt" --quiet "$(dirname "$0")/../../app.exe" "$args" < "$1" > "$(dirname "$0")/result.txt"
+    if [ -z "$(cat "$(dirname "$0")/report.txt")" ]; then  
         if ! "$(dirname "$0")/comparator.sh" "$(dirname "$0")/result.txt" "$2"; then
             exit $ERROR_ONLY_MEM_OK
         fi
