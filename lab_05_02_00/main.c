@@ -3,7 +3,6 @@
 
 int main(int argc, char **argv)
 {
-
     if (argc != 2)
         return ERROR_NO_FILE;
 
@@ -18,7 +17,6 @@ int main(int argc, char **argv)
     if (rc != EXIT_SUCCESS)
         return rc;
 
-    printf("%f\n", average);
     fclose(f);
 
     f = fopen(argv[1], "r");
