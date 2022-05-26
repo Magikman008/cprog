@@ -57,12 +57,12 @@ char *my_strchr(const char *const string, const int symbol)
 {
     size_t i;
 
-    if (symbol == '\0')
-        return (char *)(string + i);
-
     for (i = 0; string[i] != '\0'; i++)
         if (string[i] == symbol)
             return (char *)string + i;
+
+    if (symbol == '\0')
+        return (char *)(string + i);
 
     return NULL;
 }
@@ -72,12 +72,12 @@ char *my_strrchr(const char *const string, const int symbol)
     char *result = NULL;
     size_t i;
 
-    if (symbol == '\0')
-        return (char *)(string + i);
-
     for (i = 0; string[i] != '\0'; i++)
         if (string[i] == symbol)
             result = (char *)string + i;
+
+    if (symbol == '\0')
+        return (char *)(string + i);
 
     return result;
 }
