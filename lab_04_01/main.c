@@ -57,12 +57,12 @@ char *my_strchr(const char *const string, const int symbol)
 {
     size_t i;
 
+    if (symbol == 0)
+        return (char *)(string + strlen(string));
+
     for (i = 0; string[i] != '\0'; i++)
         if (string[i] == symbol)
             return (char *)string + i;
-
-    if (symbol == '\0')
-        return (char *)(string + i);
 
     return NULL;
 }
@@ -72,12 +72,12 @@ char *my_strrchr(const char *const string, const int symbol)
     char *result = NULL;
     size_t i;
 
+    if (symbol == 0)
+        return (char *)(string + strlen(string));
+
     for (i = 0; string[i] != '\0'; i++)
         if (string[i] == symbol)
             result = (char *)string + i;
-
-    if (symbol == '\0')
-        return (char *)(string + i);
 
     return result;
 }
@@ -100,7 +100,7 @@ int main(void)
     struct person test2[4] = {
         { "01234564789", '4' },
         { "012356789", '4' },
-        { "", '4' },
+        { "", '5' },
         { "gvejvf", '\0' } };
 
     size_t incorrect = 0;
@@ -117,11 +117,11 @@ int main(void)
         if (my_strcspn(test1[i][0], test1[i][1]) != strcspn(test1[i][0], test1[i][1]))
             incorrect++;
 
-    for (size_t i = 0; i < 3; i++)
+    for (size_t i = 0; i < 4; i++)
         if (my_strchr(test2[i].first, test2[i].second) != strchr(test2[i].first, test2[i].second))
             incorrect++;
 
-    for (size_t i = 0; i < 3; i++)
+    for (size_t i = 0; i < 4; i++)
         if (my_strrchr(test2[i].first, test2[i].second) != strrchr(test2[i].first, test2[i].second))
             incorrect++;
 

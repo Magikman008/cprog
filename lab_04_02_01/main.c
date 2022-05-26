@@ -74,7 +74,7 @@ void store_unique(char (*words)[MAX_LEN_OF_WORD], size_t *number_words)
 
         if (count != 0)
         {
-            for (size_t k = i; k < *number_words - 1; k++)
+            for (size_t k = i; k < *number_words; k++)
                 strcpy(words[k], words[k + 1]);
 
             *number_words = *number_words - 1;
