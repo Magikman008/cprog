@@ -126,7 +126,10 @@ int main(void)
         return rc;
 
     if (strlen(string) == 0)
-        return ERROR_EMPTY_STRING;
+    {
+        puts("NO");
+        return EXIT_SUCCESS;
+    }
 
     change_string(string);
     rc = yes_or_no(string);
