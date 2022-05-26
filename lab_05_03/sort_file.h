@@ -1,5 +1,5 @@
-#ifndef _PROCESS_FILE_H_
-#define _PROCESS_FILE_H_
+#ifndef _PROCESS_SEQUENCE_H_
+#define _PROCESS_SEQUENCE_H_
 
 #include <stdio.h>
 
