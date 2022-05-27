@@ -25,7 +25,6 @@ if [ -n "$3" ]; then
 fi
 
 if [ -n "${USE_VALGRIND}" ]; then
-    echo "ok"
     valgrind --leak-check=full --leak-resolution=med --log-file="$(dirname "$0")/report.txt" --quiet "$(dirname "$0")/../../app.exe" "$args" < "$1" > "$(dirname "$0")/result.txt"
 
     if [ -z "$(cat "$(dirname "$0")/report.txt")" ]; then  
