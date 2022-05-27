@@ -4,6 +4,7 @@
 
 #define MAX_LEN_OF_STR 257
 #define MAX_LEN_OF_WORD 17
+#define SEPS ",;:-.!? "
 
 #define ERROR_EMPTY_STRING -1
 #define ERROR_TOO_BIG_WORD -2
@@ -30,10 +31,10 @@ int strsplt(const char *const string, size_t *number_words, char (*words)[MAX_LE
 {
     *number_words = 0;
     size_t len_word = 0;
-    char seps[] = ",;:-.!? ";
     char word[MAX_LEN_OF_WORD];
+
     for (size_t i = 0; string[i] != '\0'; i++)
-        if (strchr(seps, string[i]) == NULL)
+        if (strchr(SEPS, string[i]) == NULL)
         {
             if (len_word + 2 > MAX_LEN_OF_WORD)
                 return ERROR_TOO_BIG_WORD;
@@ -64,6 +65,7 @@ int strsplt(const char *const string, size_t *number_words, char (*words)[MAX_LE
 void change_word(char *word)
 {
     int i = strlen(word) - 1;
+
     while (i >= 0)
     {
         int count = 0;

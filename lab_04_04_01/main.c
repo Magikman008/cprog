@@ -32,12 +32,13 @@ int input_str(char *string)
 void change_string(char *string)
 {
     size_t i = 0;
+
     while (isspace(string[i]))
-    {
         for (size_t k = i; k < MAX_LEN_OF_STR - 1; k++)
             string[k] = string[k + 1];
-    }
+
     i = strlen(string) - 1;
+
     while (isspace(string[i]))
     {
         string[i] = '\0';
@@ -45,7 +46,7 @@ void change_string(char *string)
     }
 }
 
-int yes_or_no(char *string)
+int isnumber(char *string)
 {
     int cur = 0;
 
@@ -132,7 +133,7 @@ int main(void)
     }
 
     change_string(string);
-    rc = yes_or_no(string);
+    rc = isnumber(string);
 
     if (rc)
         puts("NO");
