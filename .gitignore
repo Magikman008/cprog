@@ -9,3 +9,4 @@
 *.gcda
 *.gcov
 *.gcno
+make_tests_out.sh
