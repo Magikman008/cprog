@@ -20,6 +20,7 @@ int main(void)
     unsigned x1, x2, x3, x4;
 
     int rc = scanf("%u%u%u%u", &x1, &x2, &x3, &x4);
+
     if (rc != EXPECTED_SCANF_VALUE)
     {
         printf("Error: %d", ERROR_SCANF);
@@ -32,5 +33,6 @@ int main(void)
     show(x3);
     show(x4);
     printf(" %u %u %u %u", x1, x2, x3, x4);
+
     return EXIT_SUCCESS;
 }

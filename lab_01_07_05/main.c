@@ -19,6 +19,7 @@ double sum(double x, double e)
         sum += cur;
         cur *= x * x * (degree - 1) / degree;
     }
+
     return sum;
 }
 
@@ -26,16 +27,19 @@ int main(void)
 {
     double x, e;
     int rc = scanf("%lf%lf", &x, &e);
+
     if (rc != EXPECTED_SCANF_VALUE)
     {
         printf("Wrong input\n");
         return ERROR_SCANF;
     }
+
     if (e <= 0 || e > 1)
     {
         printf("Wrong input\n");
         return WRONG_E;
     }
+
     if (fabs(x) >= 1)
     {
         printf("Wrong input\n");
@@ -47,5 +51,6 @@ int main(void)
     double del = fabs(f - s);
     double tet = del / fabs(f);
     printf("%lf %lf %lf %lf", f, s, del, tet);
+
     return EXIT_SUCCESS;
 }

@@ -16,7 +16,7 @@ double vector(double vx1, double vy1, double vx2, double vy2)
 }
 
 int check_crosses(double x1, double y1, double x2, double y2, double x3, double y3,
-double x4, double y4)
+                  double x4, double y4)
 {
     double v1 = vector(x4 - x3, y4 - y3, x1 - x3, y1 - y3);
     double v2 = vector(x4 - x3, y4 - y3, x2 - x3, y2 - y3);
@@ -30,11 +30,13 @@ int main(void)
 {
     double x1, y1, x2, y2, x3, y3, x4, y4;
     int rc = scanf("%lf%lf%lf%lf%lf%lf%lf%lf", &x1, &y1, &x2, &y2, &x3, &y3, &x4, &y4);
+
     if (rc != EXPECTED_SCANF_VALUE)
     {
         printf("Wrong input\n");
         return ERROR_SCANF;
     }
+
     if ((fabs(x1 - x2) < EPS && fabs(y1 - y2) < EPS) || (fabs(x3 - x4) < EPS && fabs(y3 - y4) < EPS))
     {
         printf("Wrong input\n");
@@ -42,5 +44,6 @@ int main(void)
     }
 
     printf("%d", check_crosses(x1, y1, x2, y2, x3, y3, x4, y4));
+
     return EXIT_SUCCESS;
 }
