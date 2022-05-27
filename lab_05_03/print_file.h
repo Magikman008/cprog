@@ -3,10 +3,7 @@
 
 #include <stdio.h>
 
-#define ERROR_NO_FILE -1
-#define ERROR_EMPTY_FILE -2
-#define ERROR_NO_NUMBERS -3
-
 int print_file(FILE *f);
+int count_numbers(FILE *f);
 
 #endif
