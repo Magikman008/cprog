@@ -8,7 +8,7 @@ ERROR_NOT_EQUAL=4
 if [ $# != 2 ]; then
     exit $ERROR_WRONG_FILES
 fi
-if ! [ -f "$1" ] || ! [ -f "$2" ]; then 
+if ! [ -f "$1" ] || ! [ -f "$2" ]; then
     exit $ERROR_FILES_DONT_EXIST
 fi
 
@@ -18,7 +18,7 @@ if ! [ ${#text1[@]} -eq ${#text2[@]} ]; then
     exit $ERROR_NOT_EQUAL_LEN
 fi
 for i in "${!text1[@]}"; do
-    if [ "$(echo "${text1[$i]} == ${text2[$i]}" | bc)" -eq 0 ]; then 
+    if [ "$(echo "${text1[$i]} == ${text2[$i]}" | bc)" -eq 0 ]; then
         exit $ERROR_NOT_EQUAL
     fi
 done
