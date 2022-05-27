@@ -1,6 +1,6 @@
 #include "exp_notation.h"
 
-int isSigh(const char symbol)
+int issigh(const char symbol)
 {
     if (symbol == '-' || symbol == '+')
         return EXIT_SUCCESS;
@@ -8,7 +8,7 @@ int isSigh(const char symbol)
     return EXIT_FAILURE;
 }
 
-int isEeee(const char symbol)
+int iseeee(const char symbol)
 {
     if (symbol == 'E' || symbol == 'e')
         return EXIT_SUCCESS;
@@ -16,7 +16,7 @@ int isEeee(const char symbol)
     return EXIT_FAILURE;
 }
 
-int isDot(const char symbol)
+int isdot(const char symbol)
 {
     if (symbol == '.')
         return EXIT_SUCCESS;
@@ -24,7 +24,7 @@ int isDot(const char symbol)
     return EXIT_FAILURE;
 }
 
-int isEnd(const char symbol)
+int isend(const char symbol)
 {
     if (symbol == 0)
         return EXIT_SUCCESS;
@@ -32,7 +32,7 @@ int isEnd(const char symbol)
     return EXIT_FAILURE;
 }
 
-int rowOfDigits(const char *string, int *shift, int *count)
+int rowofdigits(const char *string, int *shift, int *count)
 {
     while (isdigit(string[*shift]))
     {
@@ -47,53 +47,53 @@ int isnumber(char *string)
 {
     int cur = 0;
 
-    if (!isSigh(string[cur]))
+    if (!issigh(string[cur]))
         cur++;
 
     int count = 0;
 
-    rowOfDigits(string, &cur, &count);
+    rowofdigits(string, &cur, &count);
 
     if (count == 0)
     {
-        if (isDot(string[cur]))
+        if (isdot(string[cur]))
             return EXIT_FAILURE;
 
         cur++;
         count = 0;
 
-        rowOfDigits(string, &cur, &count);
+        rowofdigits(string, &cur, &count);
 
         if (count == 0)
             return EXIT_FAILURE;
     }
     else
     {
-        if (!isDot(string[cur]))
+        if (!isdot(string[cur]))
             cur++;
 
-        rowOfDigits(string, &cur, &count);
+        rowofdigits(string, &cur, &count);
     }
 
-    if (!isEnd(string[cur]))
+    if (!isend(string[cur]))
         return EXIT_SUCCESS;
 
-    if (isEeee(string[cur]))
+    if (iseeee(string[cur]))
         return EXIT_FAILURE;
 
     cur++;
 
-    if (!isSigh(string[cur]))
+    if (!issigh(string[cur]))
         cur++;
 
     count = 0;
 
-    rowOfDigits(string, &cur, &count);
+    rowofdigits(string, &cur, &count);
 
     if (count == 0)
         return EXIT_FAILURE;
 
-    if (isEnd(string[cur]))
+    if (isend(string[cur]))
         return EXIT_FAILURE;
 
     return EXIT_SUCCESS;
