@@ -15,8 +15,7 @@ double vector(double vx1, double vy1, double vx2, double vy2)
     return vx1 * vy2 - vx2 * vy1;
 }
 
-int check_crosses(double x1, double y1, double x2, double y2, double x3, double y3,
-                  double x4, double y4)
+int check_crosses(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
 {
     double v1 = vector(x4 - x3, y4 - y3, x1 - x3, y1 - y3);
     double v2 = vector(x4 - x3, y4 - y3, x2 - x3, y2 - y3);
