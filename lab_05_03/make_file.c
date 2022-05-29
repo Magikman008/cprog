@@ -1,6 +1,5 @@
 #include "make_file.h"
 #include <stdlib.h>
-#include <math.h>
 #include <time.h>
 
 #define EXPECTED_SCANF_RESULT 1

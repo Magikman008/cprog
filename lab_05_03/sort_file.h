@@ -3,7 +3,10 @@
 
 #include <stdio.h>
 
-int find_average(FILE *f, float *average);
-int find_nearest(FILE *f, const float average, float *nearest);
+#define ERROR_WRONG_POS -1
+
+int get_number_by_pos(FILE *f, int pos, int *num);
+int put_number_by_pos(FILE *f, int pos, int number);
+int sort(char *file, size_t count);
 
 #endif

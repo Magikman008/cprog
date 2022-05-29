@@ -4,6 +4,6 @@
 #include <stdio.h>
 
 int print_file(FILE *f);
-int count_numbers(FILE *f);
+void count_numbers(FILE *f, size_t *count);
 
 #endif
