@@ -80,7 +80,6 @@ int main(int argc, char **argv)
         add_to_array(f, count, goods);
         fclose(f);
         sort_file(goods, count);
-        print_file(goods, count, argv[3]);
         f = fopen(argv[3], "w");
         write_file(f, goods, count);
     }
