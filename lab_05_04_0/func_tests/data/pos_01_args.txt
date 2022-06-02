@@ -1,0 +1,1 @@
+ft ./func_tests/data/secret_folder/pos_01.txt sw
