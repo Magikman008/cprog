@@ -4,6 +4,7 @@
 
 #define MAX_LEN_OF_STR 257
 #define MAX_LEN_OF_WORD 17
+#define MAX_WORDS 128
 #define SEPS ",;:-.!? "
 
 #define ERROR_EMPTY_STRING -1
@@ -102,7 +103,7 @@ int main(void)
     if (rc != EXIT_SUCCESS)
         return rc;
 
-    char words[128][MAX_LEN_OF_WORD];
+    char words[MAX_WORDS][MAX_LEN_OF_WORD];
     size_t number_words = 0;
 
     rc = strsplt(string, &number_words, words);
