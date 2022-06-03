@@ -31,7 +31,6 @@ int main(int argc, char **argv)
 
         if (!f)
         {
-            fclose(f);
             return ERROR_NO_FILE;
         }
 
@@ -58,7 +57,6 @@ int main(int argc, char **argv)
 
         if (!f)
         {
-            fclose(f);
             return ERROR_NO_FILE;
         }
 
@@ -78,6 +76,10 @@ int main(int argc, char **argv)
         fclose(f);
         sort_file(goods, count);
         f = fopen(argv[3], "w");
+        if (!f)
+        {
+            return ERROR_NO_FILE;
+        }
         write_file(f, goods, count);
     }
 
@@ -87,7 +89,6 @@ int main(int argc, char **argv)
 
         if (!f)
         {
-            fclose(f);
             return ERROR_NO_FILE;
         }
 
