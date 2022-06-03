@@ -1,0 +1,2 @@
+Input number of rows: Input number of columns: Input your items: 
+0 1 1 
