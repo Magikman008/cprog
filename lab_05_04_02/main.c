@@ -53,7 +53,7 @@ int main(int argc, char **argv)
         f = fopen(argv[2], "r");
         add_to_array(f, count, goods);
         fclose(f);
-        print_file(goods, count, "");
+        print_file(goods, count, argv[3]);
     }
 
     if (strcmp(argv[1], "st") == 0)
@@ -91,6 +91,7 @@ int main(int argc, char **argv)
             return ERROR_NO_FILE;
         }
         write_file(f, goods, count);
+        print_file(goods, count, "");
         fclose(f);
     }
 
@@ -139,6 +140,7 @@ int main(int argc, char **argv)
         insert_to_array(goods, count, good);
         count++;
         f = fopen(argv[2], "w");
+        print_file(goods, count, "");
         write_file(f, goods, count);
         fclose(f);
     }
