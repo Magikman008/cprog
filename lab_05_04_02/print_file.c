@@ -33,7 +33,7 @@ int print_file(good_t *goods, size_t count, char *substr)
     {
         len = strlen(goods[i].name) - strlen(substr);
         if (strcmp(goods[i].name + len, substr) == 0)
-            printf("%s %s %u %u\n", goods[i].name, goods[i].manufac, goods[i].amount, goods[i].number);
+            printf("%s\n%s\n%u\n%u\n", goods[i].name, goods[i].manufac, goods[i].amount, goods[i].number);
     }
     return EXIT_SUCCESS;
 }

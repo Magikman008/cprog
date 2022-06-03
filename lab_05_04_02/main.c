@@ -11,9 +11,6 @@
 
 int main(int argc, char **argv)
 {
-    if (argc < 3 || argc > 4)
-        return ERROR_WRONG_ARGS;
-
     if (strcmp(argv[1], "st") != 0 && strcmp(argv[1], "ft") != 0 && strcmp(argv[1], "at") != 0)
         return ERROR_WRONG_ARGS;
 
