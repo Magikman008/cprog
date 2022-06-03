@@ -6,5 +6,7 @@
 *.user
 *.pro
 *Desktop-Debug
-test
+*.gcda
+*.gcov
+*.gcno
 make_tests_out.sh
