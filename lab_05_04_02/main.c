@@ -2,7 +2,7 @@
 #include "sort_file.h"
 #include "add_to_file.h"
 
-#define MAX_SIZE_OF_FILE 100
+#define MAX_SIZE_OF_FILE 1000
 
 #define ERROR_WRONG_ARGS 53
 #define ERROR_NO_FILE -2
@@ -11,7 +11,7 @@
 
 int main(int argc, char **argv)
 {
-    if (strcmp(argv[1], "st") != 0 && strcmp(argv[1], "ft") != 0 && strcmp(argv[1], "at") != 0)
+    if (/*strcmp(argv[1], "st") != 0 &&*/ strcmp(argv[1], "ft") != 0 /*&& strcmp(argv[1], "at") != 0*/)
         return ERROR_WRONG_ARGS;
 
     if (strcmp(argv[1], "st") == 0 && argc != 4)
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 
         size_t count = 0;
         count_numbers(f, &count);
-        fclose(f);
+        fseek(f, 0, SEEK_SET);
 
         if (count % 4 != 0)
         {
@@ -50,7 +50,6 @@ int main(int argc, char **argv)
 
         good_t goods[MAX_SIZE_OF_FILE];
 
-        f = fopen(argv[2], "r");
         add_to_array(f, count, goods);
         fclose(f);
         print_file(goods, count, argv[3]);
@@ -97,16 +96,28 @@ int main(int argc, char **argv)
 
     if (strcmp(argv[1], "at") == 0)
     {
+        good_t good;
+
+        if (scanf("%s", good.name) != EXPECTED_SCANF_RESULT)
+            return ERROR_WRONG_INPUT;
+
+        if (scanf("%s", good.manufac) != EXPECTED_SCANF_RESULT)
+            return ERROR_WRONG_INPUT;
+
+        if (scanf("%u", &good.amount) != EXPECTED_SCANF_RESULT)
+            return ERROR_WRONG_INPUT;
+
+        if (scanf("%u", &good.number) != EXPECTED_SCANF_RESULT)
+            return ERROR_WRONG_INPUT;
+
+        size_t count = 0;
         f = fopen(argv[2], "r");
 
         if (!f)
         {
-            return ERROR_NO_FILE;
+            count_numbers(f, &count);
+            fclose(f);
         }
-
-        size_t count = 0;
-        count_numbers(f, &count);
-        fclose(f);
 
         if (count % 4 != 0)
         {
@@ -123,19 +134,6 @@ int main(int argc, char **argv)
         f = fopen(argv[2], "r");
         add_to_array(f, count, goods);
         fclose(f);
-        good_t good;
-
-        if (scanf("%s", good.name) != EXPECTED_SCANF_RESULT)
-            return ERROR_WRONG_INPUT;
-
-        if (scanf("%s", good.manufac) != EXPECTED_SCANF_RESULT)
-            return ERROR_WRONG_INPUT;
-
-        if (scanf("%u", &good.amount) != EXPECTED_SCANF_RESULT)
-            return ERROR_WRONG_INPUT;
-
-        if (scanf("%u", &good.number) != EXPECTED_SCANF_RESULT)
-            return ERROR_WRONG_INPUT;
 
         insert_to_array(goods, count, good);
         count++;
