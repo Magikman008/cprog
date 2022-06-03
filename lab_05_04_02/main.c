@@ -40,7 +40,6 @@ int main(int argc, char **argv)
 
         if (count % 4 != 0)
         {
-            fclose(f);
             return ERROR_BAD_FILE;
         }
 
@@ -72,7 +71,6 @@ int main(int argc, char **argv)
 
         if (count % 4 != 0)
         {
-            fclose(f);
             return ERROR_BAD_FILE;
         }
 
@@ -110,7 +108,6 @@ int main(int argc, char **argv)
 
         if (count % 4 != 0)
         {
-            fclose(f);
             return ERROR_BAD_FILE;
         }
 
