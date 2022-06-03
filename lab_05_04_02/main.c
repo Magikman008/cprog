@@ -39,7 +39,10 @@ int main(int argc, char **argv)
         fclose(f);
 
         if (count % 4 != 0)
+        {
+            fclose(f);
             return ERROR_BAD_FILE;
+        }
 
         count /= 4;
         count %= MAX_SIZE_OF_FILE + 1;
@@ -65,7 +68,10 @@ int main(int argc, char **argv)
         fclose(f);
 
         if (count % 4 != 0)
+        {
+            fclose(f);
             return ERROR_BAD_FILE;
+        }
 
         count /= 4;
         count %= MAX_SIZE_OF_FILE + 1;
@@ -97,7 +103,10 @@ int main(int argc, char **argv)
         fclose(f);
 
         if (count % 4 != 0)
+        {
+            fclose(f);
             return ERROR_BAD_FILE;
+        }
 
         count /= 4;
         count %= MAX_SIZE_OF_FILE + 1;

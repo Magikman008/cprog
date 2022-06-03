@@ -3,18 +3,18 @@
 int sort_file(good_t *goods, size_t count)
 {
     for (size_t i = 0; i < count; i++)
-        for (size_t j = i; j < count; j++)
+        for (size_t j = 0; j < count - 1; j++)
         {
-            if (goods[i].amount < goods[j].amount)
+            if (goods[j].amount < goods[j + 1].amount)
             {
-                good_t temp = goods[i];
-                goods[i] = goods[j];
+                good_t temp = goods[j + 1];
+                goods[j + 1] = goods[j];
                 goods[j] = temp;
             }
-            else if (goods[i].amount == goods[j].amount && goods[i].number < goods[j].number)
+            else if (goods[j].amount == goods[j + 1].amount && goods[j].number < goods[j + 1].number)
             {
-                good_t temp = goods[i];
-                goods[i] = goods[j];
+                good_t temp = goods[j + 1];
+                goods[j + 1] = goods[j];
                 goods[j] = temp;
             }
         }
