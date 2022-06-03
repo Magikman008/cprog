@@ -104,10 +104,10 @@ int main(int argc, char **argv)
         if (scanf("%s", good.manufac) != EXPECTED_SCANF_RESULT)
             return ERROR_WRONG_INPUT;
 
-        if (scanf("%u", &good.amount) != EXPECTED_SCANF_RESULT)
+        if (scanf("%"SCNu32"", &good.amount) != EXPECTED_SCANF_RESULT)
             return ERROR_WRONG_INPUT;
 
-        if (scanf("%u", &good.number) != EXPECTED_SCANF_RESULT)
+        if (scanf("%"SCNu32"", &good.number) != EXPECTED_SCANF_RESULT)
             return ERROR_WRONG_INPUT;
 
         size_t count = 0;

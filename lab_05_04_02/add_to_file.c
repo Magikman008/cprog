@@ -9,6 +9,7 @@ void insert_to_array(good_t *goods, size_t count, good_t good)
 
     while (goods[cur].number > good.number && goods[cur].amount == good.amount)
         cur++;
+
     good_t temp1 = goods[cur];
     goods[cur] = good;
     cur++;
