@@ -2,7 +2,7 @@
 #include "sort_file.h"
 #include "add_to_file.h"
 
-#define MAX_SIZE_OF_FILE 100
+#define MAX_SIZE_OF_FILE 2
 
 #define ERROR_WRONG_ARGS 53
 #define ERROR_NO_FILE -2
@@ -45,13 +45,16 @@ int main(int argc, char **argv)
         }
 
         count /= 4;
-        count %= MAX_SIZE_OF_FILE + 1;
+
+        if (count > MAX_SIZE_OF_FILE)
+            count = MAX_SIZE_OF_FILE;
+
         good_t goods[MAX_SIZE_OF_FILE];
 
         f = fopen(argv[2], "r");
         add_to_array(f, count, goods);
         fclose(f);
-        print_file(goods, count, argv[3]);
+        print_file(goods, count, "");
     }
 
     if (strcmp(argv[1], "st") == 0)
@@ -74,7 +77,10 @@ int main(int argc, char **argv)
         }
 
         count /= 4;
-        count %= MAX_SIZE_OF_FILE + 1;
+
+        if (count > MAX_SIZE_OF_FILE)
+            count = MAX_SIZE_OF_FILE;
+
         good_t goods[MAX_SIZE_OF_FILE];
 
         f = fopen(argv[2], "r");
@@ -109,7 +115,10 @@ int main(int argc, char **argv)
         }
 
         count /= 4;
-        count %= MAX_SIZE_OF_FILE + 1;
+
+        if (count > MAX_SIZE_OF_FILE)
+            count = MAX_SIZE_OF_FILE;
+
         good_t goods[MAX_SIZE_OF_FILE];
 
         f = fopen(argv[2], "r");
