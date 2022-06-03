@@ -14,9 +14,9 @@ void count_numbers(FILE *f, size_t *count)
             ok = 1;
         if (fscanf(f, "%s", good.manufac) != EXPECTED_SCANF_RESULT)
             ok = 1;
-        if (fscanf(f, "%"SCNu32"", &good.amount) != EXPECTED_SCANF_RESULT)
+        if (fscanf(f, "%"PRIu32"", &good.amount) != EXPECTED_SCANF_RESULT)
             ok = 1;
-        if (fscanf(f, "%"SCNu32"", &good.number) != EXPECTED_SCANF_RESULT)
+        if (fscanf(f, "%"PRIu32"", &good.number) != EXPECTED_SCANF_RESULT)
             ok = 1;
     }
 }
