@@ -1,0 +1,6 @@
+Input number of rows: Input number of columns: Input your items: 
+1 2 3 
+-99 -1 99 
+98 4 9 
+234 97 -12 
+6 7 8 

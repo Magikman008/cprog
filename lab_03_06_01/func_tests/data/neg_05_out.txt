@@ -1,0 +1,1 @@
+Input number of rows: Input number of columns: Numner of rows and columns must be equal
