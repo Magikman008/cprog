@@ -4,10 +4,21 @@
 
 void count_numbers(FILE *f, size_t *count)
 {
-    char cur[30];
-
-    while (fscanf(f, "%s", cur) == EXPECTED_SCANF_RESULT)
+    good_t good;
+    short int ok = 0;
+    (*count)--;
+    while (ok == 0)
+    {
         (*count)++;
+        if (fscanf(f, "%s", good.name) != EXPECTED_SCANF_RESULT)
+            ok = 1;
+        if (fscanf(f, "%s", good.manufac) != EXPECTED_SCANF_RESULT)
+            ok = 1;
+        if (fscanf(f, "%u", &good.amount) != EXPECTED_SCANF_RESULT)
+            ok = 1;
+        if (fscanf(f, "%u", &good.number) != EXPECTED_SCANF_RESULT)
+            ok = 1;
+    }
 }
 
 int add_to_array(FILE *f, size_t count, good_t *goods)
