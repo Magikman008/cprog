@@ -91,6 +91,7 @@ int main(int argc, char **argv)
             return ERROR_NO_FILE;
         }
         write_file(f, goods, count);
+        fclose(f);
     }
 
     if (strcmp(argv[1], "at") == 0)
@@ -139,6 +140,7 @@ int main(int argc, char **argv)
         count++;
         f = fopen(argv[2], "w");
         write_file(f, goods, count);
+        fclose(f);
     }
 
     return EXIT_SUCCESS;
