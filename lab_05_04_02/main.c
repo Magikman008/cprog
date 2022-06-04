@@ -2,7 +2,7 @@
 #include "sort_file.h"
 #include "add_to_file.h"
 
-#define MAX_SIZE_OF_FILE 1000
+#define MAX_SIZE_OF_FILE 100
 
 #define ERROR_WRONG_ARGS 53
 #define ERROR_NO_FILE -2
