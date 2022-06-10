@@ -44,7 +44,7 @@ int print_file(good_t *goods, size_t count, char *substr)
     {
         len = strlen(goods[i].name) - strlen(substr);
         if (strcmp(goods[i].name + len, substr) == 0)
-            printf("%s\n%s\n%"PRIu32"\n%"PRIu32"\n", goods[i].name, goods[i].manufac, goods[i].amount, goods[i].number);
+            fprintf(stdout, "%s\n%s\n%"PRIu32"\n%"PRIu32"\n", goods[i].name, goods[i].manufac, goods[i].amount, goods[i].number);
     }
     return EXIT_SUCCESS;
 }
