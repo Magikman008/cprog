@@ -38,8 +38,6 @@ int main(int argc, char **argv)
         count_numbers(f, &count);
         fseek(f, 0, SEEK_SET);
 
-        printf("%ld", count);
-
         if (count % 4 != 0)
         {
             return ERROR_BAD_FILE;
@@ -87,10 +85,10 @@ int main(int argc, char **argv)
         fclose(f);
         sort_file(goods, count);
         f = fopen(argv[3], "w");
+
         if (!f)
-        {
             return ERROR_NO_FILE;
-        }
+
         write_file(f, goods, count);
         print_file(goods, count, "");
         fclose(f);
