@@ -141,8 +141,8 @@ int main(int argc, char **argv)
             fclose(f);
         }
 
-        insert_to_array(goods, count, good);
         count++;
+        insert_to_array(goods, count, good);
         f = fopen(argv[2], "w");
         write_file(f, goods, count);
         fclose(f);
