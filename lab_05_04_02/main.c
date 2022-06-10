@@ -55,7 +55,7 @@ int main(int argc, char **argv)
 
         add_to_array(f, count, goods);
         fclose(f);
-        if(print_file(goods, count, strcat(argv[3], "\n")))
+        if (print_file(goods, count, strcat(argv[3], "\n")))
             return EXIT_FAILURE;
     }
 
@@ -108,10 +108,10 @@ int main(int argc, char **argv)
         if (scanf("%s", good.manufac) != EXPECTED_SCANF_RESULT)
             return ERROR_WRONG_INPUT;
 
-        if (scanf("%"SCNu32"", &good.amount) != EXPECTED_SCANF_RESULT)
+        if (scanf("%" SCNu32 "", &good.amount) != EXPECTED_SCANF_RESULT)
             return ERROR_WRONG_INPUT;
 
-        if (scanf("%"SCNu32"", &good.number) != EXPECTED_SCANF_RESULT)
+        if (scanf("%" SCNu32 "", &good.number) != EXPECTED_SCANF_RESULT)
             return ERROR_WRONG_INPUT;
 
         strcpy(good.name, strcat(good.name, "\n"));
@@ -119,28 +119,27 @@ int main(int argc, char **argv)
 
         size_t count = 0;
         f = fopen(argv[2], "r");
+        good_t goods[MAX_SIZE_OF_FILE];
 
         if (f)
         {
             count_numbers(f, &count);
             fseek(f, 0, SEEK_SET);
-        }
 
-        if (count % 4 != 0)
-        {
+            if (count % 4 != 0)
+            {
+                fclose(f);
+                return ERROR_BAD_FILE;
+            }
+
+            count /= 4;
+
+            if (count > MAX_SIZE_OF_FILE)
+                count = MAX_SIZE_OF_FILE;
+
+            add_to_array(f, count, goods);
             fclose(f);
-            return ERROR_BAD_FILE;
         }
-
-        count /= 4;
-
-        if (count > MAX_SIZE_OF_FILE)
-            count = MAX_SIZE_OF_FILE;
-
-        good_t goods[MAX_SIZE_OF_FILE];
-
-        add_to_array(f, count, goods);
-        fclose(f);
 
         insert_to_array(goods, count, good);
         count++;
