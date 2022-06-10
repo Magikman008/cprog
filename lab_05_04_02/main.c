@@ -38,12 +38,14 @@ int main(int argc, char **argv)
         count_numbers(f, &count);
         fseek(f, 0, SEEK_SET);
 
-        // if (count % 4 != 0)
-        // {
-        //     return ERROR_BAD_FILE;
-        // }
+        printf("%ld", count);
 
-        // count /= 4;
+        if (count % 4 != 0)
+        {
+            return ERROR_BAD_FILE;
+        }
+
+        count /= 4;
 
         if (count > MAX_SIZE_OF_FILE)
             count = MAX_SIZE_OF_FILE;

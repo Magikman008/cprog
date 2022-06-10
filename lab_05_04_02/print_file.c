@@ -6,18 +6,25 @@ void count_numbers(FILE *f, size_t *count)
 {
     good_t good;
     short int ok = 0;
-    (*count)--;
     while (ok == 0)
     {
-        (*count)++;
+
         if (fscanf(f, "%s", good.name) != EXPECTED_SCANF_RESULT)
             ok = 1;
+        else
+            (*count)++;
         if (fscanf(f, "%s", good.manufac) != EXPECTED_SCANF_RESULT)
             ok = 1;
-        if (fscanf(f, "%"PRIu32"", &good.amount) != EXPECTED_SCANF_RESULT)
+        else
+            (*count)++;
+        if (fscanf(f, "%" SCNu32 "", &good.amount) != EXPECTED_SCANF_RESULT)
             ok = 1;
-        if (fscanf(f, "%"PRIu32"", &good.number) != EXPECTED_SCANF_RESULT)
+        else
+            (*count)++;
+        if (fscanf(f, "%" SCNu32 "", &good.number) != EXPECTED_SCANF_RESULT)
             ok = 1;
+        else
+            (*count)++;
     }
 }
 
@@ -29,9 +36,9 @@ int add_to_array(FILE *f, size_t count, good_t *goods)
             return EXIT_FAILURE;
         if (fscanf(f, "%s", goods[cur].manufac) != EXPECTED_SCANF_RESULT)
             return EXIT_FAILURE;
-        if (fscanf(f, "%"SCNu32"", &goods[cur].amount) != EXPECTED_SCANF_RESULT)
+        if (fscanf(f, "%" SCNu32 "", &goods[cur].amount) != EXPECTED_SCANF_RESULT)
             return EXIT_FAILURE;
-        if (fscanf(f, "%"SCNu32"", &goods[cur].number) != EXPECTED_SCANF_RESULT)
+        if (fscanf(f, "%" SCNu32 "", &goods[cur].number) != EXPECTED_SCANF_RESULT)
             return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;
@@ -40,12 +47,20 @@ int add_to_array(FILE *f, size_t count, good_t *goods)
 int print_file(good_t *goods, size_t count, char *substr)
 {
     int len;
+    int temp_count = 0;
     for (size_t i = 0; i < count; i++)
     {
         len = strlen(goods[i].name) - strlen(substr);
         if (len > 0)
             if (strcmp(goods[i].name + len, substr) == 0)
-                fprintf(stdout, "%s\n%s\n%"PRIu32"\n%"PRIu32"\n", goods[i].name, goods[i].manufac, goods[i].amount, goods[i].number);
+            {
+                temp_count++;
+                printf("%s\n%s\n%" PRIu32 "\n%" PRIu32 "\n", goods[i].name, goods[i].manufac, goods[i].amount, goods[i].number);
+            }
     }
+
+    if (temp_count == 0)
+        return EXIT_FAILURE;
+
     return EXIT_SUCCESS;
 }
