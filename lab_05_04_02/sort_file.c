@@ -25,8 +25,7 @@ int sort_file(good_t *goods, size_t count)
 int write_file(FILE *f, good_t *goods, size_t count)
 {
     for (size_t i = 0; i < count; i++)
-    {
-        fprintf(f, "%s%s%"SCNu32"\n%"SCNu32"\n", goods[i].name, goods[i].manufac, goods[i].amount, goods[i].number);
-    }
+        fprintf(f, "%s%s%" SCNu32 "\n%" SCNu32 "\n", goods[i].name, goods[i].manufac, goods[i].amount, goods[i].number);
+
     return EXIT_SUCCESS;
 }

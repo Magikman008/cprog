@@ -51,6 +51,7 @@ int main(int argc, char **argv)
 
         add_to_array(f, count, goods);
         fclose(f);
+
         if (print_file(goods, count, strcat(argv[3], "\n")))
             return EXIT_FAILURE;
     }

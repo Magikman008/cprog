@@ -14,6 +14,7 @@ void insert_to_array(good_t *goods, size_t count, good_t good)
     goods[cur] = good;
     cur++;
     good_t temp2;
+
     while (cur < count)
     {
         temp2 = goods[cur];
