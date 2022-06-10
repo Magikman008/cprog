@@ -11,7 +11,7 @@
 
 int main(int argc, char **argv)
 {
-    if (/*strcmp(argv[1], "st") != 0 &&*/ strcmp(argv[1], "ft") != 0 /*&& strcmp(argv[1], "at") != 0*/)
+    if (strcmp(argv[1], "st") != 0 && strcmp(argv[1], "ft") != 0 /*&& strcmp(argv[1], "at") != 0*/)
         return ERROR_WRONG_ARGS;
 
     if (strcmp(argv[1], "st") == 0 && argc != 4)
@@ -41,9 +41,7 @@ int main(int argc, char **argv)
         // printf("%ld", count);
 
         if (count % 4 != 0)
-        {
             return ERROR_BAD_FILE;
-        }
 
         count /= 4;
 
@@ -71,9 +69,7 @@ int main(int argc, char **argv)
         fclose(f);
 
         if (count % 4 != 0)
-        {
             return ERROR_BAD_FILE;
-        }
 
         count /= 4;
 
@@ -92,7 +88,6 @@ int main(int argc, char **argv)
             return ERROR_NO_FILE;
 
         write_file(f, goods, count);
-        print_file(goods, count, "");
         fclose(f);
     }
 

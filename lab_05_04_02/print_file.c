@@ -18,16 +18,15 @@ void count_numbers(FILE *f, size_t *count)
         else
             (*count)++;
 
-        if (fscanf(f, "%"SCNu32"\n", &good.amount) != EXPECTED_SCANF_RESULT)
+        if (fscanf(f, "%" SCNu32 "\n", &good.amount) != EXPECTED_SCANF_RESULT)
             ok = 1;
         else
             (*count)++;
 
-        if (fscanf(f, "%"SCNu32"\n", &good.number) != EXPECTED_SCANF_RESULT)
+        if (fscanf(f, "%" SCNu32 "\n", &good.number) != EXPECTED_SCANF_RESULT)
             ok = 1;
         else
             (*count)++;
-        //printf("%s%s%" PRIu32 "\n%" PRIu32 "\n\n", good.name, good.manufac, good.amount, good.number);
     }
 }
 
