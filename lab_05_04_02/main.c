@@ -100,7 +100,7 @@ int main(int argc, char **argv)
 
     if (strcmp(argv[1], "at") == 0)
     {
-        good_t good;
+        good_t good = { "0", "0", 0, 0 };
 
         if (scanf("%s", good.name) != EXPECTED_SCANF_RESULT)
             return ERROR_WRONG_INPUT;
