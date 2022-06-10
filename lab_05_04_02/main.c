@@ -11,7 +11,7 @@
 
 int main(int argc, char **argv)
 {
-    if (strcmp(argv[1], "st") != 0 && strcmp(argv[1], "ft") != 0 && strcmp(argv[1], "at") != 0)
+    if (/*strcmp(argv[1], "st") != 0 && strcmp(argv[1], "ft") != 0 &&*/ strcmp(argv[1], "at") != 0)
         return ERROR_WRONG_ARGS;
 
     if (strcmp(argv[1], "st") == 0 && argc != 4)
@@ -55,7 +55,8 @@ int main(int argc, char **argv)
 
         add_to_array(f, count, goods);
         fclose(f);
-        print_file(goods, count, strcat(argv[3], "\n"));
+        if(print_file(goods, count, strcat(argv[3], "\n")))
+            return EXIT_FAILURE;
     }
 
     if (strcmp(argv[1], "st") == 0)
