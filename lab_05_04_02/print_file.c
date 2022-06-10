@@ -39,12 +39,13 @@ int add_to_array(FILE *f, size_t count, good_t *goods)
 
 int print_file(good_t *goods, size_t count, char *substr)
 {
-    size_t len;
+    int len;
     for (size_t i = 0; i < count; i++)
     {
         len = strlen(goods[i].name) - strlen(substr);
-        if (strcmp(goods[i].name + len, substr) == 0)
-            fprintf(stdout, "%s\n%s\n%"PRIu32"\n%"PRIu32"\n", goods[i].name, goods[i].manufac, goods[i].amount, goods[i].number);
+        if (len > 0)
+            if (strcmp(goods[i].name + len, substr) == 0)
+                fprintf(stdout, "%s\n%s\n%"PRIu32"\n%"PRIu32"\n", goods[i].name, goods[i].manufac, goods[i].amount, goods[i].number);
     }
     return EXIT_SUCCESS;
 }
