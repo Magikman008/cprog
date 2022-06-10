@@ -11,7 +11,7 @@ int process(FILE *f, int *maximum)
     if (rc != EXPECTED_SCANF_RESULT)
         return ERROR_NO_NUMBERS;
 
-    int cur;
+    int cur = prev - 1;
     *maximum = 1;
     int cur_maximum = 1;
 
@@ -28,6 +28,9 @@ int process(FILE *f, int *maximum)
 
         prev = cur;
     }
+
+    if (prev == cur && *maximum < cur_maximum)
+        *maximum = cur_maximum;
 
     return EXIT_SUCCESS;
 }
