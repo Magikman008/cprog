@@ -30,15 +30,11 @@ int main(int argc, char **argv)
         f = fopen(argv[2], "r");
 
         if (!f)
-        {
             return ERROR_NO_FILE;
-        }
 
         size_t count = 0;
         count_numbers(f, &count);
         fseek(f, 0, SEEK_SET);
-
-        // printf("%ld", count);
 
         if (count % 4 != 0)
         {
@@ -64,9 +60,7 @@ int main(int argc, char **argv)
         f = fopen(argv[2], "r");
 
         if (!f)
-        {
             return ERROR_NO_FILE;
-        }
 
         size_t count = 0;
         count_numbers(f, &count);
@@ -100,7 +94,7 @@ int main(int argc, char **argv)
 
     if (strcmp(argv[1], "at") == 0)
     {
-        good_t good = { "0", "0", 0, 0 };
+        good_t good = {"0", "0", 0, 0};
 
         if (scanf("%s", good.name) != EXPECTED_SCANF_RESULT)
             return ERROR_WRONG_INPUT;
@@ -138,9 +132,9 @@ int main(int argc, char **argv)
                 count = MAX_SIZE_OF_FILE;
 
             add_to_array(f, count, goods);
-            fclose(f);
         }
 
+        fclose(f);
         count++;
         insert_to_array(goods, count, good);
         f = fopen(argv[2], "w");
