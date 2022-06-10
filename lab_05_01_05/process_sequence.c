@@ -29,5 +29,8 @@ int process(FILE *f, int *maximum)
         prev = cur;
     }
 
+    if (prev == cur && *maximum < cur_maximum)
+        *maximum = cur_maximum;
+
     return EXIT_SUCCESS;
 }
