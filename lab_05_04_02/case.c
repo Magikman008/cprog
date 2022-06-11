@@ -132,8 +132,8 @@ int case_at(char *s1)
     if (fclose(f) != 0)
         return ERROR_BAD_FCLOSE;
 
-    count++;
     insert_to_array(goods, count, good);
+    count++;
     f = fopen(s1, "w");
     write_file(f, goods, count);
 
