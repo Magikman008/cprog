@@ -35,7 +35,7 @@ int find_nearest(FILE *f, const float average, float *nearest)
     float temp = *nearest;
 
     while (fscanf(f, "%f", &num) == EXPECTED_SCANF_RESULT)
-        if (fabs(average - num) <= fabs(average - *nearest))
+        if (fabs(average - num) <= fabs(average - temp))
             temp = num;
 
     *nearest = temp;
