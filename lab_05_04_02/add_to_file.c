@@ -13,7 +13,7 @@ void insert_to_array(good_t *goods, size_t count, good_t good)
     good_t temp1 = goods[cur];
     goods[cur] = good;
     cur++;
-    good_t temp2;
+    good_t temp2 = { 0 };
 
     while (cur < count)
     {
