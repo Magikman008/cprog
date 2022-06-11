@@ -17,7 +17,8 @@ int case_ft(char *s1, char *s2)
 
     if (count % 4 != 0)
     {
-        fclose(f);
+        if (fclose(f) != 0)
+            return ERROR_BAD_FCLOSE;
         return ERROR_BAD_FILE;
     }
 
@@ -29,7 +30,8 @@ int case_ft(char *s1, char *s2)
     good_t goods[MAX_SIZE_OF_FILE];
 
     add_to_array(f, count, goods);
-    fclose(f);
+    if (fclose(f) != 0)
+        return ERROR_BAD_FCLOSE;
 
     if (print_file(goods, count, strcat(s2, "\n")))
         return EXIT_FAILURE;
@@ -51,7 +53,8 @@ int case_st(char *s1, char *s2)
 
     if (count % 4 != 0)
     {
-        fclose(f);
+        if (fclose(f) != 0)
+            return ERROR_BAD_FCLOSE;
         return ERROR_BAD_FILE;
     }
 
@@ -64,7 +67,10 @@ int case_st(char *s1, char *s2)
 
     f = fopen(s1, "r");
     add_to_array(f, count, goods);
-    fclose(f);
+
+    if (fclose(f) != 0)
+        return ERROR_BAD_FCLOSE;
+
     sort_file(goods, count);
     f = fopen(s2, "w");
 
@@ -72,14 +78,17 @@ int case_st(char *s1, char *s2)
         return ERROR_NO_FILE;
 
     write_file(f, goods, count);
-    fclose(f);
+
+    if (fclose(f) != 0)
+        return ERROR_BAD_FCLOSE;
+
     return EXIT_SUCCESS;
 }
 
 int case_at(char *s1)
 {
     FILE *f;
-    good_t good = { 0 };
+    good_t good = {0};
 
     if (scanf("%s", good.name) != EXPECTED_SCANF_RESULT)
         return ERROR_WRONG_INPUT;
@@ -100,31 +109,36 @@ int case_at(char *s1)
     f = fopen(s1, "r");
     good_t goods[MAX_SIZE_OF_FILE];
 
-    if (f)
+    if (!f)
+        return ERROR_NO_FILE;
+
+    count_numbers(f, &count);
+    fseek(f, 0, SEEK_SET);
+
+    if (count % 4 != 0)
     {
-        count_numbers(f, &count);
-        fseek(f, 0, SEEK_SET);
-
-        if (count % 4 != 0)
-        {
-            fclose(f);
-            return ERROR_BAD_FILE;
-        }
-
-        count /= 4;
-
-        if (count > MAX_SIZE_OF_FILE)
-            count = MAX_SIZE_OF_FILE;
-
-        add_to_array(f, count, goods);
-        fclose(f);
+        if (fclose(f) != 0)
+            return ERROR_BAD_FCLOSE;
+        return ERROR_BAD_FILE;
     }
+
+    count /= 4;
+
+    if (count > MAX_SIZE_OF_FILE)
+        count = MAX_SIZE_OF_FILE;
+
+    add_to_array(f, count, goods);
+
+    if (fclose(f) != 0)
+        return ERROR_BAD_FCLOSE;
 
     count++;
     insert_to_array(goods, count, good);
     f = fopen(s1, "w");
     write_file(f, goods, count);
-    fclose(f);
+
+    if (fclose(f) != 0)
+        return ERROR_BAD_FCLOSE;
 
     return EXIT_SUCCESS;
 }

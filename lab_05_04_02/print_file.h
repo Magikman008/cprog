@@ -9,6 +9,7 @@
 #define ERROR_NO_FILE -2
 #define ERROR_BAD_FILE -3
 #define ERROR_WRONG_INPUT -4
+#define ERROR_BAD_FCLOSE -5
 
 #include <stdio.h>
 #include <stdlib.h>
