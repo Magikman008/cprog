@@ -3,6 +3,13 @@
 
 #define EXPECTED_SCANF_RESULT 1
 
+#define MAX_SIZE_OF_FILE 100
+
+#define ERROR_WRONG_ARGS 53
+#define ERROR_NO_FILE -2
+#define ERROR_BAD_FILE -3
+#define ERROR_WRONG_INPUT -4
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
