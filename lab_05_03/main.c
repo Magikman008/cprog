@@ -62,7 +62,7 @@ int execute_s(char *s)
     return EXIT_SUCCESS;
 }
 
-int main (int argc, char **argv)
+int main(int argc, char **argv)
 {
     if (argc < 3 || argc > 4)
         return ERROR_WRONG_ARGS;

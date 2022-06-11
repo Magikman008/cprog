@@ -62,7 +62,7 @@ int main(int argc, char **argv)
             return ERROR_NO_FILE;
         }
 
-char formats[MAX_FORMATS][FORMAT_LEN];
+        char formats[MAX_FORMATS][FORMAT_LEN];
         int number_formats = 0;
         char tmp[FORMAT_LEN];
         int cur = 0;
