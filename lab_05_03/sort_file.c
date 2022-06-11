@@ -8,12 +8,13 @@ int get_number_by_pos(FILE *f, int pos, int *num)
 {
     int cur;
     int count = 0;
+    int si = sizeof(int);
 
     while (count <= pos)
     {
         count++;
 
-        if (fread(&cur, sizeof(int), 1, f) != EXPECTED_SCANF_RESULT)
+        if (fread(&cur, si, 1, f) != EXPECTED_SCANF_RESULT)
             return ERROR_WRONG_POS;
     }
 
@@ -26,12 +27,13 @@ int put_number_by_pos(FILE *f, int pos, int number)
 {
     int cur;
     int count = 1;
+    int si = sizeof(int);
 
     while (count <= pos)
     {
         count++;
 
-        if (fread(&cur, sizeof(int), 1, f) != EXPECTED_SCANF_RESULT)
+        if (fread(&cur, si, 1, f) != EXPECTED_SCANF_RESULT)
             return ERROR_WRONG_POS;
     }
 
@@ -41,7 +43,7 @@ int put_number_by_pos(FILE *f, int pos, int number)
     return EXIT_SUCCESS;
 }
 
-int sort(char *file, size_t count)
+int sort_file(char *file, size_t count)
 {
     int num1 = 0;
     int num2 = 0;

@@ -6,7 +6,7 @@
 
 int find_average(FILE *f, float *average)
 {
-    float count = 0;
+    int count = 0;
     float sum = 0;
     float num;
 
@@ -16,7 +16,7 @@ int find_average(FILE *f, float *average)
         sum += num;
     }
 
-    if (count < 0.5)
+    if (count == 0)
         return ERROR_NO_NUMBERS;
 
     *average = sum / count;
@@ -32,9 +32,13 @@ int find_nearest(FILE *f, const float average, float *nearest)
     if (rc != EXPECTED_SCANF_RESULT)
         return ERROR_NO_NUMBERS;
 
+    float temp = *nearest;
+
     while (fscanf(f, "%f", &num) == EXPECTED_SCANF_RESULT)
         if (fabs(average - num) <= fabs(average - *nearest))
-            *nearest = num;
+            temp = num;
+
+    *nearest = temp;
 
     return EXIT_SUCCESS;
 }

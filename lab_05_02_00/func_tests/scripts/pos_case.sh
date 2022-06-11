@@ -22,7 +22,6 @@ if [ -n "$3" ]; then
     fi
 
     args="$(cat "$3")"
-    echo $args
 fi
 
 if [ -n "${USE_VALGRIND}" ]; then
@@ -39,6 +38,7 @@ if [ -n "${USE_VALGRIND}" ]; then
     fi
 else
     "$(dirname "$0")/../../app.exe" $args <"$1" >"$(dirname "$0")/result.txt"
+    cat "$(dirname "$0")/result.txt"
     if ! "$(dirname "$0")/comparator.sh" "$(dirname "$0")/result.txt" "$2"; then
 
         exit $ERROR_ONLY_MEM_OK

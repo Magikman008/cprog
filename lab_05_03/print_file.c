@@ -6,16 +6,18 @@
 void count_numbers(FILE *f, size_t *count)
 {
     int cur;
+    int si = sizeof(int);
 
-    while (fread(&cur, sizeof(int), 1, f) == EXPECTED_SCANF_RESULT)
+    while (fread(&cur, si, 1, f) == EXPECTED_SCANF_RESULT)
         (*count)++;
 }
 
 int print_file(FILE *f)
 {
     int cur;
+    int si = sizeof(int);
 
-    while (fread(&cur, sizeof(int), 1, f) == EXPECTED_SCANF_RESULT)
+    while (fread(&cur, si, 1, f) == EXPECTED_SCANF_RESULT)
         printf("%d ", cur);
 
     return EXIT_SUCCESS;

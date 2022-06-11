@@ -1,1 +1,1 @@
-./tests/in_03.txt
+./func_tests/data/tests/neg_03_in.txt

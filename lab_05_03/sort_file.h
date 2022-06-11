@@ -7,6 +7,6 @@
 
 int get_number_by_pos(FILE *f, int pos, int *num);
 int put_number_by_pos(FILE *f, int pos, int number);
-int sort(char *file, size_t count);
+int sort_file(char *file, size_t count);
 
 #endif

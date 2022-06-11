@@ -17,9 +17,8 @@ int main(int argc, char **argv)
     if (rc != EXIT_SUCCESS)
         return rc;
 
-    fclose(f);
+    fseek(f, 0, SEEK_SET);
 
-    f = fopen(argv[1], "r");
     float nearest;
     rc = find_nearest(f, average, &nearest);
 
@@ -27,7 +26,9 @@ int main(int argc, char **argv)
         return rc;
 
     printf("%f\n", nearest);
-    fclose(f);
+
+    if (fclose(f) != 0)
+        return ERROR_BAD_FCLOSE;
 
     return EXIT_SUCCESS;
 }
