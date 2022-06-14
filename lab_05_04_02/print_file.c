@@ -27,7 +27,7 @@ int fscan_str(char str[], size_t n, FILE *f)
 
 void count_numbers(FILE *f, size_t *count)
 {
-    good_t good;
+    good_t good = { 0 };
     short int ok = 0;
 
     while (ok == 0)

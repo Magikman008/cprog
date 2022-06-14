@@ -3,4 +3,10 @@
 *.o
 *.pch
 *.gch
-test.txt
+*.user
+*.pro
+*Desktop-Debug
+*.gcda
+*.gcov
+*.gcno
+make_tests_out.sh
