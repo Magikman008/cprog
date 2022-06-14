@@ -4,6 +4,8 @@
 #define EXPECTED_SCANF_RESULT 1
 
 #define MAX_SIZE_OF_FILE 100
+#define MAX_SIZE_NAME 31
+#define MAX_SIZE_MANUFAC 16
 
 #define ERROR_WRONG_ARGS 53
 #define ERROR_NO_FILE -2
@@ -18,8 +20,8 @@
 
 typedef struct
 {
-    char name[30];
-    char manufac[15];
+    char name[MAX_SIZE_NAME];
+    char manufac[MAX_SIZE_MANUFAC];
     uint32_t amount;
     uint32_t number;
 } good_t;
