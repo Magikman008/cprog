@@ -49,7 +49,7 @@ int case_ft(char *s1, char *s2)
 
 int case_st(char *s1, char *s2)
 {
-    FILE *f;
+    FILE *f = NULL;
     f = fopen(s1, "r");
     size_t count = 0;
 
@@ -106,11 +106,6 @@ int case_at(char *s1)
 
     if (rc)
         return rc;
-
-    f = fopen(s1, "r");
-
-    if (!f)
-        return ERROR_NO_FILE;
 
     add_to_array(f, count, goods);
 
