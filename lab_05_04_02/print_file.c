@@ -32,7 +32,7 @@ void count_numbers(FILE *f, size_t *count)
 
     while (ok == 0)
     {
-        if (fscan_str(good.name, 31, f) != EXIT_SUCCESS)
+        if (fscan_str(good.name, 31, f) != EXIT_SUCCESS && ok == 0)
             ok = 1;
         else if (ok == 0)
             (*count)++;
