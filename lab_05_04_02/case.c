@@ -21,7 +21,7 @@ int case_ft(char *s1, char *s2)
             return ERROR_BAD_FCLOSE;
         return ERROR_BAD_FILE;
     }
-
+    return 53;
     count /= 4;
 
     if (count > MAX_SIZE_OF_FILE)
