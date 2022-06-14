@@ -88,7 +88,7 @@ int case_st(char *s1, char *s2)
 int case_at(char *s1)
 {
     FILE *f = NULL;
-    good_t good = { 0 };
+    good_t good = {0};
 
     if (scanf("%s", good.name) != EXPECTED_SCANF_RESULT)
         return ERROR_WRONG_INPUT;
@@ -114,7 +114,7 @@ int case_at(char *s1)
 
     count_numbers(f, &count);
 
-    if (fclose(f) != 0)
+    if (f && fclose(f) != 0)
         return ERROR_BAD_FCLOSE;
 
     if (count % 4 != 0)
@@ -129,17 +129,24 @@ int case_at(char *s1)
 
     f = fopen(s1, "r");
 
+    if (!f)
+        return ERROR_NO_FILE;
+
     add_to_array(f, count, goods);
 
-    if (fclose(f) != 0)
+    if (f && fclose(f) != 0)
         return ERROR_BAD_FCLOSE;
 
     insert_to_array(goods, count, good);
     count++;
     f = fopen(s1, "w");
+
+    if (!f)
+        return ERROR_NO_FILE;
+
     write_file(f, goods, count);
 
-    if (fclose(f) != 0)
+    if (f && fclose(f) != 0)
         return ERROR_BAD_FCLOSE;
 
     return EXIT_SUCCESS;
