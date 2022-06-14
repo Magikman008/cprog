@@ -3,7 +3,7 @@
 
 #define EXPECTED_SCANF_RESULT 1
 
-#define MAX_SIZE_OF_FILE 100
+#define MAX_SIZE_OF_FILE 1000 
 #define MAX_SIZE_NAME 29 
 #define MAX_SIZE_MANUFAC 14 
 
