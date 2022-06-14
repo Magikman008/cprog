@@ -60,7 +60,6 @@ int case_st(char *s1, char *s2)
 
     good_t goods[MAX_SIZE_OF_FILE];
 
-    f = fopen(s1, "r");
     add_to_array(f, count, goods);
 
     if (fclose(f) != 0)
