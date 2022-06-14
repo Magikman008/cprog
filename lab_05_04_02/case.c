@@ -33,7 +33,7 @@ int case_ft(char *s1, char *s2)
     if (fclose(f) != 0)
         return ERROR_BAD_FCLOSE;
 
-    if (print_file(goods, count, strcat(s2, "\n")))
+    if (print_file(goods, count, s2))
         return EXIT_FAILURE;
 
     return EXIT_SUCCESS;
