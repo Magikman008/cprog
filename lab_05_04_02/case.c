@@ -87,7 +87,7 @@ int case_st(char *s1, char *s2)
 
 int case_at(char *s1)
 {
-    FILE *f;
+    FILE *f = NULL;
     good_t good = { 0 };
 
     if (scanf("%s", good.name) != EXPECTED_SCANF_RESULT)
