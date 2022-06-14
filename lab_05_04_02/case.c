@@ -23,10 +23,6 @@ int case_ft(char *s1, char *s2)
 
     fseek(f, 0, SEEK_SET);
     count /= 4;
-
-    if (count > MAX_SIZE_OF_FILE)
-        count = MAX_SIZE_OF_FILE;
-
     good_t goods[MAX_SIZE_OF_FILE];
 
     add_to_array(f, count, goods);

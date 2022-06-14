@@ -34,22 +34,22 @@ void count_numbers(FILE *f, size_t *count)
     {
         if (fscan_str(good.name, 31, f) != EXIT_SUCCESS)
             ok = 1;
-        else
+        else if (ok == 0)
             (*count)++;
 
-        if (fscan_str(good.manufac, 16, f) != EXIT_SUCCESS)
+        if (fscan_str(good.manufac, 16, f) != EXIT_SUCCESS && ok == 0)
             ok = 1;
-        else
+        else if (ok == 0)
             (*count)++;
 
-        if (fscanf(f, "%" SCNu32 "\n", &good.amount) != EXPECTED_SCANF_RESULT)
+        if (fscanf(f, "%" SCNu32 "\n", &good.amount) != EXPECTED_SCANF_RESULT && ok == 0)
             ok = 1;
-        else
+        else if (ok == 0)
             (*count)++;
 
-        if (fscanf(f, "%" SCNu32 "\n", &good.number) != EXPECTED_SCANF_RESULT)
+        if (fscanf(f, "%" SCNu32 "\n", &good.number) != EXPECTED_SCANF_RESULT && ok == 0)
             ok = 1;
-        else
+        else if (ok == 0)
             (*count)++;
     }
 }
