@@ -11,6 +11,7 @@ int case_ft(char *s1, char *s2)
     if (!f)
         return ERROR_NO_FILE;
 
+    return 53;
     size_t count = 0;
     count_numbers(f, &count);
     fseek(f, 0, SEEK_SET);
@@ -21,7 +22,6 @@ int case_ft(char *s1, char *s2)
             return ERROR_BAD_FCLOSE;
         return ERROR_BAD_FILE;
     }
-    return 53;
     count /= 4;
 
     if (count > MAX_SIZE_OF_FILE)
