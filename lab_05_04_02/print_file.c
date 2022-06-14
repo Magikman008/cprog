@@ -9,12 +9,12 @@ void count_numbers(FILE *f, size_t *count)
 
     while (ok == 0)
     {
-        if (fgets(good.name, 30, f) == NULL)
+        if (fgets(good.name, 31, f) == NULL)
             ok = 1;
         else
             (*count)++;
 
-        if (fgets(good.manufac, 15, f) == NULL)
+        if (fgets(good.manufac, 16, f) == NULL)
             ok = 1;
         else
             (*count)++;
@@ -35,10 +35,10 @@ int add_to_array(FILE *f, size_t count, good_t *goods)
 {
     for (size_t cur = 0; cur < count; cur++)
     {
-        if (fgets(goods[cur].name, 30, f) == NULL)
+        if (fgets(goods[cur].name, 31, f) == NULL)
             return EXIT_FAILURE;
 
-        if (fgets(goods[cur].manufac, 15, f) == NULL)
+        if (fgets(goods[cur].manufac, 16, f) == NULL)
             return EXIT_FAILURE;
 
         if (fscanf(f, "%" SCNu32 "\n", &goods[cur].amount) != EXPECTED_SCANF_RESULT)
