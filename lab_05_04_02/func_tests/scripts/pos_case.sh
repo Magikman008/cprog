@@ -10,36 +10,82 @@ if [ "$#" -lt 2 ]; then
     exit $ERROR_TOO_LITTLE_PARAMS
 fi
 
-if ! [ -f "$1" ] || ! [ -f "$2" ]; then 
+if ! [ -f "$1" ] || ! [ -f "$2" ]; then
     exit $ERROR_FILES_DONT_EXIST
 fi
 
 args=
 
-if [ -n "$3" ]; then 
+if [ -n "$3" ]; then
     if ! [ -f "$3" ]; then
         exit $ERROR_FILES_DONT_EXIST
     fi
 
     args=$(<"$3")
+    read -r -a args_arr <<<$args
 fi
 
-if [ -n "${USE_VALGRIND}" ]; then
-    valgrind --leak-check=full --leak-resolution=med --log-file="$(dirname "$0")/report.txt" --quiet "$(dirname "$0")/../../app.exe" $args < "$1" > "$(dirname "$0")/result.txt"
+if [ "${args_arr[0]}" = "ft" ]; then
+    if [ -n "${USE_VALGRIND}" ]; then
+        valgrind --leak-check=full --leak-resolution=med --log-file="$(dirname "$0")/report.txt" --quiet "$(dirname "$0")/../../app.exe" "ft" "${args_arr[1]}" "${args_arr[2]}" >"$(dirname "$0")/result.txt"
 
-    if [ -z "$(cat "$(dirname "$0")/report.txt")" ]; then  
+        if [ -z "$(cat "$(dirname "$0")/report.txt")" ]; then
+            if ! "$(dirname "$0")/comparator.sh" "$(dirname "$0")/result.txt" "$2"; then
+                exit $ERROR_ONLY_MEM_OK
+            fi
+        elif "$(dirname "$0")/comparator.sh" "$(dirname "$0")/result.txt" "$2"; then
+            exit $ERROR_ONLY_TEST_OK
+        else
+            exit $ERROR_NOTHING_OK
+        fi
+    else
+        "$(dirname "$0")/../../app.exe" $args <"$1" >"$(dirname "$0")/result.txt"
+
         if ! "$(dirname "$0")/comparator.sh" "$(dirname "$0")/result.txt" "$2"; then
             exit $ERROR_ONLY_MEM_OK
         fi
-    elif "$(dirname "$0")/comparator.sh" "$(dirname "$0")/result.txt" "$2"; then
-        exit $ERROR_ONLY_TEST_OK
+    fi
+elif [ "${args_arr[0]}" = "st" ]; then
+    if [ -n "${USE_VALGRIND}" ]; then
+        valgrind --leak-check=full --leak-resolution=med --log-file="$(dirname "$0")/report.txt" --quiet "$(dirname "$0")/../../app.exe" "st" "${args_arr[1]}" "$(dirname "$0")/${args_arr[2]}"
+
+        if [ -z "$(cat "$(dirname "$0")/report.txt")" ]; then
+            if ! "$(dirname "$0")/comparator.sh" "$(dirname "$0")/temp.txt" "${args_arr[1]/"in"/"out"}"; then
+                exit $ERROR_ONLY_MEM_OK
+            fi
+        elif "$(dirname "$0")/comparator.sh" "$(dirname "$0")/temp.txt" "${args_arr[1]/"in"/"out"}"; then
+            exit $ERROR_ONLY_TEST_OK
+        else
+            exit $ERROR_NOTHING_OK
+        fi
     else
-        exit $ERROR_NOTHING_OK
+        "$(dirname "$0")/../../app.exe" "st" "${args_arr[1]}" "$(dirname "$0")/${args_arr[2]}"
+
+        if ! "$(dirname "$0")/comparator.sh" "$(dirname "$0")/${args_arr[2]}" "${args_arr[1]/"in"/"out"}"; then
+            exit $ERROR_ONLY_MEM_OK
+        fi
+    fi
+elif [ "${args_arr[0]}" = "at" ]; then
+    cp "${args_arr[1]}" "$(dirname "$0")/temp.txt"
+    if [ -n "${USE_VALGRIND}" ]; then
+        valgrind --leak-check=full --leak-resolution=med --log-file="$(dirname "$0")/report.txt" --quiet "$(dirname "$0")/../../app.exe" "at" "$(dirname "$0")/temp.txt" <"$1"
+
+        if [ -z "$(cat "$(dirname "$0")/report.txt")" ]; then
+            if ! "$(dirname "$0")/comparator.sh" "$(dirname "$0")/temp.txt" "${args_arr[1]/"in"/"out"}"; then
+                exit $ERROR_ONLY_MEM_OK
+            fi
+        elif "$(dirname "$0")/comparator.sh" "$(dirname "$0")/temp.txt" "${args_arr[1]/"in"/"out"}"; then
+            exit $ERROR_ONLY_TEST_OK
+        else
+            exit $ERROR_NOTHING_OK
+        fi
+    else
+        "$(dirname "$0")/../../app.exe" "at" "$(dirname "$0")/temp.txt" <"$1"
+
+        if ! "$(dirname "$0")/comparator.sh" "$(dirname "$0")/temp.txt" "${args_arr[1]/"in"/"out"}"; then
+            exit $ERROR_ONLY_MEM_OK
+        fi
     fi
 else
-    "$(dirname "$0")/../../app.exe" $args <"$1" >"$(dirname "$0")/result.txt"
-
-    if ! "$(dirname "$0")/comparator.sh" "$(dirname "$0")/result.txt" "$2"; then
-        exit $ERROR_ONLY_MEM_OK
-    fi
+    exit $ERROR_NOTHING_OK
 fi

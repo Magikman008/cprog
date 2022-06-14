@@ -1,1 +1,1 @@
-st ./func_tests/data/secret_folder/pos_01.txt ee
+st ./func_tests/data/secret_folder/pos_01_in.txt temp.txt

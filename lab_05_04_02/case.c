@@ -3,29 +3,41 @@
 #include "sort_file.h"
 #include "add_to_file.h"
 
-int case_ft(char *s1, char *s2)
+int open_file(FILE *f, size_t *count)
 {
-    FILE *f = NULL;
-    f = fopen(s1, "r");
-
     if (!f)
         return ERROR_NO_FILE;
 
-    size_t count = 0;
-    count_numbers(f, &count);
+    count_numbers(f, count);
 
-    if (count % 4 != 0)
+    if (*count % 4 != 0)
     {
-        if (fclose(f) != 0)
+        if (f && fclose(f) != 0)
             return ERROR_BAD_FCLOSE;
         return ERROR_BAD_FILE;
     }
 
     fseek(f, 0, SEEK_SET);
-    count /= 4;
+    (*count) /= 4;
+
+    return EXIT_SUCCESS;
+}
+
+int case_ft(char *s1, char *s2)
+{
+    FILE *f = NULL;
+    f = fopen(s1, "r");
+    size_t count = 0;
+
+    int rc = open_file(f, &count);
+
+    if (rc)
+        return rc;
+
     good_t goods[MAX_SIZE_OF_FILE];
 
     add_to_array(f, count, goods);
+
     if (fclose(f) != 0)
         return ERROR_BAD_FCLOSE;
 
@@ -39,25 +51,12 @@ int case_st(char *s1, char *s2)
 {
     FILE *f;
     f = fopen(s1, "r");
-
-    if (!f)
-        return ERROR_NO_FILE;
-
     size_t count = 0;
-    count_numbers(f, &count);
-    fclose(f);
 
-    if (count % 4 != 0)
-    {
-        if (fclose(f) != 0)
-            return ERROR_BAD_FCLOSE;
-        return ERROR_BAD_FILE;
-    }
+    int rc = open_file(f, &count);
 
-    count /= 4;
-
-    if (count > MAX_SIZE_OF_FILE)
-        count = MAX_SIZE_OF_FILE;
+    if (rc)
+        return rc;
 
     good_t goods[MAX_SIZE_OF_FILE];
 
@@ -98,27 +97,15 @@ int case_at(char *s1)
     if (scanf("%" SCNu32 "", &good.number) != EXPECTED_SCANF_RESULT)
         return ERROR_WRONG_INPUT;
 
-    size_t count = 0;
     f = fopen(s1, "r");
     good_t goods[MAX_SIZE_OF_FILE];
 
-    if (!f)
-        return ERROR_NO_FILE;
+    size_t count = 0;
 
-    count_numbers(f, &count);
+    int rc = open_file(f, &count);
 
-    if (f && fclose(f) != 0)
-        return ERROR_BAD_FCLOSE;
-
-    if (count % 4 != 0)
-    {
-        return ERROR_BAD_FILE;
-    }
-
-    count /= 4;
-
-    if (count > MAX_SIZE_OF_FILE)
-        count = MAX_SIZE_OF_FILE;
+    if (rc)
+        return rc;
 
     f = fopen(s1, "r");
 

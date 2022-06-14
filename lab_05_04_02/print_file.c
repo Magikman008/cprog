@@ -28,7 +28,7 @@ int fscan_str(char str[], size_t n, FILE *f)
 void count_numbers(FILE *f, size_t *count)
 {
     good_t good = { 0 };
-    short int ok = 0;
+    int ok = 0;
 
     while (ok == 0)
     {
@@ -76,7 +76,7 @@ int add_to_array(FILE *f, size_t count, good_t *goods)
 
 int print_file(good_t *goods, size_t count, char *substr)
 {
-    int len;
+    int len = 0;
     int temp_count = 0;
 
     for (size_t i = 0; i < count; i++)
