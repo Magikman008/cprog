@@ -3,15 +3,17 @@
 
 #define EXPECTED_SCANF_RESULT 1
 
-#define MAX_SIZE_OF_FILE 1000 
-#define MAX_SIZE_NAME 31 
-#define MAX_SIZE_MANUFAC 16 
+#define MAX_SIZE_OF_FILE 1000
+#define MAX_SIZE_NAME 31
+#define MAX_SIZE_MANUFAC 16
 
 #define ERROR_WRONG_ARGS 53
 #define ERROR_NO_FILE -2
 #define ERROR_BAD_FILE -3
 #define ERROR_WRONG_INPUT -4
 #define ERROR_BAD_FCLOSE -5
+#define ERROR_EMPTY_STRING -6
+#define ERROR_TOO_LONG_STRING -7
 
 #include <stdio.h>
 #include <stdlib.h>

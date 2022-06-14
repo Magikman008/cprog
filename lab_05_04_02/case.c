@@ -102,9 +102,6 @@ int case_at(char *s1)
     if (scanf("%" SCNu32 "", &good.number) != EXPECTED_SCANF_RESULT)
         return ERROR_WRONG_INPUT;
 
-    strcpy(good.name, strcat(good.name, "\n"));
-    strcpy(good.manufac, strcat(good.manufac, "\n"));
-
     size_t count = 0;
     f = fopen(s1, "r");
     good_t goods[MAX_SIZE_OF_FILE];
