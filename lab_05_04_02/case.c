@@ -71,6 +71,9 @@ int case_st(char *s1, char *s2)
     if (!f)
         return ERROR_NO_FILE;
 
+    if (!f)
+        return ERROR_NO_FILE;
+
     write_file(f, goods, count);
 
     if (fclose(f) != 0)
@@ -82,7 +85,7 @@ int case_st(char *s1, char *s2)
 int case_at(char *s1)
 {
     FILE *f = NULL;
-    good_t good = { 0 };
+    good_t good = {0};
 
     if (scanf("%s", good.name) != EXPECTED_SCANF_RESULT)
         return ERROR_WRONG_INPUT;
