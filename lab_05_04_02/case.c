@@ -69,11 +69,7 @@ int case_st(char *s1, char *s2)
     f = fopen(s2, "w");
 
     if (!f)
-    {
-        f = fopen(s2, "w+");
-        if (!f)
-            return ERROR_NO_FILE;
-    }
+        return ERROR_NO_FILE;
 
     write_file(f, goods, count);
 
