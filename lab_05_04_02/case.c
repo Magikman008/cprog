@@ -38,7 +38,7 @@ int case_ft(char *s1, char *s2)
 
     add_to_array(f, count, goods);
 
-    if (fclose(f) != 0)
+    if (f && fclose(f) != 0)
         return ERROR_BAD_FCLOSE;
 
     if (print_file(goods, count, s2))

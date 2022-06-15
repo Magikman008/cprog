@@ -7,7 +7,9 @@ int fscan_str(char str[], size_t n, FILE *f)
     char buf[32];
 
     if (!fgets(buf, n + 1, f))
+    {
         return ERROR_EMPTY_STRING;
+    }
 
     size_t len = strlen(buf);
 
@@ -15,10 +17,14 @@ int fscan_str(char str[], size_t n, FILE *f)
         buf[--len] = '\0';
 
     if (len == 0)
+    {
         return ERROR_EMPTY_STRING;
+    }
 
     if (len >= n)
+    {
         return ERROR_TOO_LONG_STRING;
+    }
 
     strcpy(str, buf);
 
@@ -27,27 +33,27 @@ int fscan_str(char str[], size_t n, FILE *f)
 
 void count_numbers(FILE *f, size_t *count)
 {
-    good_t good = { 0 };
+    good_t good = {0};
     int ok = 0;
 
-    while (ok == 0)
+    while (!ok)
     {
-        if (fscan_str(good.name, 31, f) != EXIT_SUCCESS && ok == 0)
+        if (ok == 0 && fscan_str(good.name, 31, f) != EXIT_SUCCESS)
             ok = 1;
         else if (ok == 0)
             (*count)++;
 
-        if (fscan_str(good.manufac, 16, f) != EXIT_SUCCESS && ok == 0)
+        if (ok == 0 && fscan_str(good.manufac, 16, f) != EXIT_SUCCESS)
             ok = 1;
         else if (ok == 0)
             (*count)++;
 
-        if (fscanf(f, "%" SCNu32 "\n", &good.amount) != EXPECTED_SCANF_RESULT && ok == 0)
+        if (ok == 0 && fscanf(f, "%" SCNu32 "\n", &good.amount) != EXPECTED_SCANF_RESULT)
             ok = 1;
         else if (ok == 0)
             (*count)++;
 
-        if (fscanf(f, "%" SCNu32 "\n", &good.number) != EXPECTED_SCANF_RESULT && ok == 0)
+        if (ok == 0 && fscanf(f, "%" SCNu32 "\n", &good.number) != EXPECTED_SCANF_RESULT)
             ok = 1;
         else if (ok == 0)
             (*count)++;
