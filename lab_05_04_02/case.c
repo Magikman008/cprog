@@ -58,6 +58,9 @@ int case_st(char *s1, char *s2)
     if (rc)
         return rc;
 
+    if (count == 0)
+        return ERROR_BAD_FILE;
+
     good_t goods[MAX_SIZE_OF_FILE];
 
     add_to_array(f, count, goods);
@@ -82,7 +85,7 @@ int case_st(char *s1, char *s2)
 int case_at(char *s1)
 {
     FILE *f = NULL;
-    good_t good = {0};
+    good_t good = { 0 };
 
     if (scanf("%s", good.name) != EXPECTED_SCANF_RESULT)
         return ERROR_WRONG_INPUT;
