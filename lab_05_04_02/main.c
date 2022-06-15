@@ -10,7 +10,7 @@ int main(int argc, char **argv)
         if (rc)
             return rc;
     }
-    if (argc == 4 && strcmp(argv[1], "st") == 0)
+    else if (argc == 4 && strcmp(argv[1], "st") == 0)
     {
         rc = case_st(argv[2], argv[3]);
         if (rc)
