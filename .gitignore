@@ -10,6 +10,3 @@
 *.gcov
 *.gcno
 make_tests_out.sh
-temp.txt
-report.txt
-temp.bin
