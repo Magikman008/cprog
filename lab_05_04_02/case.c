@@ -66,13 +66,14 @@ int case_st(char *s1, char *s2)
         return ERROR_BAD_FCLOSE;
 
     sort_file(goods, count);
-    f = fopen(s2, "w+");
+    f = fopen(s2, "w");
 
     if (!f)
-        f = fopen(s2, "w");
-
-    if (!f)
-        return ERROR_NO_FILE;
+    {
+        f = fopen(s2, "w+");
+        if (!f)
+            return ERROR_NO_FILE;
+    }
 
     write_file(f, goods, count);
 
