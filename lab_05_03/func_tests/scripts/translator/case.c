@@ -27,20 +27,20 @@ void split_format(char (*formats)[FORMAT_LEN], char *format, int *number_formats
     number_formats++;
 }
 
-void case_t2b(FILE *inFile, FILE *outFile, char *format)
+void case_t2b(FILE *in_file, FILE *out_file, char *format)
 {
     char formats[MAX_FORMATS][FORMAT_LEN];
     int number_formats = 0;
 
     split_format(formats, format, &number_formats);
-    text_to_bin(inFile, outFile, formats, number_formats);
+    text_to_bin(in_file, out_file, formats, number_formats);
 }
 
-void case_b2t(FILE *inFile, FILE *outFile, char *format)
+void case_b2t(FILE *in_file, FILE *out_file, char *format)
 {
     char formats[MAX_FORMATS][FORMAT_LEN];
     int number_formats = 0;
 
     split_format(formats, format, &number_formats);
-    bin_to_text(inFile, outFile, formats, number_formats);
+    bin_to_text(in_file, out_file, formats, number_formats);
 }
