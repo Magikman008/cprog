@@ -6,7 +6,9 @@ int text_to_bin(FILE *in, FILE *out, char (*formats)[FORMAT_LEN], int number)
 {
     short int ok = 1;
     void *a = NULL;
-    a = (void *)malloc(sizeof(int));
+    int size_of_int = sizeof(int);
+    int size_of_float = sizeof(float);
+    a = (void *)malloc(size_of_int);
 
     while (ok == 1)
     {
@@ -14,12 +16,12 @@ int text_to_bin(FILE *in, FILE *out, char (*formats)[FORMAT_LEN], int number)
         {
             if (strcmp(formats[i], "d") == 0)
             {
-                a = (void *)realloc(a, sizeof(int));
+                a = (void *)realloc(a, size_of_int);
 
                 if (fscanf(in, "%d", (int *)a) != EXPECTED_SCANF_RESULT)
                     ok = 0;
                 else
-                    fwrite(&(*(int*)a), sizeof(int), 1, out);
+                    fwrite(&(*(int *)a), size_of_int, 1, out);
             }
 
             if (strcmp(formats[i], "s") == 0)
@@ -38,14 +40,16 @@ int text_to_bin(FILE *in, FILE *out, char (*formats)[FORMAT_LEN], int number)
 
             if (strcmp(formats[i], "f") == 0)
             {
-                a = (void *)realloc(a, sizeof(float));
+                a = (void *)realloc(a, size_of_float);
 
                 if (fscanf(in, "%f", (float *)a) != EXPECTED_SCANF_RESULT)
                     ok = 0;
                 else
-                    fwrite(&a, sizeof(float), 1, out);
+                    fwrite(&a, size_of_float, 1, out);
             }
         }
+
+        free(a);
     }
 
     return EXIT_SUCCESS;
@@ -55,7 +59,9 @@ int bin_to_text(FILE *in, FILE *out, char (*formats)[FORMAT_LEN], int number)
 {
     short int ok = 1;
     void *a = NULL;
-    a = (void *)malloc(sizeof(int));
+    int size_of_int = sizeof(int);
+    int size_of_float = sizeof(float);
+    a = (void *)malloc(size_of_int);
 
     while (ok == 1)
     {
@@ -63,9 +69,9 @@ int bin_to_text(FILE *in, FILE *out, char (*formats)[FORMAT_LEN], int number)
         {
             if (strcmp(formats[i], "d") == 0)
             {
-                a = (void *)realloc(a, sizeof(int));
+                a = (void *)realloc(a, size_of_int);
 
-                if (fread(a, sizeof(int), 1, in) != EXPECTED_SCANF_RESULT)
+                if (fread(a, size_of_int, 1, in) != EXPECTED_SCANF_RESULT)
                     ok = 0;
                 else
                     fprintf(out, "%d\n", (*(int *)a));
@@ -83,14 +89,16 @@ int bin_to_text(FILE *in, FILE *out, char (*formats)[FORMAT_LEN], int number)
 
             if (strcmp(formats[i], "f") == 0)
             {
-                a = (void *)realloc(a, sizeof(float));
+                a = (void *)realloc(a, size_of_float);
 
-                if (fread(a, sizeof(float), 1, in) != EXPECTED_SCANF_RESULT)
+                if (fread(a, size_of_float, 1, in) != EXPECTED_SCANF_RESULT)
                     ok = 0;
                 else
                     fprintf(out, "%f\n", (*(float *)a));
             }
         }
+
+        free(a);
     }
 
     return EXIT_SUCCESS;
