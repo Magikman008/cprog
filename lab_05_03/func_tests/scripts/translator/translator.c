@@ -2,7 +2,7 @@
 
 #define EXPECTED_SCANF_RESULT 1
 
-int tb(FILE *in, FILE *out, char (*formats)[FORMAT_LEN], int number)
+int text_to_bin(FILE *in, FILE *out, char (*formats)[FORMAT_LEN], int number)
 {
     short int ok = 1;
     void *a = NULL;
@@ -51,7 +51,7 @@ int tb(FILE *in, FILE *out, char (*formats)[FORMAT_LEN], int number)
     return EXIT_SUCCESS;
 }
 
-int bt(FILE *in, FILE *out, char (*formats)[FORMAT_LEN], int number)
+int bin_to_text(FILE *in, FILE *out, char (*formats)[FORMAT_LEN], int number)
 {
     short int ok = 1;
     void *a = NULL;
