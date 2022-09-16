@@ -16,10 +16,16 @@ int main(int argc, char **argv)
     int rc;
 
     if ((rc = scan(f, &count, products)))
+    {
+        fclose(f);
         return rc;
+    }
 
     if ((rc = print_answer(count, products, argv[2])))
+    {
+        fclose(f);
         return rc;
+    }
 
     if (fclose(f) != 0)
         return ERROR_BAD_FCLOSE;

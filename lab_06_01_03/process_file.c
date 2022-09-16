@@ -15,10 +15,7 @@ int scan(FILE *f, size_t *count, good_t *goods)
     while (cur < *count)
     {
         if (fgets(goods[cur].name, MAX_SIZE_NAME, f) == NULL)
-        {
-            fclose(f);
             return ERROR_NAME_SCAN;
-        }
 
         if (fscanf(f, "%d\n", &goods[cur].price) != EXPECTED_SCANF_RESULT)
             return ERROR_BAD_FILE;
