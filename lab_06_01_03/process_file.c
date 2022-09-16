@@ -7,7 +7,7 @@ int scan(FILE *f, size_t *count, good_t *goods)
     if (fscanf(f, "%lu\n", count) != EXPECTED_SCANF_RESULT)
         return ERROR_BAD_FILE;
 
-    if (count < 1)
+    if (*count < 1)
         return ERROR_BAD_FILE;
 
     size_t cur = 0;
