@@ -20,7 +20,7 @@ int scan(FILE *f, size_t *count, good_t *goods)
             return ERROR_NAME_SCAN;
         }
 
-        if (fscanf(f, "%lf\n", &goods[cur].price) != EXPECTED_SCANF_RESULT)
+        if (fscanf(f, "%d\n", &goods[cur].price) != EXPECTED_SCANF_RESULT)
             return ERROR_BAD_FILE;
 
         cur++;
@@ -44,7 +44,7 @@ int print_answer(size_t count, good_t *goods, char *border)
         if (goods[i].price < price)
         {
             res_count++;
-            printf("%s%f\n", goods[i].name, goods[i].price);
+            printf("%s%d\n", goods[i].name, goods[i].price);
         }
 
     return EXIT_SUCCESS;

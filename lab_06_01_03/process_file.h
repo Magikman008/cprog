@@ -18,7 +18,7 @@
 typedef struct
 {
     char name[MAX_SIZE_NAME+1];
-    double price;
+    int price;
 } good_t;
 
 int scan(FILE *f, size_t *count, good_t *goods);
