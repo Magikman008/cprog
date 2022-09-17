@@ -7,17 +7,17 @@ int scan(FILE *f, size_t *count, good_t *goods)
     if (fscanf(f, "%lu\n", count) != EXPECTED_SCANF_RESULT)
         return ERROR_BAD_FILE;
 
-    if (*count < 1)
+    if (*count < 1 || *count > MAX_ARRAY_LEN)
         return ERROR_BAD_FILE;
 
     size_t cur = 0;
 
     while (cur < *count)
     {
-        if (fgets(goods[cur].name, MAX_SIZE_NAME, f) == NULL)
+        if (fgets(goods[cur].name, MAX_SIZE_NAME, f) == NULL || strlen(goods[cur].name) == 1)
             return ERROR_NAME_SCAN;
 
-        if (fscanf(f, "%d\n", &goods[cur].price) != EXPECTED_SCANF_RESULT)
+        if (fscanf(f, "%d\n", &goods[cur].price) != EXPECTED_SCANF_RESULT || goods[cur].price < 1)
             return ERROR_BAD_FILE;
 
         cur++;
