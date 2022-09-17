@@ -23,6 +23,9 @@ int scan(FILE *f, size_t *count, good_t *goods)
         cur++;
     }
 
+    if (cur < *count)
+        return ERROR_BAD_FILE;
+
     return EXIT_SUCCESS;
 }
 
