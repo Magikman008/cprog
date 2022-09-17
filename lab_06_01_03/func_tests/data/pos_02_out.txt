@@ -1,1 +1,10 @@
-5.000000
+apple
+25
+banana
+10
+orange
+5
+bane
+101
+forest
+500

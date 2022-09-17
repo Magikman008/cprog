@@ -24,7 +24,7 @@ if [ -n "$3" ]; then
 fi
 
 if [ -n "${USE_VALGRIND}" ]; then
-    valgrind --leak-check=full --leak-resolution=med --log-file="$(dirname "$0")/report.txt" --quiet "$(dirname "$0")/../../app.exe" "$args" <"$1" >"$(dirname "$0")/result.txt"
+    valgrind --leak-check=full --leak-resolution=med --log-file="$(dirname "$0")/report.txt" --quiet "$(dirname "$0")/../../app.exe" $args <"$1" >"$(dirname "$0")/result.txt"
 
     if [ -z "$(cat "$(dirname "$0")/report.txt")" ]; then
         if ! [ "$?" ]; then
@@ -36,7 +36,7 @@ if [ -n "${USE_VALGRIND}" ]; then
         exit $ERROR_NOTHING_OK
     fi
 else
-    "$(dirname "$0")/../../app.exe" "$args" <"$1" >"$(dirname "$0")/result.txt"
+    "$(dirname "$0")/../../app.exe" $args <"$1" >"$(dirname "$0")/result.txt"
 
     if ! [ "$?" ]; then
         exit $ERROR_ONLY_MEM_OK
