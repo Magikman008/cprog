@@ -1,4 +1,4 @@
-#include "funcs.h"
+#include "../inc/funcs.h"
 
 int count_elems(FILE *f, size_t *count)
 {
@@ -18,8 +18,7 @@ int count_elems(FILE *f, size_t *count)
 int read_array(FILE *f, int *pb_src, const int *pe_src)
 {
     int i = 0;
-    for (; fscanf(f, "%d", pb_src + i) == EXPECTED_SCANF; i++)
-        ;
+    for (; fscanf(f, "%d", pb_src + i) == EXPECTED_SCANF; i++);
 
     if ((i + pb_src) != pe_src)
         return ERROR_READ_FILE;
@@ -118,7 +117,6 @@ void mysort(void *first, size_t number, size_t size, int (*comparator)(const voi
             {
                 swap(charp + i * size, charp + (i + 1) * size, size);
                 m = i;
-
             }
         }
 
