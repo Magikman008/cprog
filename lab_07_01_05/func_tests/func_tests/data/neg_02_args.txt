@@ -1,0 +1,1 @@
+ft ./func_tests/data/secret_folder/neg_02_in.txt vovka

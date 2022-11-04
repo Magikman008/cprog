@@ -3,6 +3,7 @@
 int count_elems(FILE *f, size_t *count)
 {
     int temp_int, rc;
+
     while ((rc = fscanf(f, "%d", &temp_int)) == EXPECTED_SCANF)
         (*count)++;
 
@@ -18,6 +19,7 @@ int count_elems(FILE *f, size_t *count)
 int read_array(FILE *f, int *pb_src, const int *pe_src)
 {
     int i = 0;
+
     for (; fscanf(f, "%d", pb_src + i) == EXPECTED_SCANF; i++);
 
     if ((i + pb_src) != pe_src)
@@ -42,6 +44,7 @@ int compare(const int *from, int amount)
 int find_suitable(const int *pb_src, const int *pe_src)
 {
     int count = 0;
+
     for (int i = 2; pe_src - i >= pb_src; i++)
         if (compare(pe_src - i, i))
             count++;
@@ -52,6 +55,7 @@ int find_suitable(const int *pb_src, const int *pe_src)
 void copy_elems(const int *pb_src, const int *pe_src, int *tempp)
 {
     int count = 0;
+    
     for (int i = 2; pe_src - i >= pb_src; i++)
         if (compare(pe_src - i, i))
         {
@@ -105,7 +109,6 @@ void mysort(void *first, size_t number, size_t size, int (*comparator)(const voi
     size_t k = number - 1;
 
     char *charp = (char *)first;
-
 
     while (k > 0)
     {

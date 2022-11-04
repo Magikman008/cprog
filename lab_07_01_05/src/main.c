@@ -37,8 +37,10 @@ int main(int argc, char **argv)
     {
         if (fclose(src))
             return ERROR_FILE_CLOSE;
+
         if (fclose(dist))
             return ERROR_FILE_CLOSE;
+
         return ERROR_MALLOC;
     }
 
@@ -88,6 +90,7 @@ int main(int argc, char **argv)
     print_file(dist, pb_dst, pe_dst);
 
     free(pb_dst);
+
     if (fclose(dist))
         return ERROR_FILE_CLOSE;
 
