@@ -16,3 +16,12 @@ rk_01:
       - rk_01_01
       - gcc -Wall -Werror main.c
       - cat test01.txt | ./a.out 
+rk_03:
+  image: gcc
+  stage: build
+  only:
+      - rk_03
+ script:
+     - cd rk_03
+     - make build
+     - make run
