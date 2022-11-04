@@ -7,8 +7,8 @@ INC_DIR = ./inc
 OBJ_DIR = ./out
 SRC_DIR = ./src
 
-SRCS := main.c readprint.c
-OBJS := main.o readprint.o
+SRCS := main.c readprint.c funcs.c
+OBJS := main.o readprint.o funcs.o
 
 SRCS := $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS := $(addprefix $(OBJ_DIR)/,$(OBJS))
