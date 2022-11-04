@@ -27,5 +27,5 @@ $(OBJ_DIR):
 	mkdir -p $@
 
 clean:
-	rm -rf $(OBJ_DIR) *.exe *.gcov
+	rm -rf $(OBJ_DIR) *.exe *.gcov out.txt
 

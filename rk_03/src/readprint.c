@@ -1,6 +1,6 @@
 #include "../inc/readprint.h"
 
-int read_matrix(int **ptrs, int n, int m, FILE *f)
+int read_matrix(int **ptrs, const int n, const int m, FILE *f)
 {
     for (int i = 0; i < n; i++)
     {
@@ -15,7 +15,7 @@ int read_matrix(int **ptrs, int n, int m, FILE *f)
     return EXIT_SUCCESS;
 }
 
-int print_matrix(int **ptrs, int n, int m, FILE *f)
+int print_matrix(int **ptrs, const int n, const int m, FILE *f)
 {
     for (int i = 0; i < n; i++)
     {
@@ -26,6 +26,7 @@ int print_matrix(int **ptrs, int n, int m, FILE *f)
             fprintf(f, "%d ", ptr_temp[j]);
         }
     }
+
     fprintf(f, "\n");
 
     return EXIT_SUCCESS;

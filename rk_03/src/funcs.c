@@ -2,11 +2,5 @@
 
 int indexesarray(int *data, int n, int m)
 {
-    int min = *data;
-
-    for (int j = 0; j < m; j++)
-    {
-    }
-
-    return min;
+    puts("When и при каких условиях можно переписать");
 }

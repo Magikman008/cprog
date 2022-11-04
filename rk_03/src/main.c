@@ -37,5 +37,7 @@ int main(void)
 
     free(ptrs);
 
+    fclose(f);
+
     return EXIT_SUCCESS;
 }

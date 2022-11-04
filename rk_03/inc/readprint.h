@@ -3,7 +3,7 @@
 
 #include "header.h"
 
-int read_matrix(int **ptrs, int n, int m, FILE *f);
-int print_matrix(int **ptrs, int n, int m, FILE *f);
+int read_matrix(int **ptrs, const int n, const int m, FILE *f);
+int print_matrix(int **ptrs, const int n, const int m, FILE *f);
 
 #endif
