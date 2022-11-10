@@ -1,8 +1,0 @@
-book
-papa
-500
-8
-took
-papa
-50
-15

@@ -1,1 +1,0 @@
-at ./func_tests/data/secret_folder/pos_06_in.txt
