@@ -7,7 +7,7 @@ UFLAGS := -lcheck -lpthread -lrt -lm -lsubunit
 INC_DIR = ./inc
 OBJ_DIR = ./out
 SRC_DIR = ./src
-UNIT_DIR = ./unit
+UNIT_DIR = ./unit_tests
 
 MAIN := main.c
 OMAIN := $(MAIN:.c=.o)

@@ -6,5 +6,4 @@
 
 Suite *key_suite(void);
 
-
 #endif
