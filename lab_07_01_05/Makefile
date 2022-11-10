@@ -2,7 +2,13 @@
 
 CC = gcc
 CFLAGS := -std=c99 -Wall -Werror -pedantic -Wextra -Wvla -Wfloat-equal -Wfloat-conversion
-UFLAGS := -lcheck -lpthread -lrt -lm -lsubunit
+UFLAGS = -lcheck
+
+#UFLAGS += -lm -lsubunit
+
+ifeq ($(shell uname), Linux)
+	UFLAGS += -lpthread -lrt
+endif
 
 INC_DIR = ./inc
 OBJ_DIR = ./out
@@ -39,7 +45,6 @@ $(EXEC_DEBUG): $(OBJ_DIR) | $(OBJS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -MMD -I$(INC_DIR) -c $< -o $@
 
-# unit: CFLAGS += -lcheck -lpthread -lrt
 unit: cleano
 unit: $(EXEC_UNIT)
 
