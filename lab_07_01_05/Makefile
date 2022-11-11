@@ -23,7 +23,7 @@ MAIN := main.c
 OMAIN := $(MAIN:.c=.o)
 FUNCS := funcs.c
 OFUNCS := $(FUNCS:.c=.o)
-UNITS := unit_main.c unit_tests.c
+UNITS := check_main.c check_tests.c
 OUNITS := $(UNITS:.c=.o)
 
 SRCS := $(addprefix $(SRC_DIR)/,$(MAIN) $(FUNCS))
