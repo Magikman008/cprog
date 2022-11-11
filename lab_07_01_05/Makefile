@@ -6,6 +6,10 @@ UFLAGS = -lcheck
 
 #UFLAGS += -lm -lsubunit
 
+ifeq ($(shell hostname), Violet)
+	UFLAGS += -lm -lsubunit
+endif
+
 ifeq ($(shell uname), Linux)
 	UFLAGS += -lpthread -lrt
 endif
@@ -74,3 +78,4 @@ clean:
 cleano:
 	rm -f -r $(OBJ_DIR)
 
+include $(wildcard $(addsuffix /*.d, $(OBJ_DIR)))

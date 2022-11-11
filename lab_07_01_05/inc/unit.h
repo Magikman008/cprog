@@ -5,5 +5,6 @@
 #include <check.h>
 
 Suite *key_suite(void);
+Suite *mysort_suite(void);
 
 #endif

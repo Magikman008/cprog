@@ -55,7 +55,7 @@ int find_suitable(const int *pb_src, const int *pe_src)
 void copy_elems(const int *pb_src, const int *pe_src, int *tempp)
 {
     int count = 0;
-    
+
     for (int i = 2; pe_src - i >= pb_src; i++)
         if (compare(pe_src - i, i))
         {
