@@ -1,8 +1,10 @@
-.PHONY: clean debug cleano
+.PHONY: clean debug cleano func key
+.NOTPARALLEL: debug func
 
 CC = gcc
 CFLAGS := -std=c99 -Wall -Werror -pedantic -Wextra -Wvla -Wfloat-equal -Wfloat-conversion
-UFLAGS = -lcheck
+UFLAGS := -lcheck
+DFLAGS := 
 
 #UFLAGS += -lm -lsubunit
 
@@ -23,7 +25,7 @@ MAIN := main.c
 OMAIN := $(MAIN:.c=.o)
 FUNCS := funcs.c
 OFUNCS := $(FUNCS:.c=.o)
-UNITS := check_main.c check_tests.c
+UNITS := check_main.c check_funcs.c
 OUNITS := $(UNITS:.c=.o)
 
 SRCS := $(addprefix $(SRC_DIR)/,$(MAIN) $(FUNCS))
@@ -36,12 +38,16 @@ EXEC_DEBUG := debug.exe
 EXEC_UNIT := unit_tests.exe
 
 $(EXEC_APP): $(OBJ_DIR) | $(OBJS)
-	@echo $(OBJS)
-	$(CC) $(OBJS) -o $@
+	$(CC) $(OBJS) $(DFLAGS) -o $@
 
-debug : CFLAGS += -DDEBUG
+key : CFLAGS += -DDEBUG
+key : cleano
+key : $(EXEC_DEBUG)
+
+debug : CFLAGS += -g3 --coverage
 debug : cleano
-debug : $(EXEC_DEBUG)
+debug : DFLAGS += --coverage
+debug : $(EXEC_APP)
 
 $(EXEC_DEBUG): $(OBJ_DIR) | $(OBJS)
 	$(CC) $(OBJS) -o $@
@@ -62,8 +68,8 @@ $(OBJ_DIR):
 	mkdir -p $@
 
 
-# func: debug
-# 	./collect_coverage.sh
+func:
+	./collect_coverage.sh
 
 # unit: $(EXEC_UNIT)
 # 	valgrind --leak-check=full ./$(EXEC_UNIT)
@@ -73,7 +79,7 @@ $(OBJ_DIR):
 
 
 clean:
-	rm -f -r $(OBJ_DIR) *.exe *.gcov
+	rm -f -r $(OBJ_DIR) *.exe *.gcov ./func_tests/scripts/*.txt
 
 cleano:
 	rm -f -r $(OBJ_DIR)
