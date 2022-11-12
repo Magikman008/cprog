@@ -27,7 +27,10 @@ int main(int argc, char **argv)
     read_array(src, items, count);
 
     if (fclose(src))
+    {
+        free_items(items, count);
         return ERROR_FILE_CLOSE;
+    }
 
     if (argc == 3 && strcmp(argv[2], "ALL") == 0)
         print_filtered_array(items, count, "");
@@ -39,10 +42,6 @@ int main(int argc, char **argv)
         print_filtered_array(items, count, "");
     }
 
-    for (size_t i = 0; i < count; i++)
-        free(items[i].name);
-
-    free(items);
-
+    free_items(items, count);
     return EXIT_SUCCESS;
 }

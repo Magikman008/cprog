@@ -22,6 +22,8 @@ int count_elems(FILE *f, size_t *count)
 
         if (rc == EXPECTED_SCANF)
             (*count)++;
+
+        free(s);
     }
 
     if (*count == 0)
@@ -75,4 +77,12 @@ void sort_array(item_t *items, const int count)
             }
         }
     }
+}
+
+void free_items(item_t *items, size_t count)
+{
+    for (size_t i = 0; i < count; i++)
+        free(items[i].name);
+
+    free(items);
 }
