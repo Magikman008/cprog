@@ -32,21 +32,7 @@ int main(int argc, char **argv)
         return ERROR_FILE_CLOSE;
     }
 
-    int all = 0;
-    if (argc == 3)
-    {
-        char *lower = calloc(strlen(argv[2]) + 1, sizeof(char));
-
-        for (size_t i = 0; i < strlen(argv[2]); i++)
-            lower[i] = tolower((unsigned char)argv[2][i]);
-
-        if (strcmp(lower, "all") == 0)
-            all = 1;
-
-        free(lower);
-    }
-
-    if (argc == 3 && all)
+    if (argc == 3 && strcmp(argv[2], "ALL"))
     {
         rc = print_filtered_array(items, count, "");
 

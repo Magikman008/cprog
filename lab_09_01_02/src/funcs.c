@@ -67,7 +67,7 @@ int print_filtered_array(item_t *items, const int count, char *string)
 
 void sort_array(item_t *items, const int count)
 {
-    for (int i = count - 1; i > 0; i--)
+    for (int i = count; i > 0; i--)
     {
         for (int j = 0; j < i; j++)
         {
