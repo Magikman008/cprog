@@ -50,14 +50,6 @@ void read_array(FILE *f, item_t *items, const int count)
     }
 }
 
-int compare_int(const void *val1, const void *val2)
-{
-    if (((item_t *)val1)->weight / ((item_t *)val1)->volume > ((item_t *)val2)->weight / ((item_t *)val2)->volume)
-        return 1;
-    else
-        return -1;
-}
-
 // void print_array(item_t *items, const int count)
 // {
 //     for (int i = 0; i < count; i++)
@@ -71,6 +63,22 @@ int print_filtered_array(item_t *items, const int count, char *string)
             printf("%s\n%f\n%f\n", items[i].name, items[i].weight, items[i].volume);
 
     return EXIT_SUCCESS;
+}
+
+void sort_array(item_t *items, const int count)
+{
+    for (int i = count - 1; i > 0; i--)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            if (items[j].weight / items[j].volume > items[j + 1].weight / items[j + 1].volume)
+            {
+                item_t temp = items[j];
+                items[j] = items[j + 1];
+                items[j + 1] = temp;
+            }
+        }
+    }
 }
 
 void free_items(item_t *items, size_t count)
