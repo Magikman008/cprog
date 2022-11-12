@@ -54,7 +54,7 @@ int main(int argc, char **argv)
     }
     else
     {
-        sort_array(items, count);
+        qsort(items, count, sizeof(item_t), compare_int);
         rc = print_filtered_array(items, count, "");
 
         if (rc)
