@@ -56,11 +56,21 @@ void read_array(FILE *f, item_t *items, const int count)
 //         printf("%s\n%f\n%f\n", items[i].name, items[i].weight, items[i].volume);
 // }
 
-void print_filtered_array(item_t *items, const int count, char *string)
+int print_filtered_array(item_t *items, const int count, char *string)
 {
+    int tempcount = 0;
     for (int i = 0; i < count; i++)
         if (strstr(items[i].name, string) == items[i].name)
+        {
             printf("%s\n%f\n%f\n", items[i].name, items[i].weight, items[i].volume);
+            tempcount++;
+        }
+
+    if (tempcount == 0)
+        return ERROR_NO_PRINT;
+
+
+    return EXIT_SUCCESS;
 }
 
 void sort_array(item_t *items, const int count)

@@ -13,7 +13,7 @@
 #define ERROR_NO_ITEMS -4
 #define ERROR_BAD_FILE -5
 #define ERROR_MALLOC -6
-#define ERROR_KEY_POINTERS -7
+#define ERROR_NO_PRINT -7
 #define ERROR_READ_FILE -8
 
 struct item_t

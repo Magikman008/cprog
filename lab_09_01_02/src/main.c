@@ -33,13 +33,35 @@ int main(int argc, char **argv)
     }
 
     if (argc == 3 && strcmp(argv[2], "ALL") == 0)
-        print_filtered_array(items, count, "");
+    {
+        rc = print_filtered_array(items, count, "");
+
+        if (rc)
+        {
+            free_items(items, count);
+            return rc;
+        }
+    }
     else if (argc == 3)
-        print_filtered_array(items, count, argv[2]);
+    {
+        rc = print_filtered_array(items, count, argv[2]);
+
+        if (rc)
+        {
+            free_items(items, count);
+            return rc;
+        }
+    }
     else
     {
         sort_array(items, count);
-        print_filtered_array(items, count, "");
+        rc = print_filtered_array(items, count, "");
+
+        if (rc)
+        {
+            free_items(items, count);
+            return rc;
+        }
     }
 
     free_items(items, count);
