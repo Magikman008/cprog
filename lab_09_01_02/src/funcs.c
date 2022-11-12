@@ -26,11 +26,11 @@ int count_elems(FILE *f, size_t *count)
         free(s);
     }
 
-    // if (*count == 0)
-    //     return ERROR_NO_ITEMS;
+    if (*count == 0)
+        return ERROR_NO_ITEMS;
 
-    // if (rc != 0)
-    //     return ERROR_BAD_FILE;
+    if (rc != 0)
+        return ERROR_BAD_FILE;
 
     return EXIT_SUCCESS;
 }

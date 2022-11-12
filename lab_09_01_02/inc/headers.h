@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define EXPECTED_SCANF 3
 
@@ -14,7 +15,6 @@
 #define ERROR_BAD_FILE -5
 #define ERROR_MALLOC -6
 #define ERROR_NO_PRINT -7
-#define ERROR_READ_FILE -8
 
 struct item_t
 {
