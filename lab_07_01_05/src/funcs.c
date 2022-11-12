@@ -92,11 +92,11 @@ int compare_int(const void *val1, const void *val2)
     return (*(int *)val1 - *(int *)val2);
 }
 
-void swap(char *val1, char *val2, size_t size)
+void swap(char *val1, char *val2, int size)
 {
     char tmp;
 
-    for (size_t i = 0; i < size; i++)
+    for (int i = 0; i < size; i++)
     {
         tmp = *(val1 + i);
         *(val1 + i) = *(val2 + i);
@@ -106,15 +106,15 @@ void swap(char *val1, char *val2, size_t size)
 
 void mysort(void *first, size_t number, size_t size, int (*comparator)(const void *, const void *))
 {
-    size_t k = number - 1;
+    int k = number - 1;
 
     char *charp = (char *)first;
 
     while (k > 0)
     {
-        size_t m = 0;
+        int m = 0;
 
-        for (size_t i = 0; i < k; i++)
+        for (int i = 0; i < k; i++)
         {
             if (comparator(charp + i * size, charp + (i + 1) * size) > 0)
             {
@@ -124,7 +124,7 @@ void mysort(void *first, size_t number, size_t size, int (*comparator)(const voi
         }
 
 #ifdef DEBUG
-        for (size_t i = 0; charp + i * size < charp + size * number; i++)
+        for (int i = 0; charp + i * size < charp + size * number; i++)
             printf("%d ", *(charp + i * size));
         puts("");
 #endif
