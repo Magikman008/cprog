@@ -26,11 +26,11 @@ int count_elems(FILE *f, size_t *count)
         free(s);
     }
 
-    if (*count == 0)
-        return ERROR_NO_ITEMS;
+    // if (*count == 0)
+    //     return ERROR_NO_ITEMS;
 
-    if (rc != 0)
-        return ERROR_BAD_FILE;
+    // if (rc != 0)
+    //     return ERROR_BAD_FILE;
 
     return EXIT_SUCCESS;
 }
@@ -58,17 +58,9 @@ void read_array(FILE *f, item_t *items, const int count)
 
 int print_filtered_array(item_t *items, const int count, char *string)
 {
-    int tempcount = 0;
     for (int i = 0; i < count; i++)
         if (strstr(items[i].name, string) == items[i].name)
-        {
             printf("%s\n%f\n%f\n", items[i].name, items[i].weight, items[i].volume);
-            tempcount++;
-        }
-
-    if (tempcount == 0)
-        return ERROR_NO_PRINT;
-
 
     return EXIT_SUCCESS;
 }
