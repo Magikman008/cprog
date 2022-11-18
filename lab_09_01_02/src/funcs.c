@@ -26,7 +26,10 @@ int count_elems(FILE *f, size_t *count)
         {
             (*count)++;
             if (temp1 < 10e-4 || temp2 < 10e-4)
+            {
+                free(s);
                 return ERROR_ZERO;
+            }
         }
 
         free(s);
