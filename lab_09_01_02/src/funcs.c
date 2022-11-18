@@ -17,8 +17,15 @@ int count_elems(FILE *f, size_t *count)
 
         if (fscanf(f, "%f\n", &temp) == 1)
             rc++;
+
+        if (temp < 10e-4)
+            return ERROR_ZERO;
+
         if (fscanf(f, "%f\n", &temp) == 1)
             rc++;
+
+        if (temp < 10e-4)
+            return ERROR_ZERO;
 
         if (rc == EXPECTED_SCANF)
             (*count)++;
