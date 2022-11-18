@@ -8,27 +8,26 @@ int count_elems(FILE *f, size_t *count)
     {
         rc = 0;
         char *s;
-        double temp = 0;
+        double temp1 = 0;
+        double temp2 = 0;
         size_t size = 1;
         s = (char *)malloc(sizeof(char));
 
         if (getline(&s, &size, f) > 0)
             rc++;
 
-        if (fscanf(f, "%lf\n", &temp) == 1)
+        if (fscanf(f, "%lf\n", &temp1) == 1)
             rc++;
 
-        // if (temp < 10e-8)
-        //     return ERROR_ZERO;
-
-        if (fscanf(f, "%lf\n", &temp) == 1)
+        if (fscanf(f, "%lf\n", &temp2) == 1)
             rc++;
-
-        // if (temp < 10e-8)
-        //     return ERROR_ZERO;
 
         if (rc == EXPECTED_SCANF)
+        {
             (*count)++;
+            if (temp1 < 10e-4 || temp2 < 10e-4)
+                return ERROR_ZERO;
+        }
 
         free(s);
     }
