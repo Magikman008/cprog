@@ -8,24 +8,24 @@ int count_elems(FILE *f, size_t *count)
     {
         rc = 0;
         char *s;
-        float temp = 0;
+        double temp = 0;
         size_t size = 1;
         s = (char *)malloc(sizeof(char));
 
         if (getline(&s, &size, f) > 0)
             rc++;
 
-        if (fscanf(f, "%f\n", &temp) == 1)
+        if (fscanf(f, "%lf\n", &temp) == 1)
             rc++;
 
-        if (temp < 10e-4)
-            return ERROR_ZERO;
+        // if (temp < 10e-8)
+        //     return ERROR_ZERO;
 
-        if (fscanf(f, "%f\n", &temp) == 1)
+        if (fscanf(f, "%lf\n", &temp) == 1)
             rc++;
 
-        if (temp < 10e-4)
-            return ERROR_ZERO;
+        // if (temp < 10e-8)
+        //     return ERROR_ZERO;
 
         if (rc == EXPECTED_SCANF)
             (*count)++;
@@ -52,8 +52,8 @@ void read_array(FILE *f, item_t *items, const int count)
         getline(&s, &size, f);
         s[strlen(s) - 1] = '\0';
         items[i].name = s;
-        fscanf(f, "%f\n", &items[i].weight);
-        fscanf(f, "%f\n", &items[i].volume);
+        fscanf(f, "%lf\n", &items[i].weight);
+        fscanf(f, "%lf\n", &items[i].volume);
     }
 }
 
@@ -67,7 +67,7 @@ int print_filtered_array(item_t *items, const int count, char *string)
 {
     for (int i = 0; i < count; i++)
         if (strstr(items[i].name, string) == items[i].name)
-            printf("%s\n%f\n%f\n", items[i].name, items[i].weight, items[i].volume);
+            printf("%s\n%lf\n%lf\n", items[i].name, items[i].weight, items[i].volume);
 
     return EXIT_SUCCESS;
 }

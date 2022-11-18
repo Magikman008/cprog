@@ -32,7 +32,7 @@ int main(int argc, char **argv)
         return ERROR_FILE_CLOSE;
     }
 
-    if (argc == 3 && strcmp(argv[2], "ALL"))
+    if (argc == 3 && strcmp(argv[2], "ALL") == 0)
     {
         rc = print_filtered_array(items, count, "");
 

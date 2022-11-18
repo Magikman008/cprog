@@ -20,8 +20,8 @@
 struct item_t
 {
     char *name;
-    float weight;
-    float volume;
+    double weight;
+    double volume;
 };
 
 typedef struct item_t item_t;
