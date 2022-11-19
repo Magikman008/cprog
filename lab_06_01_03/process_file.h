@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define MAX_SIZE_NAME 25+1
+#define MAX_SIZE_NAME 26
 #define MAX_ARRAY_LEN 15
 #define EXPECTED_SCANF_RESULT 1
 

@@ -1,6 +1,6 @@
-#include "process_file.h"
 #include <stdlib.h>
 #include <math.h>
+#include "process_file.h"
 
 int scan(FILE *f, size_t *count, good_t *goods)
 {
@@ -49,10 +49,3 @@ int print_answer(size_t count, good_t *goods, char *border)
 
     return EXIT_SUCCESS;
 }
-
-// какие бывают файлы
-// найти минусы структур
-// Union
-// double free
-// муньтрицы
-// есть файлик с матрицей nxn с цифрами пересечение (число) между строкой и столбцом с макс суммой чисел в файлик вывод 
