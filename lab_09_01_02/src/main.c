@@ -2,7 +2,6 @@
 
 int main(int argc, char **argv)
 {
-
     if (argc != 2 && argc != 3)
         return ERROR_BAD_ARGS;
 
@@ -12,7 +11,7 @@ int main(int argc, char **argv)
 
     int rc = read_array(argv[1], &items, &count);
 
-    if(rc)
+    if (rc)
         return rc;
 
     if (argc == 3 && strcmp(argv[2], "ALL") != 0)
