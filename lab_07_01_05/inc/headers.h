@@ -6,6 +6,9 @@
 #include <string.h>
 
 #define EXPECTED_SCANF 1
+#define NOT_SUITABLE 0
+#define SUITABLE 1
+
 
 #define ERROR_BAD_ARGS -1
 #define ERROR_FILE_OPEN -2

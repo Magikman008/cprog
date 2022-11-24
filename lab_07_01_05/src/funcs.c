@@ -71,9 +71,9 @@ int compare(const int *from, int amount)
         sum += *i;
 
     if (*from > sum)
-        return EXIT_SUCCESS;
+        return SUITABLE;
 
-    return EXIT_FAILURE;
+    return NOT_SUITABLE;
 }
 
 int find_suitable(const int *pb_src, const int *pe_src)
