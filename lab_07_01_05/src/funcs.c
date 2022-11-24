@@ -16,14 +16,49 @@ int count_elems(FILE *f, size_t *count)
     return EXIT_SUCCESS;
 }
 
-int read_array(FILE *f, int *pb_src, const int *pe_src)
+int read_array(char *file, size_t *count, int **nums)
 {
+    FILE *src;
+
+    if (!(src = fopen(file, "r")))
+        return ERROR_FILE_OPEN;
+
+    int rc = count_elems(src, count);
+
+    if (rc)
+    {
+        if (fclose(src))
+            return ERROR_FILE_CLOSE;
+
+        return rc;
+    }
+
+    *nums = malloc(*count * sizeof(int));
+
+    if (NULL == nums)
+    {
+        if (fclose(src))
+            return ERROR_FILE_CLOSE;
+
+        return ERROR_MALLOC;
+    }
+
+    rewind(src);
+
     int i = 0;
 
-    for (; fscanf(f, "%d", pb_src + i) == EXPECTED_SCANF; i++);
+    for (; fscanf(src, "%d", *nums + i) == EXPECTED_SCANF; i++);
 
-    if ((i + pb_src) != pe_src)
+    if ((i + *nums) != (*nums + *count))
+    {
+        if (fclose(src))
+            return ERROR_FILE_CLOSE;
+
         return ERROR_READ_FILE;
+    }
+
+    if (fclose(src))
+        return ERROR_FILE_CLOSE;
 
     return EXIT_SUCCESS;
 }
@@ -36,9 +71,9 @@ int compare(const int *from, int amount)
         sum += *i;
 
     if (*from > sum)
-        return 1;
+        return EXIT_SUCCESS;
 
-    return 0;
+    return EXIT_FAILURE;
 }
 
 int find_suitable(const int *pb_src, const int *pe_src)
@@ -74,15 +109,15 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     if (count == 0)
         return ERROR_NO_NUMBERS;
 
-    int *tempp = NULL;
-    tempp = malloc(count * sizeof(int));
+    int *ptemp = NULL;
+    ptemp = malloc(count * sizeof(int));
 
-    if (tempp == NULL)
+    if (ptemp == NULL)
         return ERROR_MALLOC;
 
-    copy_elems(pb_src, pe_src, tempp + count - 1);
-    *pb_dst = tempp;
-    *pe_dst = tempp + count;
+    copy_elems(pb_src, pe_src, ptemp + count - 1);
+    *pb_dst = ptemp;
+    *pe_dst = ptemp + count;
 
     return EXIT_SUCCESS;
 }
@@ -108,7 +143,7 @@ void mysort(void *first, size_t number, size_t size, int (*comparator)(const voi
 {
     int k = number - 1;
 
-    char *charp = (char *)first;
+    char *pchar = (char *)first;
 
     while (k > 0)
     {
@@ -116,16 +151,16 @@ void mysort(void *first, size_t number, size_t size, int (*comparator)(const voi
 
         for (int i = 0; i < k; i++)
         {
-            if (comparator(charp + i * size, charp + (i + 1) * size) > 0)
+            if (comparator(pchar + i * size, pchar + (i + 1) * size) > 0)
             {
-                swap(charp + i * size, charp + (i + 1) * size, size);
+                swap(pchar + i * size, pchar + (i + 1) * size, size);
                 m = i;
             }
         }
 
 #ifdef DEBUG
-        for (int i = 0; charp + i * size < charp + size * number; i++)
-            printf("%d ", *(charp + i * size));
+        for (int i = 0; pchar + i * size < pchar + size * number; i++)
+            printf("%d ", *(pchar + i * size));
         puts("");
 #endif
 

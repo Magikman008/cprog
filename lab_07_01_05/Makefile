@@ -4,9 +4,7 @@
 CC = gcc
 CFLAGS := -std=c99 -Wall -Werror -pedantic -Wextra -Wvla -Wfloat-equal -Wfloat-conversion
 UFLAGS := -lcheck
-DFLAGS := 
-
-#UFLAGS += -lm -lsubunit
+DFLAGS :=
 
 ifeq ($(shell hostname), Violet)
 	UFLAGS += -lm -lsubunit
@@ -37,7 +35,7 @@ EXEC_APP := app.exe
 EXEC_DEBUG := debug.exe
 EXEC_UNIT := unit_tests.exe
 
-$(EXEC_APP): $(OBJ_DIR) | $(OBJS)
+$(EXEC_APP): $(OBJ_DIR) $(OBJS)
 	$(CC) $(OBJS) $(DFLAGS) -o $@
 
 key : CFLAGS += -DDEBUG
@@ -49,7 +47,7 @@ debug : cleano
 debug : DFLAGS += --coverage
 debug : $(EXEC_APP)
 
-$(EXEC_DEBUG): $(OBJ_DIR) | $(OBJS)
+$(EXEC_DEBUG): $(OBJ_DIR) $(OBJS)
 	$(CC) $(OBJS) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -58,7 +56,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 unit: cleano
 unit: $(EXEC_UNIT)
 
-$(EXEC_UNIT): $(OBJ_DIR) | $(UOBJS)
+$(EXEC_UNIT): $(OBJ_DIR) $(UOBJS)
 	$(CC) $(UOBJS) $(UFLAGS) -o $@
 
 $(OBJ_DIR)/%.o: $(UNIT_DIR)/%.c
@@ -67,16 +65,8 @@ $(OBJ_DIR)/%.o: $(UNIT_DIR)/%.c
 $(OBJ_DIR):
 	mkdir -p $@
 
-
 func:
 	./collect_coverage.sh
-
-# unit: $(EXEC_UNIT)
-# 	valgrind --leak-check=full ./$(EXEC_UNIT)
-# 	@echo "\nrc = $$?"
-# 	@echo "\nCoverage report:"
-# 	gcov -f -r $(OBJECTS:%.o=%.gcno)
-
 
 clean:
 	rm -f -r $(OBJ_DIR) *.exe *.gcov ./func_tests/scripts/*.txt
