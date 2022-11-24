@@ -23,11 +23,11 @@ int main(int argc, char **argv)
         return ERROR_FILE_OPEN;
 
     int *pb_dst = nums, *pe_dst = nums + count;
-    free(nums);
 
     if (argc == 4)
     {
         rc = key(nums, nums + count, &pb_dst, &pe_dst);
+        free(nums);
 
         if (rc)
             return rc;
