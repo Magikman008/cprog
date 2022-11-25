@@ -9,7 +9,7 @@ int main(int argc, char **argv)
     item_t *items = NULL;
 
     int rc = read_array(argv[1], &items, &count);
-    size_t reserve_count = count;
+    // size_t reserve_count = count;
 
     if (rc)
         return rc;
@@ -21,7 +21,7 @@ int main(int argc, char **argv)
         sort_array(items, count);
 
     print_array(items, count);
-    free_items(items, reserve_count);
+    free_items(items, count);
 
     return EXIT_SUCCESS;
 }

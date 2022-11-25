@@ -102,6 +102,7 @@ void filter_array(item_t *items, size_t *count, char *string)
     for (size_t i = 0; i < *count; i++)
         if (strstr(items[i].name, string) != items[i].name)
         {
+            free(items[i].name);
             delete_by_index(items, i, *count);
             (*count)--;
             i--;
@@ -131,3 +132,12 @@ void free_items(item_t *items, size_t count)
 
     free(items);
 }
+
+// 1 3 4 5
+
+
+// wedfrgh
+
+// ertfhjwer
+// werf
+// wertgh
