@@ -6,7 +6,7 @@ int main(void)
     Suite *s[2] = { sort_suite() };
     SRunner *runner;
 
-    for (size_t i = 0; i < 2; i++)
+    for (size_t i = 0; i < 1; i++)
     {
         runner = srunner_create(s[i]);
         srunner_run_all(runner, CK_VERBOSE);

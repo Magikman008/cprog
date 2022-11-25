@@ -94,9 +94,7 @@ void print_array(item_t *items, const size_t count)
 void delete_by_index(item_t *items, const int i, const size_t count)
 {
     for (size_t j = i; j < count - 1; j++)
-    {
         items[j] = items[j + 1];
-    }
 }
 
 void filter_array(item_t *items, size_t *count, char *string)
@@ -106,6 +104,7 @@ void filter_array(item_t *items, size_t *count, char *string)
         {
             delete_by_index(items, i, *count);
             (*count)--;
+            i--;
         }
 }
 

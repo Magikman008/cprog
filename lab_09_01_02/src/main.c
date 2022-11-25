@@ -6,7 +6,6 @@ int main(int argc, char **argv)
         return ERROR_BAD_ARGS;
 
     size_t count = 0;
-
     item_t *items = NULL;
 
     int rc = read_array(argv[1], &items, &count);
@@ -21,7 +20,7 @@ int main(int argc, char **argv)
         sort_array(items, count);
 
     print_array(items, count);
-
     free_items(items, count);
+
     return EXIT_SUCCESS;
 }
