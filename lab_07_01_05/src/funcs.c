@@ -16,7 +16,7 @@ int count_elems(FILE *f, size_t *count)
     return EXIT_SUCCESS;
 }
 
-int read_array(const char *file, size_t *count, int **nums)
+int read_array(const char *const file, size_t *count, int **nums)
 {
     FILE *src;
 
@@ -168,7 +168,7 @@ void mysort(void *first, size_t number, size_t size, int (*comparator)(const voi
     }
 }
 
-int print_file(const char *file, int *pb_src, const int *pe_src)
+int print_file(const char *const file, int *pb_src, const int *pe_src)
 {
     FILE *dist;
 
