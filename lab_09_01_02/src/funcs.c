@@ -143,7 +143,7 @@ void sort_array(item_t *items, const int count)
     }
 }
 
-void free_items(item_t *items, size_t count)
+void free_items(item_t *items, const size_t count)
 {
     for (size_t i = 0; i < count; i++)
         free(items[i].name);
