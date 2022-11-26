@@ -1,6 +1,6 @@
 #include "../inc/funcs.h"
 
-int count_elems(FILE *f, size_t *count)
+int count_elems(FILE *f, size_t *const count)
 {
     int rc = EXPECTED_SCANF;
 
@@ -47,7 +47,7 @@ int count_elems(FILE *f, size_t *count)
     return EXIT_SUCCESS;
 }
 
-int read_array(const char *const file, item_t **items, size_t *count)
+int read_array(const char *const file, item_t **items, size_t *const count)
 {
     FILE *src;
 
@@ -102,7 +102,7 @@ void print_array(const item_t *const items, const size_t count)
         printf("%s\n%f\n%f\n", items[i].name, items[i].weight, items[i].volume);
 }
 
-item_t *filter_array(item_t *items, size_t *count, const char *string)
+item_t *filter_array(item_t *items, size_t *count, const char *const string)
 {
     size_t temp_count = 0;
 
