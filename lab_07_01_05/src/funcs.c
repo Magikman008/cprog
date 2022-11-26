@@ -47,7 +47,8 @@ int read_array(char *file, size_t *count, int **nums)
 
     int i = 0;
 
-    for (; fscanf(src, "%d", *nums + i) == EXPECTED_SCANF; i++);
+    for (; fscanf(src, "%d", *nums + i) == EXPECTED_SCANF; i++)
+        ;
 
     if ((i + *nums) != (*nums + *count))
     {
@@ -168,8 +169,29 @@ void mysort(void *first, size_t number, size_t size, int (*comparator)(const voi
     }
 }
 
-void print_file(FILE *f, int *pb_src, const int *pe_src)
+int print_file(char *file, int *pb_src, const int *pe_src)
 {
+    FILE *dist;
+
+    if (!(dist = fopen(file, "w")))
+        return ERROR_FILE_OPEN;
+
     for (int *i = pb_src; i < pe_src; i++)
-        fprintf(f, "%d ", *i);
+        fprintf(dist, "%d ", *i);
+
+    if (fclose(dist))
+        return ERROR_FILE_CLOSE;
+
+    return EXIT_SUCCESS;
+}
+
+int parse_args(int argc, char **argv)
+{
+    if (argc != 3 && argc != 4)
+        return ERROR_BAD_ARGS;
+
+    if (argc == 4 && strcmp(argv[3], "f"))
+        return ERROR_BAD_ARGS;
+
+    return EXIT_SUCCESS;
 }

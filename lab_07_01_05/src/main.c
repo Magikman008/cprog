@@ -3,24 +3,16 @@
 
 int main(int argc, char **argv)
 {
-    if (argc != 3 && argc != 4)
-        return ERROR_BAD_ARGS;
+    int rc = 0;
 
-    if (argc == 4 && strcmp(argv[3], "f"))
-        return ERROR_BAD_ARGS;
+    if ((rc = parse_args(argc, argv)))
+        return rc;
 
     size_t count = 0;
     int *nums = NULL;
 
-    int rc = read_array(argv[1], &count, &nums);
-
-    if (rc)
+    if ((rc = read_array(argv[1], &count, &nums)))
         return rc;
-
-    FILE *dist;
-
-    if (!(dist = fopen(argv[2], "w")))
-        return ERROR_FILE_OPEN;
 
     int *pb_dst = nums, *pe_dst = nums + count;
 
@@ -34,11 +26,11 @@ int main(int argc, char **argv)
     }
 
     mysort(pb_dst, pe_dst - pb_dst, sizeof(int), compare_int);
-    print_file(dist, pb_dst, pe_dst);
+    rc = print_file(argv[2], pb_dst, pe_dst);
     free(pb_dst);
 
-    if (fclose(dist))
-        return ERROR_FILE_CLOSE;
+    if (rc)
+        return rc;
 
     return EXIT_SUCCESS;
 }
