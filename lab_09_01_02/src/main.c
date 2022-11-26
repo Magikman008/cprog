@@ -14,7 +14,12 @@ int main(int argc, char **argv)
         return rc;
 
     if (argc == 3 && strcmp(argv[2], "ALL") != 0)
-        filter_array(items, &count, argv[2]);
+    {
+        items = filter_array(items, &count, argv[2]);
+
+        if (NULL == items)
+            return EXIT_FAILURE;
+    }
 
     if (argc == 2)
         sort_array(items, count);

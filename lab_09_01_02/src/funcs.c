@@ -13,6 +13,9 @@ int count_elems(FILE *f, size_t *count)
         size_t size = 1;
         s = (char *)malloc(sizeof(char));
 
+        if (NULL == s)
+            return ERROR_MALLOC;
+
         if (getline(&s, &size, f) > 0)
             rc++;
 
@@ -44,7 +47,7 @@ int count_elems(FILE *f, size_t *count)
     return EXIT_SUCCESS;
 }
 
-int read_array(char *file, item_t **items, size_t *count)
+int read_array(const char *const file, item_t **items, size_t *count)
 {
     FILE *src;
 
@@ -62,6 +65,10 @@ int read_array(char *file, item_t **items, size_t *count)
     }
 
     *items = (item_t *)malloc(sizeof(item_t) * *count);
+
+    if (NULL == *items)
+        return ERROR_MALLOC;
+
     rewind(src);
 
     for (size_t i = 0; i < *count; i++)
@@ -69,6 +76,10 @@ int read_array(char *file, item_t **items, size_t *count)
         char *s;
         size_t size = 1;
         s = (char *)malloc(sizeof(char));
+
+        if (NULL == s)
+            return ERROR_MALLOC;
+
         getline(&s, &size, src);
         s[strlen(s) - 1] = '\0';
         (*items)[i].name = s;
@@ -85,28 +96,35 @@ int read_array(char *file, item_t **items, size_t *count)
     return EXIT_SUCCESS;
 }
 
-void print_array(item_t *items, const size_t count)
+void print_array(const item_t *const items, const size_t count)
 {
     for (size_t i = 0; i < count; i++)
         printf("%s\n%f\n%f\n", items[i].name, items[i].weight, items[i].volume);
 }
 
-void delete_by_index(item_t *items, const int i, const size_t count)
+item_t *filter_array(item_t *items, size_t *count, const char *string)
 {
-    for (size_t j = i; j < count - 1; j++)
-        items[j] = items[j + 1];
-}
+    size_t temp_count = 0;
 
-void filter_array(item_t *items, size_t *count, char *string)
-{
     for (size_t i = 0; i < *count; i++)
-        if (strstr(items[i].name, string) != items[i].name)
-        {
+        if (strstr(items[i].name, string) == items[i].name)
+            temp_count++;
+
+    item_t *temp_items = (item_t *)malloc(sizeof(item_t) * temp_count);
+
+    if (NULL == temp_items)
+        return NULL;
+
+    for (size_t i = 0, j = 0; i < *count; i++)
+        if (strstr(items[i].name, string) == items[i].name)
+            temp_items[j++] = items[i];
+        else
             free(items[i].name);
-            delete_by_index(items, i, *count);
-            (*count)--;
-            i--;
-        }
+
+    *count = temp_count;
+    free(items);
+
+    return temp_items;
 }
 
 void sort_array(item_t *items, const int count)
@@ -132,12 +150,3 @@ void free_items(item_t *items, size_t count)
 
     free(items);
 }
-
-// 1 3 4 5
-
-
-// wedfrgh
-
-// ertfhjwer
-// werf
-// wertgh
