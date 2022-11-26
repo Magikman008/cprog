@@ -9,7 +9,6 @@ int main(int argc, char **argv)
     item_t *items = NULL;
 
     int rc = read_array(argv[1], &items, &count);
-    // size_t reserve_count = count;
 
     if (rc)
         return rc;
