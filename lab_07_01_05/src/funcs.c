@@ -47,8 +47,7 @@ int read_array(const char *file, size_t *count, int **nums)
 
     int i = 0;
 
-    for (; fscanf(src, "%d", *nums + i) == EXPECTED_SCANF; i++)
-        ;
+    for (; fscanf(src, "%d", *nums + i) == EXPECTED_SCANF; i++);
 
     if ((i + *nums) != (*nums + *count))
     {
