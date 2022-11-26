@@ -102,7 +102,7 @@ void print_array(const item_t *const items, const size_t count)
         printf("%s\n%f\n%f\n", items[i].name, items[i].weight, items[i].volume);
 }
 
-item_t *filter_array(item_t *items, size_t *count, const char *const string)
+item_t *filter_array(item_t *items, size_t *const count, const char *const string)
 {
     size_t temp_count = 0;
 
