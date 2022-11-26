@@ -1,6 +1,6 @@
 #include "../inc/funcs.h"
 
-int count_elems(FILE *f, size_t *count)
+int count_elems(FILE *f, size_t *const count)
 {
     int temp_int, rc;
 
@@ -184,7 +184,7 @@ int print_file(const char *const file, int *pb_src, const int *pe_src)
     return EXIT_SUCCESS;
 }
 
-int parse_args(const int argc, char **argv)
+int parse_args(const int argc, char **const argv)
 {
     if (argc != 3 && argc != 4)
         return ERROR_BAD_ARGS;
