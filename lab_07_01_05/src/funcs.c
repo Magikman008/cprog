@@ -16,7 +16,7 @@ int count_elems(FILE *f, size_t *count)
     return EXIT_SUCCESS;
 }
 
-int read_array(char *file, size_t *count, int **nums)
+int read_array(const char *file, size_t *count, int **nums)
 {
     FILE *src;
 
@@ -169,7 +169,7 @@ void mysort(void *first, size_t number, size_t size, int (*comparator)(const voi
     }
 }
 
-int print_file(char *file, int *pb_src, const int *pe_src)
+int print_file(const char *file, int *pb_src, const int *pe_src)
 {
     FILE *dist;
 
@@ -185,7 +185,7 @@ int print_file(char *file, int *pb_src, const int *pe_src)
     return EXIT_SUCCESS;
 }
 
-int parse_args(int argc, char **argv)
+int parse_args(const int argc, char **argv)
 {
     if (argc != 3 && argc != 4)
         return ERROR_BAD_ARGS;
