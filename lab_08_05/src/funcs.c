@@ -98,7 +98,7 @@ void *make_row(int s_from, int index, int **pointers)
     {
         int mult = 1;
         for (int j = 0; j < index; j++)
-            mult *= pointers[j][i];
+            mult *= abs(pointers[j][i]);
 
         temp_row[i] = (int)pow(mult, 1 / (float)index);
     }

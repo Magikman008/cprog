@@ -19,8 +19,8 @@ int main()
     // print_matrix(m_a, n_a, matrix_a);
     // puts("");
 
-    // print_matrix(m_b, n_b, matrix_b);
-    // puts("");
+    print_matrix(m_b, n_b, matrix_b);
+    puts("");
 
     made_matrix_square(&m_a, &n_a, matrix_a);
     made_matrix_square(&m_b, &n_b, matrix_b);
@@ -28,8 +28,8 @@ int main()
     // print_matrix(m_a, n_a, matrix_a);
     // puts("");
 
-    // print_matrix(m_b, n_b, matrix_b);
-    // puts("");
+    print_matrix(m_b, n_b, matrix_b);
+    puts("");
 
     if (m_a < m_b)
     {
@@ -45,8 +45,8 @@ int main()
     // print_matrix(m_a, n_a, matrix_a);
     // puts("");
 
-    // print_matrix(m_b, n_b, matrix_b);
-    // puts("");
+    print_matrix(m_b, n_b, matrix_b);
+    puts("");
 
     int **result = calloc(m_a, sizeof(int *));
 
@@ -79,7 +79,7 @@ int main()
 
     p--;
 
-    // print_matrix(m_a, m_a, result);
+    print_matrix(m_a, m_a, result);
     for (int i = 0; i < p; i++)
     {
         result = mult_matrixs(m_a, result, matrix_a);
