@@ -9,6 +9,13 @@ int main()
     int **matrix_a = alloc_scan_matrix(&m_a, &n_a);
     int **matrix_b = alloc_scan_matrix(&m_b, &n_b);
 
+    if (n_a < 1 || m_a < 1 || n_b < 1 || m_b < 1)
+    {
+        free_matrix(m_a, matrix_a);
+        free_matrix(m_b, matrix_b);
+        return ERROR_WRONG_SIZES;
+    }
+
     // print_matrix(m_a, n_a, matrix_a);
     // puts("");
 
@@ -48,6 +55,13 @@ int main()
 
     int p, q;
     scanf("%d %d", &p, &q);
+
+    if (p < 0 || q < 0)
+    {
+        free_matrix(m_a, matrix_a);
+        free_matrix(m_b, matrix_b);
+        return ERROR_WRONG_SIZES;
+    }
 
     if (p == 0)
         for (int i = 0; i < m_a; i++)

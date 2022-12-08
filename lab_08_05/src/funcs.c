@@ -134,7 +134,7 @@ void free_matrix(int m, int **pointers)
     free(pointers);
 }
 
-void *mult_matrixs(int s, int **A, int **B)
+void *mult_matrixs(int s, int **a, int **b)
 {
     int **temp_res = calloc(s, sizeof(int *));
 
@@ -144,9 +144,9 @@ void *mult_matrixs(int s, int **A, int **B)
     for (int i = 0; i < s; i++)
         for (int j = 0; j < s; j++)
             for (int k = 0; k < s; k++)
-                temp_res[i][j] += A[i][k] * B[k][j];
+                temp_res[i][j] += a[i][k] * b[k][j];
 
-    free_matrix(s, A);
+    free_matrix(s, a);
 
     return temp_res;
 }
