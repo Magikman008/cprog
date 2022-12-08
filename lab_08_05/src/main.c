@@ -1,4 +1,3 @@
-#include "../inc/funcs.h"
 #include <math.h>
 
 void *alloc_scan_matrix(int *m, int *n)
