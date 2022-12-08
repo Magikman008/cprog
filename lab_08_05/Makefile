@@ -21,7 +21,7 @@ UNIT_DIR = ./unit_tests
 
 MAIN := main.c
 OMAIN := $(MAIN:.c=.o)
-FUNCS := 
+FUNCS := funcs.c
 OFUNCS := $(FUNCS:.c=.o)
 UNITS := check_main.c check_funcs.c
 OUNITS := $(UNITS:.c=.o)
