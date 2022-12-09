@@ -66,20 +66,19 @@ int main()
     if (p == 0)
     {
         for (int i = 0; i < m_a; i++)
-            for (int j = 0; j < m_a; j++)
-            {
-                result[i][j] = 1;
-                matrix_a[i][j] = 1;
-            }
+            result[i][i] = 1;
     }
     else if (q == 0)
     {
         for (int i = 0; i < m_a; i++)
+        {
             for (int j = 0; j < m_a; j++)
             {
                 result[i][j] = matrix_a[i][j];
-                matrix_b[i][j] = 1;
+                matrix_b[i][j] = 0;
             }
+            matrix_b[i][i] = 1;
+        }
         p--;
         q++;
     }
@@ -99,7 +98,7 @@ int main()
 
     // print_matrix(m_a, m_a, result);
     // puts("");
-    // print_matrix(m_a, m_a, result);
+
     for (int i = 0; i < p; i++)
     {
         // printf("%d\n", i);
