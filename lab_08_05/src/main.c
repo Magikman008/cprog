@@ -42,11 +42,11 @@ int main()
         n_b = m_b;
     }
 
-    print_matrix(m_a, n_a, matrix_a);
-    puts("");
+    // print_matrix(m_a, n_a, matrix_a);
+    // puts("");
 
-    print_matrix(m_b, n_b, matrix_b);
-    puts("");
+    // print_matrix(m_b, n_b, matrix_b);
+    // puts("");
 
     int p, q;
     scanf("%d %d", &p, &q);
