@@ -1,6 +1,6 @@
 #include "../inc/funcs.h"
 
-void free_matrix(int m, int **pointers)
+void free_matrix(const int m, int **const pointers)
 {
     for (int i = 0; i < m; i++)
         free(pointers[i]);
@@ -8,7 +8,7 @@ void free_matrix(int m, int **pointers)
     free(pointers);
 }
 
-void *alloc_scan_matrix(int *m, int *n)
+void *alloc_scan_matrix(int *const m, int *const n)
 {
     if (scanf("%d %d", m, n) != 2)
         return NULL;
@@ -43,7 +43,7 @@ void *alloc_scan_matrix(int *m, int *n)
     return pointers;
 }
 
-void print_matrix(int m, int n, int **pointers)
+void print_matrix(const int m, const int n, int **const pointers)
 {
     for (int i = 0; i < m; i++)
     {
@@ -53,7 +53,7 @@ void print_matrix(int m, int n, int **pointers)
     }
 }
 
-void remove_column(int m, int *n, int index, int **pointers)
+void remove_column(const int m, int *const n, const int index, int **const pointers)
 {
     for (int i = 0; i < m; i++)
         for (int j = index; j < *n - 1; j++)
@@ -62,7 +62,7 @@ void remove_column(int m, int *n, int index, int **pointers)
     (*n)--;
 }
 
-void remove_row(int *m, int index, int **pointers)
+void remove_row(int *const m, const int index, int **const pointers)
 {
     free(pointers[index]);
     for (int i = index; i < *m - 1; i++)
@@ -71,7 +71,7 @@ void remove_row(int *m, int index, int **pointers)
     (*m)--;
 }
 
-void made_matrix_square(int *m, int *n, int **pointers)
+void made_matrix_square(int *const m, int *const n, int **const pointers)
 {
     while (*n != *m)
     {
@@ -98,7 +98,7 @@ void made_matrix_square(int *m, int *n, int **pointers)
     }
 }
 
-void *expand_row(int s_from, int s_to, int *row)
+void *expand_row(const int s_from, const int s_to, int *const row)
 {
     int *temp_row = calloc(s_to, sizeof(int));
     int max = row[0];
@@ -117,7 +117,7 @@ void *expand_row(int s_from, int s_to, int *row)
     return temp_row;
 }
 
-void *make_row(int s_from, int index, int **pointers)
+void *make_row(const int s_from, const int index, int **const pointers)
 {
     int *temp_row = calloc(s_from, sizeof(int));
 
@@ -133,7 +133,7 @@ void *make_row(int s_from, int index, int **pointers)
     return temp_row;
 }
 
-void *make_matrix_bigger(int *s_from, int s_to, int **pointers)
+void *make_matrix_bigger(int *const s_from, const int s_to, int **const pointers)
 {
     int **temp = calloc(s_to, sizeof(int *));
 
@@ -153,18 +153,18 @@ void *make_matrix_bigger(int *s_from, int s_to, int **pointers)
     return temp;
 }
 
-void *mult_matrixs(int s, int **a, int **b)
+void *mult_matrixs(const int size, int **const a, int **const b)
 {
-    int **temp_res = calloc(s, sizeof(int *));
+    int **temp_res = calloc(size, sizeof(int *));
 
-    for (int i = 0; i < s; i++)
-        temp_res[i] = calloc(s, sizeof(int));
+    for (int i = 0; i < size; i++)
+        temp_res[i] = calloc(size, sizeof(int));
 
-    for (int i = 0; i < s; i++)
-        for (int j = 0; j < s; j++)
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
         {
             // printf("res[%d][%d] = ", i + 1, j + 1);
-            for (int k = 0; k < s; k++)
+            for (int k = 0; k < size; k++)
             {
                 temp_res[i][j] += a[i][k] * b[k][j];
                 // printf("%d * %d (%d) + ", b[k][j], a[i][k], sum);
@@ -172,12 +172,12 @@ void *mult_matrixs(int s, int **a, int **b)
             // printf("= %d\n", temp_res[i][j]);
         }
 
-    free_matrix(s, a);
+    free_matrix(size, a);
 
     return temp_res;
 }
 
-void *pow_operations(int size, int **matrix_a, int **matrix_b)
+void *pow_operations(const int size, int **const matrix_a, int **const matrix_b)
 {
     int p, q;
     if (scanf("%d %d", &p, &q) != 2)

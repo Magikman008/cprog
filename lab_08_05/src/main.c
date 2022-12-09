@@ -20,7 +20,7 @@ int main()
     }
 
 #ifdef DEBUG
-    LOG_DEBUG("initial tables: \n");
+    LOG("initial tables: \n");
     print_matrix(m_a, n_a, matrix_a);
     puts("");
 
@@ -32,7 +32,7 @@ int main()
     made_matrix_square(&m_b, &n_b, matrix_b);
 
 #ifdef DEBUG
-    LOG_DEBUG("squred tables: \n");
+    LOG("squred tables: \n");
     print_matrix(m_a, n_a, matrix_a);
     puts("");
 
@@ -46,7 +46,7 @@ int main()
         matrix_b = make_matrix_bigger(&m_b, m_a, matrix_b);
 
 #ifdef DEBUG
-    LOG_DEBUG("upsqured tables: \n");
+    LOG("upsqured tables: \n");
     print_matrix(m_a, m_a, matrix_a);
     puts("");
 

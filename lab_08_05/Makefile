@@ -48,7 +48,7 @@ debug : DFLAGS += --coverage
 debug : $(EXEC_APP)
 
 $(EXEC_DEBUG): $(OBJ_DIR) $(OBJS)
-	$(CC) $(OBJS) -o $@
+	$(CC) $(OBJS) -o $@ -lm
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -MMD -I$(INC_DIR) -c $< -o $@
