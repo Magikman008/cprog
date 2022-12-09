@@ -176,3 +176,61 @@ void *mult_matrixs(int s, int **a, int **b)
 
     return temp_res;
 }
+
+void *pow_operations(int size, int **matrix_a, int **matrix_b)
+{
+    int p, q;
+    if (scanf("%d %d", &p, &q) != 2)
+    {
+        free_matrix(size, matrix_a);
+        free_matrix(size, matrix_b);
+        return NULL;
+    }
+
+    if (p < 0 || q < 0)
+    {
+        free_matrix(size, matrix_a);
+        free_matrix(size, matrix_b);
+        return NULL;
+    }
+
+    int **result = calloc(size, sizeof(int *));
+
+    for (int i = 0; i < size; i++)
+        result[i] = calloc(size, sizeof(int));
+
+    if (p == 0)
+    {
+        for (int i = 0; i < size; i++)
+            result[i][i] = 1;
+    }
+    else if (q == 0)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                result[i][j] = matrix_a[i][j];
+                matrix_b[i][j] = 0;
+            }
+            matrix_b[i][i] = 1;
+        }
+        p--;
+        q++;
+    }
+    else
+    {
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
+                result[i][j] = matrix_a[i][j];
+        p--;
+    }
+
+    for (int i = 0; i < p; i++)
+        result = mult_matrixs(size, result, matrix_a);
+
+    for (int i = 0; i < q; i++)
+        result = mult_matrixs(size, result, matrix_b);
+
+    return result;
+}
