@@ -14,7 +14,10 @@ int main()
     int **matrix_b = alloc_scan_matrix(&m_b, &n_b);
 
     if (matrix_b == NULL)
+    {
+        free_matrix(m_a, matrix_a);
         return ERROR_ALLOC_MATRIX;
+    }
 
     // print_matrix(m_a, n_a, matrix_a);
     // puts("");
