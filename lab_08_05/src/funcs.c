@@ -143,8 +143,17 @@ void *mult_matrixs(int s, int **a, int **b)
 
     for (int i = 0; i < s; i++)
         for (int j = 0; j < s; j++)
+        {
+            // printf("res[%d][%d] = ", i + 1, j + 1);
+            int sum = 0;
             for (int k = 0; k < s; k++)
-                temp_res[i][j] += a[i][k] * b[k][j];
+            {
+                sum += a[i][k] * b[k][j];
+                // printf("%d * %d (%d) + ", b[k][j], a[i][k], sum);
+            }
+            temp_res[i][j] = sum;
+            // printf("= %d\n", temp_res[i][j]);
+        }
 
     free_matrix(s, a);
 

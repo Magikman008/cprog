@@ -64,30 +64,51 @@ int main()
         result[i] = calloc(m_a, sizeof(int));
 
     if (p == 0)
+    {
         for (int i = 0; i < m_a; i++)
             for (int j = 0; j < m_a; j++)
-                matrix_a[i][j] = 1;
-
-    if (q == 0)
+                result[i][j] = 1;
+        int **temp = result;
+        result = matrix_a;
+        matrix_a = temp;
+    }
+    else if (q == 0)
+    {
         for (int i = 0; i < m_a; i++)
             for (int j = 0; j < m_a; j++)
-                matrix_b[i][j] = 1;
+                result[i][j] = 1;
 
-    for (int i = 0; i < m_a; i++)
-        for (int j = 0; j < m_a; j++)
-            result[i][j] = matrix_a[i][j];
+        int **temp = result;
+        result = matrix_a;
+        matrix_a = temp;
+    }
+    else
+    {
+        for (int i = 0; i < m_a; i++)
+            for (int j = 0; j < m_a; j++)
+                result[i][j] = matrix_a[i][j];
+        p--;
+    }
 
-    p--;
+    // print_matrix(m_a, n_a, matrix_a);
+    // puts("");
 
+    // print_matrix(m_b, n_b, matrix_b);
+    // puts("");
+
+    // print_matrix(m_a, m_a, result);
+    // puts("");
     // print_matrix(m_a, m_a, result);
     for (int i = 0; i < p; i++)
     {
+        // printf("%d\n", i);
         result = mult_matrixs(m_a, result, matrix_a);
         // print_matrix(m_a, m_a, result);
     }
 
     for (int i = 0; i < q; i++)
     {
+        // printf("%d\n", i);
         result = mult_matrixs(m_a, result, matrix_b);
         // print_matrix(m_a, m_a, result);
     }
