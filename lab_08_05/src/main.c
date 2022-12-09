@@ -50,7 +50,11 @@ int main()
 
     int p, q;
     if (scanf("%d %d", &p, &q) != 2)
+    {
+        free_matrix(m_a, matrix_a);
+        free_matrix(m_b, matrix_b);
         return ERROR_BAD_POW;
+    }
 
     if (p < 0 || q < 0)
     {
