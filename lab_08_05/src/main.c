@@ -7,14 +7,14 @@ int main()
     int n_a, m_a, n_b, m_b;
 
     int **matrix_a = alloc_scan_matrix(&m_a, &n_a);
+
+    if (matrix_a == NULL)
+        return ERROR_ALLOC_MATRIX;
+
     int **matrix_b = alloc_scan_matrix(&m_b, &n_b);
 
-    if (n_a < 1 || m_a < 1 || n_b < 1 || m_b < 1)
-    {
-        free_matrix(m_a, matrix_a);
-        free_matrix(m_b, matrix_b);
-        return ERROR_WRONG_SIZES;
-    }
+    if (matrix_b == NULL)
+        return ERROR_ALLOC_MATRIX;
 
     // print_matrix(m_a, n_a, matrix_a);
     // puts("");

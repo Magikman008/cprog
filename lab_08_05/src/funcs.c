@@ -1,17 +1,44 @@
 #include "../inc/funcs.h"
 
+void free_matrix(int m, int **pointers)
+{
+    for (int i = 0; i < m; i++)
+        free(pointers[i]);
+
+    free(pointers);
+}
+
 void *alloc_scan_matrix(int *m, int *n)
 {
-    scanf("%d %d", m, n);
+    if (scanf("%d %d", m, n) != 2)
+        return NULL;
+
+    if (*m < 1 || *n < 1)
+        return NULL;
 
     int **pointers = calloc(*m, sizeof(int *));
 
+    if (pointers == NULL)
+        return NULL;
+
     for (int i = 0; i < *m; i++)
+    {
         pointers[i] = calloc(*n, sizeof(int));
+
+        if (pointers[i] == NULL)
+        {
+            free_matrix(*m, pointers);
+            return NULL;
+        }
+    }
 
     for (int i = 0; i < *m; i++)
         for (int j = 0; j < *n; j++)
-            scanf("%d", &pointers[i][j]);
+            if (scanf("%d", &pointers[i][j]) != 1)
+            {
+                free_matrix(*m, pointers);
+                return NULL;
+            }
 
     return pointers;
 }
@@ -124,14 +151,6 @@ void *make_matrix_bigger(int *s_from, int s_to, int **pointers)
     free(pointers);
 
     return temp;
-}
-
-void free_matrix(int m, int **pointers)
-{
-    for (int i = 0; i < m; i++)
-        free(pointers[i]);
-
-    free(pointers);
 }
 
 void *mult_matrixs(int s, int **a, int **b)
