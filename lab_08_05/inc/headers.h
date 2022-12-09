@@ -11,6 +11,7 @@
 
 #define ERROR_WRONG_SIZES -1
 #define ERROR_ALLOC_MATRIX -2
+#define ERROR_BAD_POW -3
 #define ERROR_NO_ITEMS -4
 #define ERROR_MALLOC -6
 #define ERROR_NO_PRINT -7
