@@ -118,6 +118,8 @@ START_TEST(test_bigger_normal)
     for (size_t i = 0; i < 3; i++)
         for (size_t j = 0; j < 3; j++)
             ck_assert_double_eq(arr[i][j], res[i][j]);
+
+    free_matrix(3, arr);
 }
 END_TEST
 
