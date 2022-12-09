@@ -67,20 +67,21 @@ int main()
     {
         for (int i = 0; i < m_a; i++)
             for (int j = 0; j < m_a; j++)
+            {
                 result[i][j] = 1;
-        int **temp = result;
-        result = matrix_a;
-        matrix_a = temp;
+                matrix_a[i][j] = 1;
+            }
     }
     else if (q == 0)
     {
         for (int i = 0; i < m_a; i++)
             for (int j = 0; j < m_a; j++)
-                result[i][j] = 1;
-
-        int **temp = result;
-        result = matrix_a;
-        matrix_a = temp;
+            {
+                result[i][j] = matrix_a[i][j];
+                matrix_b[i][j] = 1;
+            }
+        p--;
+        q++;
     }
     else
     {
