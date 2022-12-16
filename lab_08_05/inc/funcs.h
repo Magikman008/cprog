@@ -3,7 +3,7 @@
 
 #include "headers.h"
 
-void free_matrix(int m, int **pointers);
+void free_matrix(const int m, int **const pointers);
 void *alloc_scan_matrix(int *const m, int *const n);
 void print_matrix(const int m, const int n, int **const pointers);
 void made_matrix_square(int *const m, int *const n, int **const pointers);
