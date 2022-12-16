@@ -6,13 +6,7 @@ char *my_itoa(long long value, char *string, int radix)
     size_t len = 0;
     long long value_backup = value;
 
-    // if (value < 0 && (radix == 16 || radix == 8))
-    // {
-    //     value = 4294967295 + value + 1;
-    //     value_backup *= -1;
-    // }
-    // else
-     if (value < 0)
+    if (value < 0)
         value *= -1;
 
     while (value != 0)
@@ -87,11 +81,11 @@ int my_snprintf(char *restrict s, size_t n, const char *restrict format, ...)
                     CSTRING(tempstr);
                     break;
                 case 'x': // шеснадцатиричное без знака
-                    my_itoa(va_arg(args, int), str, 16);
+                    my_itoa(va_arg(args, unsigned int), str, 16);
                     CSTRING(str);
                     break;
                 case 'o': // восьмеричное
-                    my_itoa(va_arg(args, int), str, 8);
+                    my_itoa(va_arg(args, unsigned int), str, 8);
                     CSTRING(str);
                     break;
                 default:
