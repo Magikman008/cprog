@@ -107,7 +107,7 @@ int my_snprintf(char *restrict s, size_t n, const char *restrict format, ...)
     va_end(args);
     if (!s || n == 0)
     {
-        free(str);
+        free(temp);
         return len;
     }
     my_strncpy(s, temp, len);
