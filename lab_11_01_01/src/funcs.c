@@ -6,6 +6,9 @@ char *my_itoa(long long value, char *string, int radix)
     size_t len = 0;
     long long value_backup = value;
 
+    if (value == 0)
+        string[len++] = '0';
+
     if (value < 0)
         value *= -1;
 
@@ -89,6 +92,7 @@ int my_snprintf(char *restrict s, size_t n, const char *restrict format, ...)
                     CSTRING(str);
                     break;
                 default:
+                    CCHAR('%');
                     break;
             }
         }
