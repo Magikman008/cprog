@@ -74,20 +74,20 @@ int my_snprintf(char *restrict s, size_t n, const char *restrict format, ...)
                 case 'c':
                     CCHAR(va_arg(args, int));
                     break;
-                case 'i': // целое со знаком
-                case 'd': // целое со знаком
+                case 'i':
+                case 'd':
                     my_itoa(va_arg(args, int), str, 10);
                     CSTRING(str);
                     break;
-                case 's': // строка
+                case 's':
                     tempstr = va_arg(args, char *);
                     CSTRING(tempstr);
                     break;
-                case 'x': // шеснадцатиричное без знака
+                case 'x':
                     my_itoa(va_arg(args, unsigned int), str, 16);
                     CSTRING(str);
                     break;
-                case 'o': // восьмеричное
+                case 'o':
                     my_itoa(va_arg(args, unsigned int), str, 8);
                     CSTRING(str);
                     break;
@@ -105,6 +105,11 @@ int my_snprintf(char *restrict s, size_t n, const char *restrict format, ...)
 
     temp[len] = '\0';
     va_end(args);
+    if (!s || n == 0)
+    {
+        free(str);
+        return len;
+    }
     my_strncpy(s, temp, len);
     free(temp);
 
