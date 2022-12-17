@@ -88,8 +88,8 @@ START_TEST(test_square_1x1)
         for (size_t j = 0; j < 1; j++)
             ck_assert_double_eq(arr[i][j], res[i][j]);
 
-    free_matrix(2, arr);
-    free_matrix(2, res);
+    free_matrix(1, arr);
+    free_matrix(1, res);
 }
 END_TEST
 
