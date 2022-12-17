@@ -180,7 +180,7 @@ void *make_matrix_bigger(int *const s_from, const int s_to, int **const pointers
     return temp;
 }
 
-void *mult_matrixs(const int size, int **const a, int **const b)
+void *mult_matrices(const int size, int **const a, int **const b)
 {
     int **temp_res = calloc(size, sizeof(int *));
 
@@ -257,7 +257,7 @@ void *pow_operations(const int size, int **const matrix_a, int **const matrix_b,
 
     for (int i = 0; i < *p; i++)
     {
-        temp = mult_matrixs(size, result, matrix_a);
+        temp = mult_matrices(size, result, matrix_a);
         if (temp == NULL)
         {
             free(result);
@@ -268,7 +268,7 @@ void *pow_operations(const int size, int **const matrix_a, int **const matrix_b,
 
     for (int i = 0; i < *q; i++)
     {
-        temp = mult_matrixs(size, result, matrix_b);
+        temp = mult_matrices(size, result, matrix_b);
         if (temp == NULL)
         {
             free(result);

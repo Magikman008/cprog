@@ -2,8 +2,6 @@
 
 int main()
 {
-    // m - rows
-    // n - columns
     int n_a, m_a, n_b, m_b;
 
     int **matrix_a = alloc_scan_matrix(&m_a, &n_a);
@@ -23,46 +21,18 @@ int main()
 
     int **temp;
 
-    if (m_a < m_b)
-    {
-        temp = make_matrix_bigger(&m_a, m_b, matrix_a);
-
-        if (temp == NULL)
-        {
-            free_matrix(m_a, matrix_a);
-            free_matrix(m_b, matrix_b);
-            return ERROR_ALLOC_MATRIX;
-        }
-
-        matrix_a = temp;
-    }
-    else
-    {
-        temp = make_matrix_bigger(&m_b, m_a, matrix_b);
-
-        if (temp == NULL)
-        {
-            free_matrix(m_a, matrix_a);
-            free_matrix(m_b, matrix_b);
-            return ERROR_ALLOC_MATRIX;
-        }
-
-        matrix_b = temp;
-    }
-
+    DESIDE_WHICH_MATRIX_EXPAND;
 
     int p, q;
     if (scanf("%d %d", &p, &q) != 2)
     {
-        free_matrix(m_a, matrix_a);
-        free_matrix(m_b, matrix_b);
+        FREE_MATRICES;
         return ERROR_SCANF;
     }
 
     if (p < 0 || q < 0)
     {
-        free_matrix(m_a, matrix_a);
-        free_matrix(m_b, matrix_b);
+        FREE_MATRICES;
         return ERROR_WRONG_POWERS;
     }
 
@@ -70,15 +40,13 @@ int main()
 
     if (result == NULL)
     {
-        free_matrix(m_a, matrix_a);
-        free_matrix(m_b, matrix_b);
+        FREE_MATRICES;
         return ERROR_MULT_MATRIX;
     }
 
     print_matrix(m_a, m_a, result);
 
-    free_matrix(m_a, matrix_a);
-    free_matrix(m_b, matrix_b);
+    FREE_MATRICES;
     free_matrix(m_a, result);
 
     return EXIT_SUCCESS;
