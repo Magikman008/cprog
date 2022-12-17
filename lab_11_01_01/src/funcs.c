@@ -1,6 +1,28 @@
 #include "../inc/funcs.h"
 
-char *my_itoa(long long value, char *string, int radix)
+size_t cchar(char *const dst, const char chr, size_t *const curlen, const size_t max)
+{
+    if (*curlen < max - 1)
+        dst[(*curlen)++] = chr;
+
+    return 1;
+}
+
+size_t cstring(char *const dst, char *const src, size_t *const curlen, const size_t max)
+{
+    int i = 0;
+    size_t added = 0;
+
+    while (src[i] != '\0')
+    {
+        added += cchar(dst, src[i], curlen, max);
+        i++;
+    }
+
+    return added;
+}
+
+char *my_itoa(long long value, char *const string, const int radix)
 {
     char *chars = "0123456789abcdef";
     size_t len = 0;
@@ -33,7 +55,7 @@ char *my_itoa(long long value, char *string, int radix)
     return string;
 }
 
-char *my_strncpy(char *destptr, const char *srcptr, size_t num)
+char *my_strncpy(char *const destptr, const char *srcptr, const size_t num)
 {
     size_t len = 0;
 
@@ -54,6 +76,10 @@ int my_snprintf(char *restrict s, size_t n, const char *restrict format, ...)
         return -1;
 
     char *temp = calloc(n, sizeof(char));
+
+    if (temp == NULL)
+        return 0;
+
     size_t len = 0;
 
     va_list args;
@@ -61,7 +87,6 @@ int my_snprintf(char *restrict s, size_t n, const char *restrict format, ...)
 
     char *tempstr;
     char str[100];
-    int i = 0;
     int toreturn = 0;
 
     while (*format != '\0')
@@ -71,35 +96,33 @@ int my_snprintf(char *restrict s, size_t n, const char *restrict format, ...)
             format++;
             switch (*format)
             {
-                case 'c':
-                    CCHAR(va_arg(args, int));
-                    break;
-                case 'i':
-                case 'd':
-                    my_itoa(va_arg(args, int), str, 10);
-                    CSTRING(str);
-                    break;
-                case 's':
-                    tempstr = va_arg(args, char *);
-                    CSTRING(tempstr);
-                    break;
-                case 'x':
-                    my_itoa(va_arg(args, unsigned int), str, 16);
-                    CSTRING(str);
-                    break;
-                case 'o':
-                    my_itoa(va_arg(args, unsigned int), str, 8);
-                    CSTRING(str);
-                    break;
-                default:
-                    CCHAR('%');
-                    break;
+            case 'c':
+                toreturn += cchar(temp, va_arg(args, int), &len, n);
+                break;
+            case 'i':
+            case 'd':
+                my_itoa(va_arg(args, int), str, 10);
+                toreturn += cstring(temp, str, &len, n);
+                break;
+            case 's':
+                tempstr = va_arg(args, char *);
+                toreturn += cstring(temp, tempstr, &len, n);
+                break;
+            case 'x':
+                my_itoa(va_arg(args, unsigned int), str, 16);
+                toreturn += cstring(temp, str, &len, n);
+                break;
+            case 'o':
+                my_itoa(va_arg(args, unsigned int), str, 8);
+                toreturn += cstring(temp, str, &len, n);
+                break;
+            default:
+                toreturn += cchar(temp, '%', &len, n);
+                break;
             }
         }
         else
-        {
-            CCHAR(*format);
-        }
+            toreturn += cchar(temp, *format, &len, n);
         format++;
     }
 
