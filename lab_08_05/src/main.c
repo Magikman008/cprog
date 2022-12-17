@@ -5,7 +5,6 @@ int main()
     // m - rows
     // n - columns
     int n_a, m_a, n_b, m_b;
-    int **temp;
 
     int **matrix_a = alloc_scan_matrix(&m_a, &n_a);
     if (matrix_a == NULL)
@@ -21,6 +20,8 @@ int main()
 
     make_matrix_square(&m_a, &n_a, matrix_a);
     make_matrix_square(&m_b, &n_b, matrix_b);
+
+    int **temp;
 
     if (m_a < m_b)
     {

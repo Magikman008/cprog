@@ -1,7 +1,7 @@
 #ifndef FUNCS_H
 #define FUNCS_H
 
-#include "headers.h"
+#include "defines.h"
 
 void free_matrix(const int m, int **const pointers);
 void *alloc_scan_matrix(int *const m, int *const n);

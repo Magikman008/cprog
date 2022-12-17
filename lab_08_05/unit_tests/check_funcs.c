@@ -1,5 +1,5 @@
 #include <check.h>
-#include "../inc/headers.h"
+#include "../inc/defines.h"
 #include "../inc/unit.h"
 
 START_TEST(test_squre_normal)
@@ -19,7 +19,7 @@ START_TEST(test_squre_normal)
     int m = 2;
     int n = 4;
 
-    made_matrix_square(&m, &n, arr);
+    make_matrix_square(&m, &n, arr);
 
     for (size_t i = 0; i < 2; i++)
         for (size_t j = 0; j < 2; j++)
@@ -44,7 +44,7 @@ START_TEST(test_squre_2x2)
     int m = 2;
     int n = 2;
 
-    made_matrix_square(&m, &n, arr);
+    make_matrix_square(&m, &n, arr);
 
     for (size_t i = 0; i < 2; i++)
         for (size_t j = 0; j < 2; j++)
@@ -65,7 +65,7 @@ START_TEST(test_squre_1x1)
     int m = 1;
     int n = 1;
 
-    made_matrix_square(&m, &n, arr);
+    make_matrix_square(&m, &n, arr);
 
     for (size_t i = 0; i < 1; i++)
         for (size_t j = 0; j < 1; j++)
