@@ -50,7 +50,23 @@ int main()
         matrix_b = temp;
     }
 
-    int **result = pow_operations(m_a, matrix_a, matrix_b);
+
+    int p, q;
+    if (scanf("%d %d", &p, &q) != 2)
+    {
+        free_matrix(m_a, matrix_a);
+        free_matrix(m_b, matrix_b);
+        return ERROR_SCANF;
+    }
+
+    if (p < 0 || q < 0)
+    {
+        free_matrix(m_a, matrix_a);
+        free_matrix(m_b, matrix_b);
+        return ERROR_WRONG_POWERS;
+    }
+
+    int **result = pow_operations(m_a, matrix_a, matrix_b, &p, &q);
 
     if (result == NULL)
     {

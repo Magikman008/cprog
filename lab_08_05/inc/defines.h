@@ -16,6 +16,8 @@
 #define ERROR_MALLOC -6
 #define ERROR_NO_PRINT -7
 #define ERROR_ZERO -8
+#define ERROR_SCANF -9
+#define ERROR_WRONG_POWERS -10
 
 #ifdef DEBUG
 #define LOG(...)            \

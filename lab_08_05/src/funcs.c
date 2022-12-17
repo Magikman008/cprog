@@ -209,23 +209,8 @@ void *mult_matrixs(const int size, int **const a, int **const b)
     return temp_res;
 }
 
-void *pow_operations(const int size, int **const matrix_a, int **const matrix_b)
+void *pow_operations(const int size, int **const matrix_a, int **const matrix_b, int *const p, int *const q)
 {
-    int p, q;
-    if (scanf("%d %d", &p, &q) != 2)
-    {
-        free_matrix(size, matrix_a);
-        free_matrix(size, matrix_b);
-        return NULL;
-    }
-
-    if (p < 0 || q < 0)
-    {
-        free_matrix(size, matrix_a);
-        free_matrix(size, matrix_b);
-        return NULL;
-    }
-
     int **temp;
 
     int **result = calloc(size, sizeof(int *));
@@ -243,12 +228,12 @@ void *pow_operations(const int size, int **const matrix_a, int **const matrix_b)
         }
     }
 
-    if (p == 0)
+    if (*p == 0)
     {
         for (int i = 0; i < size; i++)
             result[i][i] = 1;
     }
-    else if (q == 0)
+    else if (*q == 0)
     {
         for (int i = 0; i < size; i++)
         {
@@ -259,18 +244,18 @@ void *pow_operations(const int size, int **const matrix_a, int **const matrix_b)
             }
             matrix_b[i][i] = 1;
         }
-        p--;
-        q++;
+        (*p)--;
+        (*q)++;
     }
     else
     {
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++)
                 result[i][j] = matrix_a[i][j];
-        p--;
+        (*p)--;
     }
 
-    for (int i = 0; i < p; i++)
+    for (int i = 0; i < *p; i++)
     {
         temp = mult_matrixs(size, result, matrix_a);
         if (temp == NULL)
@@ -281,7 +266,7 @@ void *pow_operations(const int size, int **const matrix_a, int **const matrix_b)
         result = temp;
     }
 
-    for (int i = 0; i < q; i++)
+    for (int i = 0; i < *q; i++)
     {
         temp = mult_matrixs(size, result, matrix_b);
         if (temp == NULL)
