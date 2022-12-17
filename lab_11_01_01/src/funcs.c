@@ -96,29 +96,29 @@ int my_snprintf(char *restrict s, size_t n, const char *restrict format, ...)
             format++;
             switch (*format)
             {
-            case 'c':
-                toreturn += cchar(temp, va_arg(args, int), &len, n);
-                break;
-            case 'i':
-            case 'd':
-                my_itoa(va_arg(args, int), str, 10);
-                toreturn += cstring(temp, str, &len, n);
-                break;
-            case 's':
-                tempstr = va_arg(args, char *);
-                toreturn += cstring(temp, tempstr, &len, n);
-                break;
-            case 'x':
-                my_itoa(va_arg(args, unsigned int), str, 16);
-                toreturn += cstring(temp, str, &len, n);
-                break;
-            case 'o':
-                my_itoa(va_arg(args, unsigned int), str, 8);
-                toreturn += cstring(temp, str, &len, n);
-                break;
-            default:
-                toreturn += cchar(temp, '%', &len, n);
-                break;
+                case 'c':
+                    toreturn += cchar(temp, va_arg(args, int), &len, n);
+                    break;
+                case 'i':
+                case 'd':
+                    my_itoa(va_arg(args, int), str, 10);
+                    toreturn += cstring(temp, str, &len, n);
+                    break;
+                case 's':
+                    tempstr = va_arg(args, char *);
+                    toreturn += cstring(temp, tempstr, &len, n);
+                    break;
+                case 'x':
+                    my_itoa(va_arg(args, unsigned int), str, 16);
+                    toreturn += cstring(temp, str, &len, n);
+                    break;
+                case 'o':
+                    my_itoa(va_arg(args, unsigned int), str, 8);
+                    toreturn += cstring(temp, str, &len, n);
+                    break;
+                default:
+                    toreturn += cchar(temp, '%', &len, n);
+                    break;
             }
         }
         else
