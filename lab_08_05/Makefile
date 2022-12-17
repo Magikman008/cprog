@@ -2,7 +2,7 @@
 .NOTPARALLEL: debug func key
 
 CC = gcc
-CFLAGS := -std=c99  -Wall -Werror -pedantic -Wextra -Wvla -Wfloat-equal -Wfloat-conversion
+CFLAGS := -std=c99  -Wall -pedantic -Wextra -Wvla -Wfloat-equal -Wfloat-conversion
 UFLAGS := -lcheck
 DFLAGS :=
 
