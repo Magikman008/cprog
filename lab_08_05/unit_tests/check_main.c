@@ -3,7 +3,7 @@
 int main(void)
 {
     int no_failed = 0;
-    Suite *s[2] = { square_suite() , bigger_suite()};
+    Suite *s[2] = { square_suite(), bigger_suite()};
     SRunner *runner;
 
     for (size_t i = 0; i < 2; i++)

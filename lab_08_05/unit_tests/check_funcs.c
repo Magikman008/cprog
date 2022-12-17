@@ -2,7 +2,7 @@
 #include "../inc/defines.h"
 #include "../inc/unit.h"
 
-void *make_matrix(int a[][100], int n, int m)
+void *make_matrix(int (*a)[15], int n, int m)
 {
     int **pointers = calloc(m, sizeof(int *));
 
@@ -31,11 +31,11 @@ START_TEST(test_square_normal)
 {
     int n = 4;
     int m = 2;
-    int a[][100] = {{4, 7, -1, -3}, {3, -5, 7, 3}};
+    int a[][15] = {{4, 7, -1, -3}, {3, -5, 7, 3}};
 
     int **arr = make_matrix(a, n, m);
 
-    int r[][100] = {{4, -1}, {3, 7}};
+    int r[][15] = {{4, -1}, {3, 7}};
     int **res = make_matrix(r, 2, 2);
 
     make_matrix_square(&m, &n, arr);
@@ -53,11 +53,11 @@ START_TEST(test_square_2x2)
 {
     int n = 2;
     int m = 2;
-    int a[][100] = {{4, -1}, {3, 7}};
+    int a[][15] = {{4, -1}, {3, 7}};
 
     int **arr = make_matrix(a, n, m);
 
-    int r[][100] = {{4, -1}, {3, 7}};
+    int r[][15] = {{4, -1}, {3, 7}};
     int **res = make_matrix(r, 2, 2);
 
     make_matrix_square(&m, &n, arr);
@@ -75,11 +75,11 @@ START_TEST(test_square_1x1)
 {
     int n = 1;
     int m = 1;
-    int a[][100] = {{4}};
+    int a[][15] = {{4}};
 
     int **arr = make_matrix(a, n, m);
 
-    int r[][100] = {{4}};
+    int r[][15] = {{4}};
     int **res = make_matrix(r, 1, 1);
 
     make_matrix_square(&m, &n, arr);
@@ -114,11 +114,11 @@ START_TEST(test_bigger_normal)
 {
     int n = 2;
     int m = 2;
-    int a[][100] = {{1,2}, {2, 4}};
+    int a[][15] = {{1, 2}, {2, 4}};
 
     int **arr = make_matrix(a, n, m);
 
-    int r[][100] = {{1, 2, 2}, {2, 4, 4}, {1, 2, 2}};
+    int r[][15] = {{1, 2, 2}, {2, 4, 4}, {1, 2, 2}};
     int **res = make_matrix(r, 3, 3);
 
     arr = make_matrix_bigger(&m, 3, arr);
