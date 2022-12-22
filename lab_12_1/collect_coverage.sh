@@ -1,6 +1,6 @@
 #!/bin/bash
 
-make load
+make debug
 
 ./func_tests/scripts/func_tests.sh
 echo
