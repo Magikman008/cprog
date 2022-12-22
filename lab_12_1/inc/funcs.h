@@ -9,5 +9,7 @@ void mysort(void *first, size_t number, size_t size, int (*comparator)(const voi
 int print_file(const char *const file, int *pb_src, const int *pe_src);
 int compare_int(const void *val1, const void *val2);
 int parse_args(const int argc, char **const argv);
+int key_no_malloc(const int *pb_src, const int *pe_src, int **pb_dst, int count);
+int find_suitable(const int *pb_src, const int *pe_src);
 
 #endif

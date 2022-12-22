@@ -122,6 +122,16 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     return EXIT_SUCCESS;
 }
 
+int key_no_malloc(const int *pb_src, const int *pe_src, int **pb_dst, int count)
+{
+    if ((NULL == pb_src) || (NULL == pe_src))
+        return ERROR_KEY_POINTERS;
+
+    copy_elems(pb_src, pe_src, *pb_dst + count - 1);
+
+    return EXIT_SUCCESS;
+}
+
 int compare_int(const void *val1, const void *val2)
 {
     return (*(int *)val1 - *(int *)val2);
