@@ -21,4 +21,3 @@ def copy_elems(arr):
     temp = []
     for i in range(dst_len.value): temp.append(dst[i])
     return temp
-

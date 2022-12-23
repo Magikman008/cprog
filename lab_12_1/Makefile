@@ -28,8 +28,8 @@ OUNITS := $(UNITS:.c=.o)
 
 SRCS := $(addprefix $(SRC_DIR)/,$(MAIN) $(FUNCS))
 OBJS := $(addprefix $(OBJ_DIR)/,$(OMAIN) $(OFUNCS))
-USRCS := $(addprefix $(UNIT_DIR)/,$(UNITS) $(FUNCS))
-UOBJS := $(addprefix $(OBJ_DIR)/,$(OUNITS) $(OFUNCS))
+USRCS := $(addprefix $(UNIT_DIR)/,$(UNITS))
+UOBJS := $(addprefix $(OBJ_DIR)/,$(OUNITS))
 
 EXEC_APP := app.exe
 EXEC_DEBUG := debug.exe
@@ -38,14 +38,16 @@ EXEC_UNIT := unit_tests.exe
 $(EXEC_APP): $(OBJ_DIR) $(OBJS)
 	$(CC) $(OBJS) $(DFLAGS) -o $@
 
-key : CFLAGS += -DDEBUG
-key : cleano
-key : $(EXEC_DEBUG)
+key:
+	CFLAGS += -DDEBUG
+	cleano
+	$(EXEC_DEBUG)
 
-debug : CFLAGS += -g3 --coverage
-debug : cleano
-debug : DFLAGS += --coverage
-debug : $(EXEC_APP)
+debug:
+	CFLAGS += -g3 --coverage
+	cleano
+	DFLAGS += --coverage
+	$(EXEC_APP)
 
 #statlib
 static: $(OBJ_DIR)
@@ -72,11 +74,11 @@ $(EXEC_DEBUG): $(OBJ_DIR) $(OBJS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -MMD -I$(INC_DIR) -c $< -o $@
 
-unit: cleano
-unit: $(EXEC_UNIT)
-
-$(EXEC_UNIT): $(OBJ_DIR) $(UOBJS)
-	$(CC) $(UOBJS) $(UFLAGS) -o $@
+unit: $(OBJ_DIR) $(UOBJS)
+	$(CC) $(CFLAGS) -I$(INC_DIR) -c $(SRC_DIR)/funcs.c -o $(OBJ_DIR)/funcs.o
+	ar cr $(OBJ_DIR)/libfuncs.a $(OBJ_DIR)/funcs.o
+	ranlib $(OBJ_DIR)/libfuncs.a
+	$(CC) $(UOBJS) $(OBJ_DIR)/libfuncs.a $(UFLAGS) -o unit_app.exe
 
 $(OBJ_DIR)/%.o: $(UNIT_DIR)/%.c
 	$(CC) $(CFLAGS) -MMD -I$(INC_DIR) -c $< -o $@
