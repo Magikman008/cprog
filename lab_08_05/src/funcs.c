@@ -143,6 +143,9 @@ void *make_matrix_bigger(int *const s_from, const int s_to, int **const pointers
 {
     int **temp = calloc(s_to, sizeof(int *));
 
+    if (temp == NULL)
+        return NULL;
+
     for (int i = 0; i < *s_from; i++)
     {
         temp[i] = expand_row(*s_from, s_to, pointers[i]);
