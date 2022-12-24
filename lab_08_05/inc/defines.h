@@ -26,34 +26,6 @@
         free_matrix(m_b, matrix_b); \
     } while (0)
 
-#define DESIDE_WHICH_MATRIX_EXPAND                          \
-    do                                                      \
-    {                                                       \
-        if (m_a < m_b)                                      \
-        {                                                   \
-            temp = make_matrix_bigger(&m_a, m_b, matrix_a); \
-                                                            \
-            if (temp == NULL)                               \
-            {                                               \
-                FREE_MATRICES;                              \
-                return ERROR_ALLOC_MATRIX;                  \
-            }                                               \
-                                                            \
-            matrix_a = temp;                                \
-        }                                                   \
-        else                                                \
-        {                                                   \
-            temp = make_matrix_bigger(&m_b, m_a, matrix_b); \
-                                                            \
-            if (temp == NULL)                               \
-            {                                               \
-                FREE_MATRICES;                              \
-                return ERROR_ALLOC_MATRIX;                  \
-            }                                               \
-                                                            \
-            matrix_b = temp;                                \
-        }                                                   \
-    } while (0)
 #ifdef DEBUG
 #define LOG(...)             \
     {                        \

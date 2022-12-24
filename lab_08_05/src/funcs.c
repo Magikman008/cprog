@@ -282,3 +282,37 @@ void *pow_operations(const int size, int **const matrix_a, int **const matrix_b,
 
     return result;
 }
+
+int deside_matrix_expand(int *m_a, int *m_b, int ***matrix_a, int ***matrix_b)
+{
+    int **temp;
+
+    if (*m_a < *m_b)
+    {
+        temp = make_matrix_bigger(m_a, *m_b, *matrix_a);
+
+        if (temp == NULL)
+        {
+            free_matrix(*m_a, *matrix_a);
+            free_matrix(*m_b, *matrix_b);
+            return ERROR_ALLOC_MATRIX;
+        }
+
+        *matrix_a = temp;
+    }
+    else
+    {
+        temp = make_matrix_bigger(m_b, *m_a, *matrix_b);
+
+        if (temp == NULL)
+        {
+            free_matrix(*m_a, *matrix_a);
+            free_matrix(*m_b, *matrix_b);
+            return ERROR_ALLOC_MATRIX;
+        }
+
+        *matrix_b = temp;
+    }
+
+    return EXIT_SUCCESS;
+}

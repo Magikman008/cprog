@@ -19,9 +19,9 @@ int main()
     make_matrix_square(&m_a, &n_a, matrix_a);
     make_matrix_square(&m_b, &n_b, matrix_b);
 
-    int **temp;
-
-    DESIDE_WHICH_MATRIX_EXPAND;
+    int rc = deside_matrix_expand(&m_a, &m_b, &matrix_a, &matrix_b);
+    if (rc)
+        return rc;
 
     int p, q;
     if (scanf("%d %d", &p, &q) != 2)
