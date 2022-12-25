@@ -41,6 +41,11 @@ debug : cleano
 debug : DFLAGS += --coverage
 debug : $(EXEC_APP)
 
+run:
+	./app.exe in.txt
+
+build : $(EXEC_APP)
+
 $(EXEC_DEBUG): $(OBJ_DIR) $(OBJS)
 	$(CC) $(OBJS) -o $@ -lm
 
