@@ -1,6 +1,6 @@
 #include "../inc/funcs.h"
 
-void push(node_t **head, int value)
+void push(node_t **const head, const int value)
 {
     node_t *temp = malloc(sizeof(node_t));
 
@@ -18,19 +18,18 @@ void push(node_t **head, int value)
     in->next = temp;
 }
 
-void print_list(node_t *head, FILE *f)
+void print_list(node_t *const head, FILE *const f)
 {
     node_t *temp = head;
-    while (temp->next != NULL)
+    while (temp != NULL)
     {
         fprintf(f, "%d ", temp->value);
         temp = temp->next;
     }
-
-    fprintf(f, "%d\n", temp->value);
+    fprintf(f, "\n");
 }
 
-void reduce(node_t *head)
+void reduce(node_t *const head)
 {
     node_t *temp = head;
 
@@ -48,7 +47,7 @@ void reduce(node_t *head)
     }
 }
 
-void free_list(node_t *head)
+void free_list(node_t *const head)
 {
     node_t *temp = head;
 
@@ -56,6 +55,5 @@ void free_list(node_t *head)
     {
         temp = temp->next;
         free(temp->prev);
-        print_list(temp, stdout);
     }
 }
