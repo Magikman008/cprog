@@ -1,8 +1,6 @@
 #include "../inc/header.h"
 #include "../inc/funcs.h"
 
-// вариант 5, ввод и хранение 1, задание 1 минимум, задание 2 ряды, вывод 1
-
 int main(int argc, char **argv)
 {
     FILE *f;

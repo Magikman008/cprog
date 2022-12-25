@@ -2,7 +2,7 @@
 
 void push(node_t **const head, const int value)
 {
-    node_t *temp = malloc(sizeof(node_t));
+    node_t *temp = calloc(1, sizeof(node_t));
 
     if (temp == NULL)
         exit(ERROR_OVERFLOW);
@@ -56,4 +56,5 @@ void free_list(node_t *const head)
         temp = temp->next;
         free(temp->prev);
     }
+    free(temp);
 }
