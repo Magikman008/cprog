@@ -26,7 +26,7 @@ OFUNCS := $(FUNCS:.c=.o)
 SRCS := $(addprefix $(SRC_DIR)/,$(MAIN) $(FUNCS))
 OBJS := $(addprefix $(OBJ_DIR)/,$(OMAIN) $(OFUNCS))
 
-EXEC_APP := app.exe
+EXEC_APP := rk_04.exe
 EXEC_DEBUG := debug.exe
 
 $(EXEC_APP): $(OBJ_DIR) $(OBJS)
