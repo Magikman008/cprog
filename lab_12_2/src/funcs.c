@@ -19,6 +19,7 @@ int is_cointain(int *arr, int size, int elem)
     for (int i = 0; i < size; i++)
         if (arr[i] == elem)
             return true;
+
     return false;
 }
 
@@ -26,6 +27,7 @@ int *copy_elems(int *dst, int *dst_size, int *src, int src_size)
 {
     if (dst != NULL)
         free(dst);
+
     for (int i = 0; i < src_size; i++)
     {
         int temp = 0;
@@ -43,6 +45,5 @@ int *copy_elems(int *dst, int *dst_size, int *src, int src_size)
         if (is_cointain(dst, *dst_size, src[i]) == false)
             dst[(*dst_size)++] = src[i];
 
-    // int *t = calloc(10, sizeof(int));
     return dst;
 }
