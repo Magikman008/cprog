@@ -128,11 +128,13 @@ int my_snprintf(char *restrict s, size_t n, const char *restrict format, ...)
 
     temp[len] = '\0';
     va_end(args);
+
     if (!s || n == 0)
     {
         free(temp);
         return len;
     }
+
     my_strncpy(s, temp, len);
     free(temp);
 
